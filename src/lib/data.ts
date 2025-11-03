@@ -1,12 +1,11 @@
-// src/lib/data.ts
 import { PortfolioData } from '@/types'; // Assumindo que você criou o types/index.d.ts
 
 export const portfolioData: PortfolioData = {
-  name: "Seu Nome Aqui",
-  title: "Desenvolvedor Front-end | UI/UX Enthusiast",
+  name: "EmanuProds",
+  title: "Desenvolvedor Fullstack",
   profilePicture: "/profile.jpg", // Coloque sua foto em public/profile.jpg
-  about: "Olá! Sou um desenvolvedor front-end apaixonado por criar experiências digitais intuitivas e visualmente atraentes. Tenho experiência em construir aplicações web robustas usando React, Next.js e TypeScript, com um olhar atento para o design e a usabilidade.",
-  email: "seu.email@example.com",
+  about: "Olá! Sou um desenvolvedor fullstack apaixonado por criar experiências digitais intuitivas e visualmente atraentes. Tenho experiência em construir aplicações web robustas usando React, Next.js e TypeScript, com um olhar atento para o design e a usabilidade.",
+  email: "emanuprods@proton.me",
   
   projects: [
     {
@@ -44,9 +43,9 @@ export const portfolioData: PortfolioData = {
   ],
 
   socialLinks: [
-    { name: "GitHub", url: "https://github.com/seu-usuario", icon: "FaGithub" },
+    { name: "GitHub", url: "https://github.com/EmanuProds", icon: "FaGithub" },
     { name: "LinkedIn", url: "https://linkedin.com/in/seu-perfil", icon: "FaLinkedin" },
-    { name: "Twitter", url: "https://twitter.com/seu-usuario", icon: "FaTwitter" },
+    { name: "WhatsApp", url: "https://twitter.com/seu-usuario", icon: "FaWhatsapp" },
     // Adicione mais links
   ],
 };

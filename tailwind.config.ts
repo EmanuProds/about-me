@@ -1,4 +1,3 @@
-// tailwind.config.ts
 import type { Config } from "tailwindcss";
 
 const config: Config = {
@@ -13,7 +12,8 @@ const config: Config = {
       colors: {
         primary: "#6366f1", // Um roxo/azul vibrante
         secondary: "#8b5cf6", // Um roxo um pouco diferente
-        background: "#0d1117", // Fundo escuro
+        backgroundDark: "#0d1117", // Fundo escuro
+        backgroundLight: "#f8fafc", // Fundo claro
         textLight: "#f8fafc", // Texto claro
         textDark: "#1f2937", // Texto escuro
       },

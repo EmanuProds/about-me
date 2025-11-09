@@ -5,8 +5,8 @@ const About = () => {
 
   return (
     <div className="flex flex-col items-center p-10">
-      <h1 className="text-3xl font-bold text-slate-400 mt-2">Sobre mim</h1>
-      <p className="text-xl text-white text-justify p-15">
+      <h1 className="text-3xl font-bold text-slate-400 dark:text-slate-300 mt-2">Sobre mim</h1>
+      <p className="text-xl text-gray-900 dark:text-gray-100 text-justify p-15">
         Olá, meu nome é Emanuel da Costa Pereira, sou um desenvolvedor
         Full-Stack apaixonado por tecnologia e inovação. Minha jornada na
         tecnologia começou aos 9 anos com o Windows XP e evoluiu para uma paixão

@@ -127,9 +127,9 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   return (
     <div
       ref={cardRef}
-      className="bg-gray-800 rounded-xl shadow-2xl overflow-hidden transform transition-all duration-300 hover:scale-[1.02] border border-gray-700 w-full"
+      className="bg-white dark:bg-gray-800 rounded-xl shadow-2xl overflow-hidden transform transition-all duration-300 hover:scale-[1.02] border border-gray-200 dark:border-gray-700 w-full"
     >
-      <div className="relative aspect-video bg-gray-900 flex items-center justify-center">
+      <div className="relative aspect-video bg-gray-100 dark:bg-gray-900 flex items-center justify-center">
         <video
           ref={videoRef}
           src={videoSrc}
@@ -141,14 +141,14 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
         >
           Seu navegador não suporta a tag de vídeo.
         </video>
-        <div className="absolute inset-0 flex items-center justify-center opacity-50 text-white pointer-events-none">
+        <div className="absolute inset-0 flex items-center justify-center opacity-50 text-gray-900 dark:text-white pointer-events-none">
           <FaPlay className="w-16 h-16" />
         </div>
       </div>
 
       <div className="p-6">
-        <h3 className="text-2xl font-bold text-white mb-2">{title}</h3>
-        <p className="text-gray-400 mb-4 h-20 overflow-hidden">{description}</p>
+        <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">{title}</h3>
+        <p className="text-gray-600 dark:text-gray-400 mb-4 h-20 overflow-hidden">{description}</p>
 
         <div className="flex flex-wrap gap-3 mb-6 min-h-10 items-center">
           {projectTechs.map((tech) => {
@@ -156,7 +156,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
             return (
               <span
                 key={tech.name}
-                className={`flex items-center text-sm font-medium px-3 py-1 rounded-full ${tech.color} bg-gray-700/50`}
+                className={`flex items-center text-sm font-medium px-3 py-1 rounded-full ${tech.color} bg-gray-100 dark:bg-gray-700/50`}
                 title={tech.name}
               >
                 <Icon className="w-6 h-8" />
@@ -180,7 +180,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
             href={githubUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center px-4 py-2 bg-gray-700 text-gray-300 rounded-lg hover:bg-gray-600 transition-colors duration-200 text-sm font-semibold shadow-md"
+            className="flex items-center justify-center px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-gray-300 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-200 text-sm font-semibold shadow-md"
             aria-label={`Ver o código de ${title} no GitHub`}
           >
             <FaCode className="w-4 h-4 mr-2" />
@@ -195,7 +195,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
 const Projects: React.FC = () => {
   return (
     <section className="container mx-auto px-4 py-16">
-      <h2 className="text-4xl font-extrabold text-slate-400 text-center mb-12">
+      <h2 className="text-4xl font-extrabold text-slate-400 dark:text-slate-300 text-center mb-12">
         Alguns dos meus projetos
       </h2>
       <div className="grid lg:grid-cols-3 gap-10">

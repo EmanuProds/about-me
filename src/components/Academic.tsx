@@ -55,30 +55,29 @@ const AcademicCard: React.FC<AcademicCardProps> = ({
   certificateUrl,
 }) => {
   return (
-    <div className="bg-gray-800 rounded-xl shadow-2xl overflow-hidden p-6 border border-gray-700 w-full transition-all duration-300 hover:scale-[1.02] hover:shadow-sky-900/50">
-      
+    <div className="bg-white dark:bg-gray-800 rounded-xl shadow-2xl overflow-hidden p-6 border border-gray-200 dark:border-gray-700 w-full transition-all duration-300 hover:scale-[1.02] hover:shadow-sky-900/50">
       <div className="flex items-center mb-4">
         <LuGraduationCap className="w-8 h-8 text-sky-400 mr-3" />
-        <h3 className="text-xl font-bold text-white">{course}</h3>
+        <h3 className="text-xl font-bold text-gray-900 dark:text-white">{course}</h3>
       </div>
-      
-      <p className="text-gray-400 mb-2 flex items-center">
-        <LuBookOpen className="w-4 h-4 mr-2 text-gray-500" />
+
+      <p className="text-gray-600 dark:text-gray-400 mb-2 flex items-center">
+        <LuBookOpen className="w-4 h-4 mr-2 text-gray-500 dark:text-gray-400" />
         {institution}
       </p>
 
       <div className="flex flex-wrap gap-4 mb-4 text-sm">
-        <span className="flex items-center text-sky-300 bg-sky-900/30 px-3 py-1 rounded-full font-medium">
+        <span className="flex items-center text-sky-600 dark:text-sky-300 bg-sky-100 dark:bg-sky-900/30 px-3 py-1 rounded-full font-medium">
           <LuAward className="w-4 h-4 mr-1.5" />
           {type}
         </span>
-        <span className="flex items-center text-gray-300 bg-gray-700/50 px-3 py-1 rounded-full font-medium">
+        <span className="flex items-center text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-700/50 px-3 py-1 rounded-full font-medium">
           <LuCalendar className="w-4 h-4 mr-1.5" />
           {duration}
         </span>
       </div>
 
-      <p className="text-gray-400 mb-6 border-t border-gray-700 pt-4">
+      <p className="text-gray-600 dark:text-gray-400 mb-6 border-t border-gray-200 dark:border-gray-700 pt-4">
         {description}
       </p>
 
@@ -95,7 +94,7 @@ const AcademicCard: React.FC<AcademicCardProps> = ({
         </a>
       )}
       {!certificateUrl && (
-        <p className="text-center text-gray-500 text-sm italic pt-2">
+        <p className="text-center text-gray-500 dark:text-gray-400 text-sm italic pt-2">
           Certificado indisponível publicamente.
         </p>
       )}
@@ -106,7 +105,7 @@ const AcademicCard: React.FC<AcademicCardProps> = ({
 const Academic: React.FC = () => {
   return (
     <section className="container mx-auto px-4 py-16">
-      <h2 className="text-4xl font-extrabold text-slate-400 text-center mb-12">
+      <h2 className="text-4xl font-extrabold text-slate-400 dark:text-slate-300 text-center mb-12">
         📚 Minha Formação Acadêmica
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">

@@ -10,8 +10,8 @@ interface HeaderProps {
 
 export const Header = () => {
   return (
-    <header className="bg-neutral-800/80 backdrop-blur-md sticky top-0 z-50 p-4 shadow-lg text-white">
-      <div className="container mx-auto flex justify-between items-center">
+    <header className="bg-neutral-800/80 backdrop-blur-md sticky top-0 z-50 p-4 mb-10 shadow-lg text-white">
+      <div className="container flex justify-between">
         <h1 className="text-1xl font-semibold">EmanuProds.dev</h1>
         <nav className="space-x-4">
           <a
@@ -24,7 +24,25 @@ export const Header = () => {
             href="#"
             className="text-1xl font-semibold hover:text-gray-400 transition duration-150"
           >
+            Sobre
+          </a>
+          <a
+            href="#"
+            className="text-1xl font-semibold hover:text-gray-400 transition duration-150"
+          >
             Projetos
+          </a>
+          <a
+            href="#"
+            className="text-1xl font-semibold hover:text-gray-400 transition duration-150"
+          >
+            Formação
+          </a>
+          <a
+            href="#"
+            className="text-1xl font-semibold hover:text-gray-400 transition duration-150"
+          >
+            Experiências
           </a>
           <a
             href="#"
@@ -33,32 +51,6 @@ export const Header = () => {
             Contato
           </a>
         </nav>
-        <div className="flex space-x-4">
-          <a
-            href="https://github.com/EmanuProds"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-xl hover:text-gray-400 transition duration-150"
-          >
-            <FaGithub />
-          </a>
-          <a
-            href="https://github.com/EmanuProds"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-xl hover:text-gray-400 transition duration-150"
-          >
-            <FaLinkedin />
-          </a>
-          <a
-            href="https://github.com/EmanuProds"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-xl hover:text-gray-400 transition duration-150"
-          >
-            <FaWhatsapp />
-          </a>
-        </div>
       </div>
     </header>
   );

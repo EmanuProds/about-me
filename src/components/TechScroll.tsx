@@ -90,7 +90,7 @@ const ScrollContainer: React.FC<ScrollContainerProps> = ({
 
 const TechScroll: React.FC = () => {
   return (
-    <div className="flex flex-col w-full max-w-7xl mx-auto">
+    <div className="flex flex-col w-full max-w-2xl mx-auto">
       <div className="relative">
         <div
           className="absolute inset-0 z-10 pointer-events-none

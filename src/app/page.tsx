@@ -1,8 +1,3 @@
-'use client';
-
-import { ReactNode } from 'react';
-import {ThemeProvider} from '@/styles/themeProvider';
-
 import Header from "@/components/Header";
 import Profile from "@/components/Profile";
 import TechScroll from "@/components/TechScroll";
@@ -13,7 +8,7 @@ import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <ThemeProvider>
+    <main>
       <Header />
       <Profile />
       <TechScroll />
@@ -21,6 +16,6 @@ export default function Home() {
       <Projects />
       <Academic />
       <Footer />
-    </ThemeProvider>
+    </main>
   );
 }

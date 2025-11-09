@@ -18,7 +18,6 @@ import {
   FaLinux,
 } from "react-icons/fa";
 import { LuZap, LuDatabase, LuType, LuLink, LuComponent } from "react-icons/lu";
-
 import {
   SiTypescript,
   SiTailwindcss,
@@ -36,7 +35,6 @@ interface Technology {
 }
 
 const technologies: Record<string, Technology> = {
-  
   react: { name: "React", icon: LuComponent, color: "text-sky-400" },
   typescript: { name: "TypeScript", icon: LuType, color: "text-blue-500" },
   nodejs: { name: "Node.js", icon: FaCloud, color: "text-green-500" },
@@ -194,10 +192,10 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   );
 };
 
-const Cards: React.FC = () => {
+const Projects: React.FC = () => {
   return (
     <section className="container mx-auto px-4 py-16">
-      <h2 className="text-4xl font-extrabold text-white text-center mb-12">
+      <h2 className="text-4xl font-extrabold text-slate-400 text-center mb-12">
         Alguns dos meus projetos
       </h2>
       <div className="grid lg:grid-cols-3 gap-10">
@@ -209,4 +207,4 @@ const Cards: React.FC = () => {
   );
 };
 
-export default Cards;
+export default Projects;

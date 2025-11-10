@@ -9,12 +9,18 @@ export interface Translations {
     name: string;
     title: string;
   };
+  about: {
+    title: string;
+    description: string;
+  };
+  stats: {
+    repositories: string;
+    contributions: string;
+    experience: string;
+  };
   footer: {
     copyright: string;
     madeWith: string;
-  };
-  loading: {
-    stats: string;
   };
 }
 

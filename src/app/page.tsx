@@ -2,6 +2,7 @@ import Header from "@/components/layout/Header";
 import Profile from "@/components/ui/Profile";
 import TechScroll from "@/components/ui/TechScroll";
 import About from "@/components/ui/About";
+import Academic from "@/components/ui/Academic";
 import Footer from "@/components/layout/Footer";
 
 export default function Home() {
@@ -11,6 +12,7 @@ export default function Home() {
       <Profile />
       <TechScroll />
       <About />
+      <Academic />
       <Footer />
     </main>
   );

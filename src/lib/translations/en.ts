@@ -11,6 +11,10 @@ export const en: Translations = {
     name: "Emanuel Pereira",
     title: "Fullstack Developer",
   },
+  footer: {
+    copyright: "All rights reserved.",
+    madeWith: "Made with ❤️ using TypeScript, React.js and Next.js",
+  },
   loading: {
     stats: "Loading statistics...",
   },

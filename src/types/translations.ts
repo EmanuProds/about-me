@@ -9,6 +9,10 @@ export interface Translations {
     name: string;
     title: string;
   };
+  footer: {
+    copyright: string;
+    madeWith: string;
+  };
   loading: {
     stats: string;
   };

@@ -11,6 +11,10 @@ export const ptBR: Translations = {
     name: "Emanuel Pereira",
     title: "Desenvolvedor Fullstack",
   },
+  footer: {
+    copyright: "Todos os direitos reservados.",
+    madeWith: "Feito com ❤️ usando TypeScript, React.js e Next.js",
+  },
   loading: {
     stats: "Carregando estatísticas...",
   },

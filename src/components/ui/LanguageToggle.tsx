@@ -16,7 +16,7 @@ const LanguageToggle: React.FC = () => {
   return (
     <button
       onClick={toggleLanguage}
-      className="p-1 rounded-lg hover:bg-gray-300 dark:hover:bg-slate-400 transition-all duration-200 cursor-pointer"
+      className="p-1 rounded-lg hover:bg-slate-300 dark:hover:bg-slate-500 transition-all duration-200 cursor-pointer"
       title={locale === 'pt-BR' ? 'Switch to English' : 'Mudar para Português'}
     >
       <span className="text-2xl">

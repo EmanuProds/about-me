@@ -13,6 +13,19 @@ export interface Translations {
     title: string;
     description: string;
   };
+  projects: {
+    title: string;
+    viewProject: string;
+    videoComingSoon: string;
+    titles: {
+      image2doc: string;
+      notaryConnect: string;
+    };
+    descriptions: {
+      image2doc: string;
+      notaryConnect: string;
+    };
+  };
   academic: {
     title: string;
     viewCertificate: string;

@@ -13,6 +13,10 @@ export interface Translations {
     title: string;
     description: string;
   };
+  academic: {
+    title: string;
+    viewCertificate: string;
+  };
   stats: {
     repositories: string;
     contributions: string;

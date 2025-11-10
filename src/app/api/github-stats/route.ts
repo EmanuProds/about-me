@@ -19,10 +19,7 @@ export async function POST(request: Request) {
   const { username } = await request.json();
 
   if (!username) {
-    return (
-      NextResponse.json({ error: "Nome de usuário é obrigatório" }),
-      { status: 400 }
-    );
+    return NextResponse.json({ error: "Nome de usuário é obrigatório" }, { status: 400 });
   }
 
   const GITHUB_TOKEN = process.env.GITHUB_TOKEN;

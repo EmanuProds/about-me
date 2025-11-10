@@ -66,21 +66,21 @@ const GithubStats: React.FC<GithubStatsProps> = ({ username }) => {
         <span className="text-6xl font-bold text-slate-600 dark:text-slate-400">
           {stats?.publicRepos ?? 0}
         </span>
-        <span className="mt-2 text-1xl text-gray-100">{t.stats.repositories}</span>
+        <span className="mt-2 text-1xl text-gray-900 dark:text-gray-100">{t.stats.repositories}</span>
       </div>
 
       <div className="flex flex-col">
         <span className="text-6xl font-bold text-slate-600 dark:text-slate-400">
           {stats?.totalContributions ?? 0}
         </span>
-        <span className="mt-2 text-1xl text-gray-100">{t.stats.contributions}</span>
+        <span className="mt-2 text-1xl text-gray-900 dark:text-gray-100">{t.stats.contributions}</span>
       </div>
 
       <div className="flex flex-col">
         <span className="text-6xl font-bold text-slate-600 dark:text-slate-400">
           {stats?.yearsOfExperience ?? 0}+
         </span>
-        <span className="mt-2 text-1xl text-gray-100">{t.stats.experience}</span>
+        <span className="mt-2 text-1xl text-gray-900 dark:text-gray-100">{t.stats.experience}</span>
       </div>
     </div>
   );

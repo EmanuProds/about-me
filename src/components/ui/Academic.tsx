@@ -80,7 +80,7 @@ const AcademicCard = ({ record }: { record: (typeof academicRecords)[0] }) => {
           href={record.certificateUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center justify-center gap-2 text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-100 transition-colors group-hover:underline mt-auto w-full"
+          className="inline-flex items-center justify-center gap-2 text-sm font-medium text-gray-900 dark:text-gray-100 bg-linear-to-r bg-slate-400 dark:bg-slate-600 hover:dark:bg-slate-700 transition-all duration-300 rounded-lg px-4 py-2 shadow-md hover:shadow-lg mt-auto w-full"
         >
           <FaCertificate className="w-4 h-4" />
           {t.academic.viewCertificate}

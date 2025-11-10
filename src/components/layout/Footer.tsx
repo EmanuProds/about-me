@@ -29,7 +29,7 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="fixed bottom-0 left-0 right-0 z-50 bg-gray-200/60 dark:bg-black/20 backdrop-blur-sm border-t border-white/20 dark:border-white/10 transition-colors duration-300">
+    <footer className="mt-16 bg-gray-200/60 dark:bg-black/20 backdrop-blur-sm border-t border-gray-400/20 dark:border-gray-100/20 transition-colors duration-300">
       <div className="container mx-auto px-6 py-8">
         <div className="flex items-center justify-between gap-6 text-sm text-gray-800 dark:text-gray-200">
           <p>

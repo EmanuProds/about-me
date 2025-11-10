@@ -1,6 +1,14 @@
-import { ElementType } from 'react';
-import { LuComponent, LuType, LuCloud } from "react-icons/lu";
-import { FaGlobe } from "react-icons/fa";
+import { ElementType } from "react";
+import { LuComponent, LuType } from "react-icons/lu";
+import {
+  FaGlobe,
+  FaHtml5,
+  FaCss3,
+  FaJs,
+  FaPython,
+  FaNodeJs,
+} from "react-icons/fa";
+import { SiExpress } from "react-icons/si";
 
 export interface Technology {
   name: string;
@@ -21,9 +29,13 @@ export interface Project {
 export interface ProjectCardProps extends Project {}
 
 export const technologies: Record<string, Technology> = {
-  react: { name: "React", icon: LuComponent, color: "text-sky-400" },
-  typescript: { name: "TypeScript", icon: LuType, color: "text-blue-500" },
-  nodejs: { name: "Node.js", icon: LuCloud, color: "text-green-500" },
+  react: { name: "React", icon: LuComponent, color: "text-cyan-600" },
+  typescript: { name: "TypeScript", icon: LuType, color: "text-blue-700" },
+  nodejs: { name: "Node.js", icon: FaNodeJs, color: "text-green-500" },
   nextjs: { name: "Next.js", icon: FaGlobe, color: "text-white" },
-  python: { name: "Python", icon: () => null, color: "text-blue-500" },
+  python: { name: "Python", icon: FaPython, color: "text-blue-500" },
+  html: { name: "HTML", icon: FaHtml5, color: "text-orange-500" },
+  css: { name: "CSS", icon: FaCss3, color: "text-blue-500" },
+  javascript: { name: "JavaScript", icon: FaJs, color: "text-yellow-500" },
+  "express.js": { name: "Express.js", icon: SiExpress, color: "text-gray-400" },
 };

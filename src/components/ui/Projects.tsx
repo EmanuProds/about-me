@@ -1,12 +1,22 @@
 "use client";
 
-import React, { useRef, useEffect } from "react";
-import { FaPlay, FaCode, FaGlobe } from "react-icons/fa";
+import React from "react";
+import { FaPlay, FaPause, FaCode, FaGlobe, FaExpand } from "react-icons/fa";
 import { useTranslations } from "@/hooks/useTranslations";
 import { ProjectCardProps, technologies } from "@/types/projects";
 import { projects } from "@/lib/data";
+import { useVideoPlayer } from "@/hooks/useVideoPlayer";
+import { useVideoModal } from "@/hooks/useVideoModal";
 
-const ProjectCard = ({ title, description, videoSrc, technologies: techKeys, projectUrl, githubUrl, id }: ProjectCardProps) => {
+const ProjectCard = ({
+  title,
+  description,
+  videoSrc,
+  technologies: techKeys,
+  projectUrl,
+  githubUrl,
+  id,
+}: ProjectCardProps) => {
   const { t } = useTranslations();
 
   const getTranslatedTitle = (projectId: number) => {
@@ -30,40 +40,36 @@ const ProjectCard = ({ title, description, videoSrc, technologies: techKeys, pro
         return description;
     }
   };
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const cardRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const videoElement = videoRef.current;
-    const cardElement = cardRef.current;
+  const {
+    videoRef,
+    cardRef,
+    videoLoading,
+    videoPlaying,
+    isHovered,
+    handleVideoClick,
+    handleVideoLoadStart,
+    handleVideoCanPlay,
+    handleVideoError,
+    handleVideoPlay,
+    handleVideoPause,
+    handleMouseEnter,
+    handleMouseLeave,
+  } = useVideoPlayer(videoSrc);
 
-    if (!videoElement || !cardElement || !videoSrc) return;
+  const { handleExpandClick } = useVideoModal();
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          videoElement.play().catch((error) => {
-            if (error.name !== "NotAllowedError") {
-              console.error("Erro ao tentar dar play no vídeo:", error);
-            }
-          });
-        } else {
-          videoElement.pause();
-          videoElement.currentTime = 0;
-        }
-      },
-      { threshold: 0.5 }
-    );
-
-    observer.observe(cardElement);
-    return () => observer.unobserve(cardElement);
-  }, [videoSrc]);
+  const handleExpand = () => {
+    if (videoRef.current) {
+      handleExpandClick(videoRef.current);
+    }
+  };
 
   const projectTechs = techKeys.map((key) => technologies[key]).filter(Boolean);
 
   return (
     <div className="group relative bg-gray-300/40 dark:bg-black/30 backdrop-blur-sm rounded-2xl border border-gray-400/20 dark:border-gray-200/20 p-6 hover:bg-slate-400/40 dark:hover:bg-slate-600/40 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg flex flex-col h-full">
-      <div className="relative aspect-video bg-gray-100 dark:bg-gray-900 rounded-xl overflow-hidden mb-4">
+      <div className="relative aspect-video bg-gray-800 rounded-xl overflow-hidden mb-4">
         {videoSrc ? (
           <>
             <video
@@ -72,18 +78,45 @@ const ProjectCard = ({ title, description, videoSrc, technologies: techKeys, pro
               loop
               muted
               playsInline
-              className="w-full h-full object-cover"
-              poster="https://placehold.co/600x400/1f2937/ffffff?text=Loading+Video"
+              className="w-full h-full object-cover cursor-pointer"
+              onLoadStart={handleVideoLoadStart}
+              onCanPlay={handleVideoCanPlay}
+              onError={handleVideoError}
+              onPlay={handleVideoPlay}
+              onPause={handleVideoPause}
+              onClick={handleVideoClick}
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
             />
-            <div className="absolute inset-0 flex items-center justify-center opacity-50 text-gray-900 dark:text-white pointer-events-none">
-              <FaPlay className="w-12 h-12" />
-            </div>
+            {!videoLoading && (
+              <div className="absolute inset-0 flex items-center justify-center opacity-80 pointer-events-none transition-opacity duration-300">
+                {videoPlaying && isHovered ? (
+                  <FaPause className="w-12 h-12 text-white transition-opacity duration-300" />
+                ) : !videoPlaying ? (
+                  <FaPlay className="w-12 h-12 text-white transition-opacity duration-300" />
+                ) : null}
+              </div>
+            )}
+            {!videoLoading && (
+              <button
+                onClick={handleExpand}
+                className="absolute top-3 right-3 p-2 bg-black/50 hover:bg-black/70 text-gray-100 rounded-lg transition-colors duration-200 z-10"
+                title="Expandir vídeo"
+              >
+                <FaExpand className="w-4 h-4" />
+              </button>
+            )}
+            {videoLoading && (
+              <div className="absolute inset-0 bg-slate-600 dark:bg-slate-400 rounded-xl animate-pulse" />
+            )}
           </>
         ) : (
           <div className="w-full h-full bg-linear-to-br from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-800 flex items-center justify-center">
             <div className="text-center text-gray-600 dark:text-gray-400">
               <FaCode className="w-12 h-12 mx-auto mb-3 opacity-50" />
-              <p className="text-sm font-medium">{t.projects.videoComingSoon}</p>
+              <p className="text-sm font-medium">
+                {t.projects.videoComingSoon}
+              </p>
             </div>
           </div>
         )}
@@ -119,7 +152,7 @@ const ProjectCard = ({ title, description, videoSrc, technologies: techKeys, pro
             href={projectUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex-1 inline-flex items-center justify-center gap-2 text-sm font-medium text-white bg-linear-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 transition-all duration-300 rounded-lg px-4 py-2 shadow-md hover:shadow-lg"
+            className="flex-1 inline-flex items-center justify-center gap-2 text-sm font-medium text-gray-100 bg-linear-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 transition-all duration-300 rounded-lg px-4 py-2 shadow-md hover:shadow-lg"
           >
             <FaGlobe className="w-4 h-4" />
             {t.projects.viewProject}
@@ -154,7 +187,7 @@ const Projects = () => {
           <div className="w-24 h-1 bg-linear-to-r bg-slate-600 dark:bg-slate-400 mx-auto rounded-full" />
         </div>
 
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-8 md:grid-cols-1 lg:grid-cols-2 max-w-5xl mx-auto">
           {projects.map((project) => (
             <ProjectCard key={project.id} {...project} />
           ))}

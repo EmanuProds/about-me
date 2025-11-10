@@ -22,7 +22,7 @@ import {
   SiSqlite,
 } from "react-icons/si";
 
-export const academicRecords: AcademicRecord[] = [
+export const academicRecords = [
   {
     id: 1,
     course: "Análise e Desenvolvimento de Sistemas",
@@ -54,13 +54,13 @@ export const academicRecords: AcademicRecord[] = [
   },
 ];
 
-export const projects: Project[] = [
+export const projects = [
   {
     id: 1,
     title: "Image2DOC",
     description:
       "Uma aplicação em GTK4/Libadwaita com foco em extração de dados via OCR para conversão, renomiação e organização de documentos.",
-    videoSrc: "",
+    videoSrc: "/videos/image2doc.mp4",
     technologies: ["python"],
     projectUrl: "",
     githubUrl: "https://github.com/EmanuProds/tarefas-api",

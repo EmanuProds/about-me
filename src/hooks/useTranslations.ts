@@ -1,11 +1,22 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import { translations } from '@/lib/translations';
 import { Locale } from '@/types/translations';
 
 export function useTranslations() {
-  const [locale, setLocale] = useState<Locale>('pt-BR');
+  const [locale, setLocale] = useState<Locale>(() => {
+    // Tentar detectar no cliente durante inicialização
+    if (typeof window !== 'undefined') {
+      const savedLanguage = localStorage.getItem('preferred-language') as Locale;
+      if (savedLanguage && (savedLanguage === 'pt-BR' || savedLanguage === 'en')) {
+        return savedLanguage;
+      }
+      const browserLang = navigator.language || 'pt-BR';
+      return browserLang.startsWith('pt') ? 'pt-BR' : 'en';
+    }
+    return 'pt-BR'; // fallback para SSR
+  });
 
   useEffect(() => {
     const savedLanguage = localStorage.getItem('preferred-language') as Locale;
@@ -19,7 +30,7 @@ export function useTranslations() {
     }
   }, []);
 
-  const t = translations[locale];
+  const t = useMemo(() => translations[locale], [locale]);
 
   return {
     t,

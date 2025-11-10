@@ -1,8 +1,10 @@
 "use client";
 
 import { FaGithub, FaLinkedin, FaWhatsapp } from "react-icons/fa";
+import { useTranslations } from "@/hooks/useTranslations";
 
 const Footer = () => {
+  const { t } = useTranslations();
   const currentYear = new Date().getFullYear();
 
   const socialLinks = [
@@ -31,7 +33,7 @@ const Footer = () => {
       <div className="container mx-auto px-6 py-8">
         <div className="flex items-center justify-between gap-6 text-sm text-gray-800 dark:text-gray-200">
           <p>
-            © {currentYear} EmanuProds. Todos os direitos reservados.
+            © {currentYear} EmanuProds {t.footer.copyright}
           </p>
 
           <div className="flex items-center gap-4">
@@ -50,8 +52,7 @@ const Footer = () => {
           </div>
 
           <p>
-            Feito com <span className="text-red-500">❤️</span> usando
-            TypeScript, React.js e Next.js
+            {t.footer.madeWith}
           </p>
         </div>
       </div>

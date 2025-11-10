@@ -1,7 +1,8 @@
 import Header from "@/components/layout/Header";
 import Profile from "@/components/ui/Profile";
-import Footer from "@/components/layout/Footer";
 import TechScroll from "@/components/ui/TechScroll";
+import About from "@/components/ui/About";
+import Footer from "@/components/layout/Footer";
 
 export default function Home() {
   return (
@@ -9,6 +10,7 @@ export default function Home() {
       <Header />
       <Profile />
       <TechScroll />
+      <About />
       <Footer />
     </main>
   );

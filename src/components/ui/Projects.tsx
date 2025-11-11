@@ -178,7 +178,7 @@ const Projects = () => {
   const { t } = useTranslations();
 
   return (
-    <section className="w-full max-w-6xl mx-auto px-4 py-16">
+    <section id="projetos" className="w-full max-w-6xl mx-auto px-4 py-16 scroll-mt-16">
       <div className="text-center space-y-8">
         <div className="space-y-4">
           <h2 className="text-4xl font-bold text-gray-900 dark:text-white">

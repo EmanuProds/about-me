@@ -10,7 +10,7 @@ const Profile: React.FC = () => {
   const { t } = useTranslations();
 
   return (
-    <main className="flex flex-col items-center p-10">
+    <main id="inicio" className="flex flex-col items-center p-10 scroll-mt-20">
       <ProfileGithub username={GITHUB_USERNAME} />
       <h1 className="text-3xl font-bold mt-4 text-gray-900 dark:text-white">
         {t.profile.name}

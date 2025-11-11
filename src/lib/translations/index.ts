@@ -8,13 +8,23 @@ import { en } from "./en";
 import { Translations, Locale } from "@/types/translations";
 
 /**
- * Main object containing all translations organized by locale.
- * Used by the useTranslations hook to provide localized strings.
+ * Available application locales
+ */
+export const AVAILABLE_LOCALES: Locale[] = ["pt-BR", "en"] as const;
+
+/**
+ * Default application locale
+ */
+export const DEFAULT_LOCALE: Locale = "pt-BR";
+
+/**
+ * Main translations object containing all localized strings organized by locale.
+ * Used by the useTranslations hook to provide localized content throughout the app.
  */
 export const translations: Record<Locale, Translations> = {
   "pt-BR": ptBR,
-  en: en,
-};
+  en,
+} as const;
 
-// Re-export individual translations for direct use if necessary
+// Re-export individual locale translations for direct access if needed
 export { ptBR, en };

@@ -1,4 +1,34 @@
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect, useState, useCallback } from "react";
+
+/**
+ * Video player configuration constants
+ */
+const VIDEO_CONFIG = {
+  LOADING_TIMEOUT: 10000, // 10 seconds
+  STATE_CHECK_INTERVAL: 100, // Check every 100ms
+  READY_STATE_THRESHOLD: 2, // HAVE_CURRENT_DATA or higher
+  AUTOPLAY_ERROR_NAME: "NotAllowedError",
+} as const;
+
+/**
+ * Safely attempts to play a video element, handling autoplay restrictions
+ */
+const safePlayVideo = async (videoElement: HTMLVideoElement): Promise<void> => {
+  try {
+    await videoElement.play();
+  } catch (error) {
+    if ((error as Error).name !== VIDEO_CONFIG.AUTOPLAY_ERROR_NAME) {
+      console.error("Error trying to play video:", error);
+    }
+  }
+};
+
+/**
+ * Checks if a video element is currently playing
+ */
+const isVideoPlaying = (videoElement: HTMLVideoElement): boolean => {
+  return !videoElement.paused && !videoElement.ended && videoElement.readyState > VIDEO_CONFIG.READY_STATE_THRESHOLD;
+};
 
 /**
  * Custom hook to manage video player state and behavior.
@@ -16,29 +46,15 @@ export const useVideoPlayer = (videoSrc?: string, enabled: boolean = true) => {
 
   // Effect for automatic playback when video loads
   useEffect(() => {
-    if (!enabled) return;
+    if (!enabled || !videoSrc) return;
 
     const videoElement = videoRef.current;
+    if (!videoElement) return;
 
-    if (!videoElement || !videoSrc) return;
-
-    /**
-     * Handles video 'canplay' event, starting automatic playback.
-     * Handles browser autoplay permission errors.
-     */
-    const handleCanPlay = () => {
-      videoElement.play().catch((error) => {
-        if (error.name !== "NotAllowedError") {
-          console.error("Error trying to play video:", error);
-        }
-      });
-    };
-
+    const handleCanPlay = () => safePlayVideo(videoElement);
     videoElement.addEventListener("canplay", handleCanPlay);
 
-    return () => {
-      videoElement.removeEventListener("canplay", handleCanPlay);
-    };
+    return () => videoElement.removeEventListener("canplay", handleCanPlay);
   }, [videoSrc, enabled]);
 
   // Effect to sync state when video changes externally
@@ -49,19 +65,14 @@ export const useVideoPlayer = (videoSrc?: string, enabled: boolean = true) => {
     if (!videoElement) return;
 
     const checkVideoState = () => {
-      const isActuallyPlaying =
-        !videoElement.paused &&
-        !videoElement.ended &&
-        videoElement.readyState > 2;
-      if (isActuallyPlaying !== videoPlaying) {
-        setVideoPlaying(isActuallyPlaying);
+      const actuallyPlaying = isVideoPlaying(videoElement);
+      if (actuallyPlaying !== videoPlaying) {
+        setVideoPlaying(actuallyPlaying);
       }
     };
 
-    // Check state periodically
-    const interval = setInterval(checkVideoState, 100);
+    const interval = setInterval(checkVideoState, VIDEO_CONFIG.STATE_CHECK_INTERVAL);
 
-    // Also check on important events
     const handlePlay = () => setVideoPlaying(true);
     const handlePause = () => setVideoPlaying(false);
     const handleEnded = () => setVideoPlaying(false);
@@ -82,94 +93,42 @@ export const useVideoPlayer = (videoSrc?: string, enabled: boolean = true) => {
   useEffect(() => {
     if (!enabled || !videoSrc) return;
 
-    const timeout = setTimeout(() => {
-      setVideoLoading(false);
-    }, 10000);
-
+    const timeout = setTimeout(() => setVideoLoading(false), VIDEO_CONFIG.LOADING_TIMEOUT);
     return () => clearTimeout(timeout);
   }, [videoSrc, enabled]);
 
   /**
-   * Handles video loading start.
-   * Sets loading state to true.
+   * Toggles video playback between play and pause states
    */
-  const handleVideoLoadStart = () => {
-    setVideoLoading(true);
-  };
-
-  /**
-   * Handles when video is ready for playback.
-   * Sets loading state to false.
-   */
-  const handleVideoCanPlay = () => {
-    setVideoLoading(false);
-  };
-
-  /**
-   * Handles errors during video loading.
-   * Sets loading state to false.
-   */
-  const handleVideoError = () => {
-    setVideoLoading(false);
-  };
-
-  /**
-   * Handles video clicks to toggle between play and pause.
-   * Handles autoplay permission errors.
-   */
-  const handleVideoClick = () => {
+  const handleVideoClick = useCallback(() => {
     const videoElement = videoRef.current;
     if (!videoElement) return;
 
     if (videoElement.paused) {
-      videoElement.play().catch((error) => {
-        if (error.name !== "NotAllowedError") {
-          console.error("Error trying to play video:", error);
-        }
-      });
+      safePlayVideo(videoElement);
       setVideoPlaying(true);
     } else {
       videoElement.pause();
       setVideoPlaying(false);
     }
-  };
-
-  /**
-   * Handles video play event.
-   * Sets playback state to true.
-   */
-  const handleVideoPlay = () => {
-    setVideoPlaying(true);
-  };
-
-  /**
-   * Handles video pause event.
-   * Sets playback state to false.
-   */
-  const handleVideoPause = () => {
-    setVideoPlaying(false);
-  };
-
-  /**
-   * Handles mouse enter on video.
-   * Sets hover state to true.
-   */
-  const handleMouseEnter = () => setIsHovered(true);
-
-  /**
-   * Handles mouse leave on video.
-   * Sets hover state to false.
-   */
-  const handleMouseLeave = () => setIsHovered(false);
+  }, []);
 
   /**
    * Forces update of video playback state.
    * Useful for external synchronization (e.g., modal).
-   * @param playing - New playback state
    */
-  const forcePlayingState = (playing: boolean) => {
+  const forcePlayingState = useCallback((playing: boolean) => {
     setVideoPlaying(playing);
-  };
+  }, []);
+
+  // Simple state setters - no need for useCallback as they're very lightweight
+  const handleVideoLoadStart = () => setVideoLoading(true);
+  const handleVideoCanPlay = () => setVideoLoading(false);
+  const handleVideoError = () => setVideoLoading(false);
+  const handleVideoPlay = () => setVideoPlaying(true);
+  const handleVideoPause = () => setVideoPlaying(false);
+  const handleMouseEnter = () => setIsHovered(true);
+  const handleMouseLeave = () => setIsHovered(false);
 
   return {
     videoRef,

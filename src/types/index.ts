@@ -3,24 +3,40 @@ export * from "./tech";
 export * from "./github";
 export * from "./projects";
 export * from "./academic";
+export * from "./translations";
 
-// Types for theme options (light, dark, system)
+/**
+ * Theme options available in the application
+ */
 export interface ThemeOption {
+  /** Theme value identifier */
   value: "light" | "dark" | "system";
+  /** Display label for the theme */
   label: string;
+  /** React component for the theme icon */
   icon: React.ElementType;
 }
 
-// Types for navigation items in header/menu
+/**
+ * Navigation item for header/menu components
+ */
 export interface NavigationItem {
+  /** Display label for the navigation item */
   label: string;
+  /** URL or anchor link */
   href: string;
 }
 
-// Types for social links used in contact and footer components
+/**
+ * Social media link for contact and footer components
+ */
 export interface SocialLink {
+  /** Name of the social platform */
   name: string;
+  /** URL to the social profile */
   url: string;
+  /** Icon identifier or path */
   icon: string;
+  /** Accessibility label for screen readers */
   ariaLabel: string;
 }

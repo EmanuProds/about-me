@@ -1,16 +1,15 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { TechIcon, ScrollContainerProps } from "@/types/tech";
-import { langProgramming, toolsTech, systemOperation } from "@/lib/data";
+import { TECH_STACKS } from "@/lib/data";
+import { TechIcon } from "@/types/tech";
+import Card, {
+  TECH_CARD_CLASSES,
+  TECH_ICON_CLASSES,
+  TECH_TEXT_CLASSES,
+} from "@/components/layout/Card";
 
-// Constants for common Tailwind classes
-const TECH_CARD_CLASSES =
-  "group flex flex-col items-center justify-center p-4 md:p-6 m-1 min-w-[100px] md:min-w-[120px] rounded-2xl bg-gray-300/40 dark:bg-black/30 backdrop-blur-sm border border-gray-400/20 dark:border-gray-200/20 hover:bg-slate-400/40 dark:hover:bg-slate-600/40 active:bg-slate-400/40 dark:active:bg-slate-600/40 hover:scale-105 active:scale-105 transition-all duration-300 ease-out cursor-pointer";
-const TECH_ICON_CLASSES =
-  "h-8 w-8 md:h-10 md:w-10 mb-2 md:mb-3 group-hover:scale-110 group-active:scale-110 transition-transform duration-300";
-const TECH_TEXT_CLASSES =
-  "text-xs md:text-sm font-medium text-gray-900 dark:text-gray-100 group-hover:text-gray-700 dark:group-hover:text-gray-200 group-active:text-gray-700 dark:group-active:text-gray-200 transition-colors duration-300 select-none";
+
 
 /**
  * Component to display a technology card with loading state.
@@ -80,7 +79,6 @@ const TechScroll = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Simulates a small loading delay to show the skeleton
     const timer = setTimeout(() => {
       setLoading(false);
     }, 800);
@@ -89,21 +87,35 @@ const TechScroll = () => {
   }, []);
 
   return (
-    <section className="w-full max-w-4xl mx-auto px-4 py-2">
-      <div className="space-y-4 md:space-y-8">
-        <div className="text-center mb-4 md:mb-8">
-          <TechRow stack={langProgramming} direction="left" loading={loading} />
-        </div>
+    <Card py="2">
+      {(loadingState) => (
+        <div className="space-y-4 md:space-y-8">
+          <div className="text-center mb-4 md:mb-8">
+            <TechRow
+              stack={TECH_STACKS.languages}
+              direction="left"
+              loading={loadingState}
+            />
+          </div>
 
-        <div className="text-center mb-4 md:mb-8">
-          <TechRow stack={toolsTech} direction="right" loading={loading} />
-        </div>
+          <div className="text-center mb-4 md:mb-8">
+            <TechRow
+              stack={TECH_STACKS.frameworks}
+              direction="right"
+              loading={loadingState}
+            />
+          </div>
 
-        <div className="text-center">
-          <TechRow stack={systemOperation} direction="left" loading={loading} />
+          <div className="text-center">
+            <TechRow
+              stack={TECH_STACKS.tools}
+              direction="left"
+              loading={loadingState}
+            />
+          </div>
         </div>
-      </div>
-    </section>
+      )}
+    </Card>
   );
 };
 

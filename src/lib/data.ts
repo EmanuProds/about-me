@@ -3,8 +3,6 @@
  * Centralizes all information displayed in the application components.
  */
 
-import { AcademicRecord } from "@/types/academic";
-import { Project } from "@/types/projects";
 import { TechIcon } from "@/types/tech";
 import {
   FaHtml5,
@@ -17,6 +15,9 @@ import {
   FaGit,
   FaLinux,
   FaTerminal,
+  FaGithub,
+  FaLinkedin,
+  FaWhatsapp,
 } from "react-icons/fa";
 import {
   SiTypescript,
@@ -29,40 +30,53 @@ import {
   SiGithub,
 } from "react-icons/si";
 
-export const langProgramming: TechIcon[] = [
-  { Icon: FaHtml5, name: "HTML", color: "text-orange-500" },
-  { Icon: FaCss3, name: "CSS", color: "text-blue-500" },
-  { Icon: FaJs, name: "JavaScript", color: "text-yellow-500" },
-  { Icon: SiTypescript, name: "TypeScript", color: "text-blue-700" },
-  { Icon: FaPython, name: "Python", color: "text-blue-500" },
-];
+/**
+ * Technology stacks organized by category
+ */
+export const TECH_STACKS = {
+  /** Programming languages */
+  languages: [
+    { Icon: FaHtml5, name: "HTML", color: "text-orange-500" },
+    { Icon: FaCss3, name: "CSS", color: "text-blue-500" },
+    { Icon: FaJs, name: "JavaScript", color: "text-yellow-500" },
+    { Icon: SiTypescript, name: "TypeScript", color: "text-blue-700" },
+    { Icon: FaPython, name: "Python", color: "text-blue-500" },
+  ] as TechIcon[],
 
-export const toolsTech: TechIcon[] = [
-  { Icon: FaReact, name: "React", color: "text-cyan-600" },
-  { Icon: SiTailwindcss, name: "TailwindCSS", color: "text-teal-500" },
-  { Icon: FaNodeJs, name: "Node.js", color: "text-green-500" },
-  {
-    Icon: SiExpress,
-    name: "Express.js",
-    color: "text-gray-700 dark:text-gray-400",
-  },
-  {
-    Icon: SiNextdotjs,
-    name: "Next.js",
-    color: "text-gray-800 dark:text-white",
-  },
-  { Icon: SiVite, name: "Vite", color: "text-purple-500" },
-  { Icon: SiExpo, name: "Expo", color: "text-slate-400" },
-];
+  /** Frameworks and libraries */
+  frameworks: [
+    { Icon: FaReact, name: "React", color: "text-cyan-600" },
+    { Icon: SiTailwindcss, name: "TailwindCSS", color: "text-teal-500" },
+    { Icon: FaNodeJs, name: "Node.js", color: "text-green-500" },
+    {
+      Icon: SiExpress,
+      name: "Express.js",
+      color: "text-gray-700 dark:text-gray-400",
+    },
+    {
+      Icon: SiNextdotjs,
+      name: "Next.js",
+      color: "text-gray-800 dark:text-white",
+    },
+    { Icon: SiVite, name: "Vite", color: "text-purple-500" },
+    { Icon: SiExpo, name: "Expo", color: "text-slate-400" },
+  ] as TechIcon[],
 
-export const systemOperation: TechIcon[] = [
-  { Icon: FaDocker, name: "Docker", color: "text-blue-400" },
-  { Icon: SiSqlite, name: "SQLite", color: "text-blue-600" },
-  { Icon: FaGit, name: "Git", color: "text-red-600" },
-  { Icon: SiGithub, name: "GitHub", color: "text-gray-800 dark:text-gray-300" },
-  { Icon: FaLinux, name: "Linux", color: "text-gray-600 dark:text-gray-200" },
-  { Icon: FaTerminal, name: "ShellScript", color: "text-green-400" },
-];
+  /** Tools and infrastructure */
+  tools: [
+    { Icon: FaDocker, name: "Docker", color: "text-blue-400" },
+    { Icon: SiSqlite, name: "SQLite", color: "text-blue-600" },
+    { Icon: FaGit, name: "Git", color: "text-red-600" },
+    { Icon: SiGithub, name: "GitHub", color: "text-gray-800 dark:text-gray-300" },
+    { Icon: FaLinux, name: "Linux", color: "text-gray-600 dark:text-gray-200" },
+    { Icon: FaTerminal, name: "ShellScript", color: "text-green-400" },
+  ] as TechIcon[],
+} as const;
+
+// Legacy exports for backward compatibility
+export const langProgramming = TECH_STACKS.languages;
+export const toolsTech = TECH_STACKS.frameworks;
+export const systemOperation = TECH_STACKS.tools;
 
 export const projects = [
   {
@@ -86,6 +100,21 @@ export const projects = [
     githubUrl: "https://github.com/EmanuProds/notary-connect-old",
   },
 ];
+
+/**
+ * Mapping of technology keys to their icon data for projects
+ */
+export const technologies: Record<string, TechIcon> = {
+  react: { Icon: FaReact, name: "React", color: "text-cyan-600" },
+  typescript: { Icon: SiTypescript, name: "TypeScript", color: "text-blue-700" },
+  nodejs: { Icon: FaNodeJs, name: "Node.js", color: "text-green-500" },
+  nextjs: { Icon: SiNextdotjs, name: "Next.js", color: "text-white" },
+  python: { Icon: FaPython, name: "Python", color: "text-blue-500" },
+  html: { Icon: FaHtml5, name: "HTML", color: "text-orange-500" },
+  css: { Icon: FaCss3, name: "CSS", color: "text-blue-500" },
+  javascript: { Icon: FaJs, name: "JavaScript", color: "text-yellow-500" },
+  "express.js": { Icon: SiExpress, name: "Express.js", color: "text-gray-400" },
+};
 
 export const academicRecords = [
   {
@@ -144,3 +173,21 @@ export const academicRecords = [
     isClickable: false,
   },
 ];
+
+/**
+ * Maps icon name strings to React icon components for social links
+ * @param iconName - The string name of the icon
+ * @returns The corresponding React icon component
+ */
+export const getSocialIcon = (iconName: string): React.ComponentType<any> => {
+  switch (iconName) {
+    case "FaLinkedin":
+      return FaLinkedin;
+    case "FaWhatsapp":
+      return FaWhatsapp;
+    case "FaGithub":
+      return FaGithub;
+    default:
+      return FaGithub;
+  }
+};

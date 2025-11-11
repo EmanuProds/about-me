@@ -2,6 +2,97 @@ import { useState, useEffect } from "react";
 import { GithubStatsData } from "@/types/github";
 
 /**
+ * GitHub API configuration constants
+ */
+const GITHUB_API_CONFIG = {
+  BASE_URL: "https://api.github.com",
+  EVENTS_PER_PAGE: 50,
+  REPOS_PER_PAGE: 1,
+  MONTHS_OF_DATA_ESTIMATE: 2,
+  MIN_CONTRIBUTIONS: 50,
+  REPO_CONTRIBUTION_MULTIPLIER: 25,
+  EXPERIENCE_CONTRIBUTION_MULTIPLIER: 80,
+} as const;
+
+/**
+ * Fallback data for when API fails
+ */
+const FALLBACK_STATS: GithubStatsData = {
+  publicRepos: 6,
+  totalContributions: 200,
+  contributionsYear: new Date().getFullYear(),
+  yearsOfExperience: 1,
+};
+
+/**
+ * GitHub API event type
+ */
+interface GithubEvent {
+  type: string;
+  payload?: {
+    commits?: unknown[];
+  };
+}
+
+/**
+ * Calculates years of experience based on first repository creation date
+ */
+const calculateYearsOfExperience = (reposData: { created_at?: string }[]): number => {
+  if (reposData.length === 0 || !reposData[0]?.created_at) {
+    return 1; // Default minimum
+  }
+
+  const firstRepoYear = new Date(reposData[0].created_at).getFullYear();
+  const currentYear = new Date().getFullYear();
+
+  return Math.max(currentYear - firstRepoYear + 1, 1);
+};
+
+/**
+ * Estimates total contributions based on recent GitHub events
+ */
+const estimateContributionsFromEvents = async (username: string): Promise<number> => {
+  try {
+    const eventsResponse = await fetch(
+      `${GITHUB_API_CONFIG.BASE_URL}/users/${username}/events?per_page=${GITHUB_API_CONFIG.EVENTS_PER_PAGE}`
+    );
+
+    if (!eventsResponse.ok) {
+      throw new Error("Failed to fetch events");
+    }
+
+    const eventsData: GithubEvent[] = await eventsResponse.json();
+    const pushEvents = eventsData.filter(event => event.type === "PushEvent");
+
+    if (pushEvents.length === 0) {
+      return 0;
+    }
+
+    // Count commits from recent events
+    const recentCommits = pushEvents.reduce((total, event) => {
+      return total + (Array.isArray(event.payload?.commits) ? event.payload.commits.length : 1);
+    }, 0);
+
+    // Estimate annual contributions based on recent activity
+    const monthlyCommits = recentCommits / GITHUB_API_CONFIG.MONTHS_OF_DATA_ESTIMATE;
+    return Math.round(monthlyCommits * 12);
+  } catch (error) {
+    console.warn("Failed to fetch events for contributions estimate:", error);
+    return 0;
+  }
+};
+
+/**
+ * Fallback calculation for contributions when event data is unavailable
+ */
+const calculateFallbackContributions = (publicRepos: number, yearsOfExperience: number): number => {
+  const repoBased = publicRepos * GITHUB_API_CONFIG.REPO_CONTRIBUTION_MULTIPLIER;
+  const experienceBased = yearsOfExperience * GITHUB_API_CONFIG.EXPERIENCE_CONTRIBUTION_MULTIPLIER;
+
+  return Math.max(repoBased, experienceBased, GITHUB_API_CONFIG.MIN_CONTRIBUTIONS);
+};
+
+/**
  * Custom hook to fetch GitHub statistics.
  * Compatible with GitHub Pages (static export).
  */
@@ -12,17 +103,19 @@ export const useGithubStats = (username: string) => {
 
   useEffect(() => {
     const fetchStats = async () => {
+      if (!username) return;
+
       try {
         setLoading(true);
         setError(null);
 
         // Fetch user data
         const userResponse = await fetch(
-          `https://api.github.com/users/${username}`
+          `${GITHUB_API_CONFIG.BASE_URL}/users/${username}`
         );
+
         if (!userResponse.ok) {
           if (userResponse.status === 403) {
-            // Rate limit - use mock data
             console.warn("GitHub API rate limited for user data");
             throw new Error("RATE_LIMIT");
           }
@@ -31,77 +124,26 @@ export const useGithubStats = (username: string) => {
 
         const userData = await userResponse.json();
 
-        // Fetch more repositories to calculate years of experience
+        // Fetch repositories to calculate years of experience
         const reposResponse = await fetch(
-          `https://api.github.com/users/${username}/repos?sort=created&per_page=1`
+          `${GITHUB_API_CONFIG.BASE_URL}/users/${username}/repos?sort=created&per_page=${GITHUB_API_CONFIG.REPOS_PER_PAGE}`
         );
-        if (!reposResponse.ok) throw new Error("Failed to fetch repos");
+
+        if (!reposResponse.ok) {
+          throw new Error("Failed to fetch repos");
+        }
 
         const reposData = await reposResponse.json();
+        const yearsOfExperience = calculateYearsOfExperience(reposData);
 
-        // Calculate years of experience based on first repo
-        const firstRepoYear =
-          reposData.length > 0 && reposData[0]?.created_at
-            ? new Date(reposData[0].created_at).getFullYear()
-            : new Date().getFullYear();
+        // Try to get contributions from events, fallback to calculation
+        let totalContributions = await estimateContributionsFromEvents(username);
 
-        const yearsOfExperience = Math.max(
-          new Date().getFullYear() - firstRepoYear + 1,
-          1
-        );
-
-        // Calculate contributions based on available real data
-        // Since the contributions API may have CORS/rate limit issues,
-        // use a more accurate estimate based on repositories and activity
-        let totalContributions = 0;
-
-        try {
-          // Try to fetch recent events for more accurate estimate
-          const eventsResponse = await fetch(
-            `https://api.github.com/users/${username}/events?per_page=50`
-          );
-
-          if (eventsResponse.ok) {
-            const eventsData = await eventsResponse.json();
-            const pushEvents = eventsData.filter(
-              (event: any) => event.type === "PushEvent"
-            );
-
-            if (pushEvents.length > 0) {
-              // Count commits from recent events
-              const recentCommits = pushEvents.reduce(
-                (total: number, event: any) => {
-                  return total + (event.payload?.commits?.length || 1);
-                },
-                0
-              );
-
-              // Estimate annual contributions based on recent activity
-              // Assume 50 events represent ~1-2 months of activity
-              const monthsOfData = 2;
-              const monthlyCommits = recentCommits / monthsOfData;
-              totalContributions = Math.round(monthlyCommits * 12); // annual
-            }
-          }
-        } catch (error) {
-          console.warn(
-            "Failed to fetch events for contributions estimate:",
-            error
-          );
-        }
-
-        // If couldn't get event data, use repository-based estimate
         if (totalContributions === 0) {
-          totalContributions = Math.max(
-            userData.public_repos * 25,
-            yearsOfExperience * 80
-          );
+          totalContributions = calculateFallbackContributions(userData.public_repos, yearsOfExperience);
         }
 
-        // Ensure realistic minimum
-        totalContributions = Math.max(totalContributions, 50);
-
-        const finalStats = {
+        const finalStats: GithubStatsData = {
           publicRepos: userData.public_repos,
           totalContributions,
           contributionsYear: new Date().getFullYear(),
@@ -112,22 +154,13 @@ export const useGithubStats = (username: string) => {
       } catch (err) {
         console.warn("GitHub API failed, using fallback data:", err);
         setError("Failed to load GitHub stats");
-
-        // More realistic fallback data based on known profile
-        setStats({
-          publicRepos: 6,
-          totalContributions: 200, 
-          contributionsYear: 2025,
-          yearsOfExperience: 1, 
-        });
+        setStats(FALLBACK_STATS);
       } finally {
         setLoading(false);
       }
     };
 
-    if (username) {
-      fetchStats();
-    }
+    fetchStats();
   }, [username]);
 
   return { stats, loading, error };

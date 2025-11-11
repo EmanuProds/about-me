@@ -4,18 +4,15 @@ import React, { useState, useEffect } from "react";
 import { FaPlay, FaPause, FaCode, FaGlobe, FaExpand } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "@/hooks/useTranslations";
-import { ProjectCardProps, technologies } from "@/types/projects";
-import { projects } from "@/lib/data";
+import { ProjectCardProps } from "@/types/projects";
+import { projects, technologies } from "@/lib/data";
 import { useVideoPlayer } from "@/hooks/useVideoPlayer";
 import { useVideoModal } from "@/hooks/useVideoModal";
-
-// Constants for common Tailwind classes to maintain consistency
-const CARD_BASE_CLASSES =
-  "relative bg-gray-300/40 dark:bg-black/30 backdrop-blur-sm rounded-2xl border border-gray-400/20 dark:border-gray-200/20 p-8 hover:bg-slate-400/40 dark:hover:bg-slate-600/40 active:bg-slate-400/40 dark:active:bg-slate-600/40 transition-all duration-300 hover:scale-[1.02] active:scale-[1.02] hover:shadow-lg active:shadow-lg flex flex-col h-full cursor-pointer";
-const VIDEO_CONTAINER_CLASSES =
-  "relative aspect-video bg-gray-800 rounded-xl overflow-hidden mb-4";
-const BUTTON_BASE_CLASSES =
-  "inline-flex items-center justify-center gap-2 text-sm font-medium transition-all duration-300 rounded-lg px-4 py-2 shadow-md hover:shadow-lg active:shadow-lg";
+import Card, {
+  CARD_BASE_CLASSES,
+  VIDEO_CONTAINER_CLASSES,
+  BUTTON_BASE_CLASSES,
+} from "@/components/layout/Card";
 
 const ProjectCard = ({
   title,
@@ -30,50 +27,77 @@ const ProjectCard = ({
   const { t } = useTranslations();
   const router = useRouter();
   const [videoError, setVideoError] = useState(false);
+  const [videoTested, setVideoTested] = useState(false);
 
   /**
-   * Returns the translated project title based on ID.
-   * Uses specific translations for known projects or the default title.
-   * @param projectId - Unique project ID
-   * @returns Translated title or default
+   * Translation mappings for project content
    */
-  const getTranslatedTitle = (projectId: number) => {
-    switch (projectId) {
-      case 1:
-        return t.projects.titles.image2doc;
-      case 2:
-        return t.projects.titles.notaryConnect;
-      default:
-        return title;
-    }
-  };
+  const PROJECT_TRANSLATIONS = {
+    1: {
+      title: t.projects.titles.image2doc,
+      description: t.projects.descriptions.image2doc,
+    },
+    2: {
+      title: t.projects.titles.notaryConnect,
+      description: t.projects.descriptions.notaryConnect,
+    },
+  } as const;
 
   /**
-   * Returns the translated project description based on ID.
-   * Uses specific descriptions for known projects or the default description.
-   * @param projectId - Unique project ID
-   * @returns Translated description or default
+   * Gets translated project title, falling back to default
    */
-  const getTranslatedDescription = (projectId: number) => {
-    switch (projectId) {
-      case 1:
-        return t.projects.descriptions.image2doc;
-      case 2:
-        return t.projects.descriptions.notaryConnect;
-      default:
-        return description;
-    }
+  const getTranslatedTitle = (projectId: number) =>
+    PROJECT_TRANSLATIONS[projectId as keyof typeof PROJECT_TRANSLATIONS]
+      ?.title || title;
+
+  /**
+   * Gets translated project description, falling back to default
+   */
+  const getTranslatedDescription = (projectId: number) =>
+    PROJECT_TRANSLATIONS[projectId as keyof typeof PROJECT_TRANSLATIONS]
+      ?.description || description;
+
+  // Determine base path for GitHub Pages deployment
+  const getBasePath = () => {
+    if (typeof window === "undefined") return "";
+
+    const hostname = window.location.hostname;
+    const isLocal =
+      hostname === "localhost" ||
+      hostname.startsWith("192.168.") ||
+      hostname.startsWith("10.") ||
+      hostname === "127.0.0.1" ||
+      hostname === "0.0.0.0";
+
+    return isLocal ? "" : "/about-me";
   };
 
-  const basePath =
-    typeof window !== "undefined" &&
-    (window.location.hostname === "localhost" ||
-     window.location.hostname.startsWith("192.168.") ||
-     window.location.hostname.startsWith("10.") ||
-     window.location.hostname === "127.0.0.1")
-      ? ""
-      : "/about-me";
+  const basePath = getBasePath();
   const adjustedVideoSrc = videoSrc ? `${basePath}${videoSrc}` : "";
+
+  // Test video availability on mount
+  useEffect(() => {
+    if (!adjustedVideoSrc || videoTested) return;
+
+    const testVideo = async () => {
+      try {
+        const response = await fetch(adjustedVideoSrc, { method: "HEAD" });
+        if (!response.ok) {
+          console.warn(`Video not accessible: ${adjustedVideoSrc}`);
+          setVideoError(true);
+        }
+      } catch (error) {
+        console.warn(
+          `Failed to test video accessibility: ${adjustedVideoSrc}`,
+          error
+        );
+        setVideoError(true);
+      }
+      setVideoTested(true);
+    };
+
+    testVideo();
+  }, [adjustedVideoSrc, videoTested]);
 
   const {
     videoRef,
@@ -204,7 +228,7 @@ const ProjectCard = ({
 
       <div className="flex flex-wrap gap-2 mb-4 min-h-8 items-start justify-center">
         {projectTechs.map((tech) => {
-          const Icon = tech.icon;
+          const Icon = tech.Icon;
           return (
             <span
               key={tech.name}
@@ -250,39 +274,30 @@ const ProjectCard = ({
   );
 };
 
+const ProjectsContent = ({ loading }: { loading: boolean }) => {
+  return (
+    <div className="grid gap-8 md:grid-cols-1 lg:grid-cols-2 max-w-5xl mx-auto">
+      {projects.map((project) => (
+        <ProjectCard key={project.id} {...project} loading={loading} />
+      ))}
+    </div>
+  );
+};
+
 const Projects = () => {
   const { t } = useTranslations();
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    // Simulates a small loading delay to show the skeleton
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 1200);
-
-    return () => clearTimeout(timer);
-  }, []);
 
   return (
-    <section
+    <Card
       id="projetos"
-      className="w-full max-w-6xl mx-auto px-4 py-16 scroll-mt-16"
+      title={t.projects.title}
+      titleClass="mt-28"
+      maxWidth="6xl"
+      scrollMargin="28"
+      loadingDelay={1200}
     >
-      <div className="text-center space-y-8">
-        <div className="space-y-4">
-          <h2 className="text-4xl font-bold text-gray-900 dark:text-gray-100">
-            {t.projects.title}
-          </h2>
-          <div className="w-24 h-1 bg-linear-to-r bg-slate-600 dark:bg-slate-400 mx-auto rounded-full" />
-        </div>
-
-        <div className="grid gap-8 md:grid-cols-1 lg:grid-cols-2 max-w-5xl mx-auto">
-          {projects.map((project) => (
-            <ProjectCard key={project.id} {...project} loading={loading} />
-          ))}
-        </div>
-      </div>
-    </section>
+      {(loading) => <ProjectsContent loading={loading} />}
+    </Card>
   );
 };
 

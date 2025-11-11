@@ -1,14 +1,15 @@
 "use client";
 
-import React from "react";
-import { FaGithub, FaLinkedin, FaWhatsapp } from "react-icons/fa";
 import LanguageToggle from "@/components/ui/LanguageToggle";
 import { useTranslations } from "@/hooks/useTranslations";
 
-/**
- * Fixed header component of the application.
- * Contains main navigation and language selector.
- */
+const NAV_LINKS = [
+  { href: "#inicio", key: "home" },
+  { href: "#sobre", key: "about" },
+  { href: "#projetos", key: "projects" },
+  { href: "#formacao", key: "education" },
+] as const;
+
 const Header = () => {
   const { t } = useTranslations();
 
@@ -21,34 +22,17 @@ const Header = () => {
 
         <nav className="flex items-center space-x-3 md:space-x-6">
           <div className="hidden md:flex space-x-4">
-            <a
-              href="#inicio"
-              className="text-sm md:text-md font-semibold hover:text-slate-500 dark:hover:text-slate-400 transition duration-150"
-            >
-              {t.header.home}
-            </a>
-            <a
-              href="#sobre"
-              className="text-sm md:text-md font-semibold hover:text-slate-500 dark:hover:text-slate-400 transition duration-150"
-            >
-              {t.header.about}
-            </a>
-            <a
-              href="#projetos"
-              className="text-sm md:text-md font-semibold hover:text-slate-500 dark:hover:text-slate-400 transition duration-150"
-            >
-              {t.header.projects}
-            </a>
-            <a
-              href="#formacao"
-              className="text-sm md:text-md font-semibold hover:text-slate-500 dark:hover:text-slate-400 transition duration-150"
-            >
-              {t.header.education}
-            </a>
+            {NAV_LINKS.map(({ href, key }) => (
+              <a
+                key={key}
+                href={href}
+                className="text-sm md:text-md font-semibold hover:text-slate-500 dark:hover:text-slate-400 transition duration-150"
+              >
+                {t.header[key]}
+              </a>
+            ))}
           </div>
-          <div className="flex items-center">
-            <LanguageToggle />
-          </div>
+          <LanguageToggle />
         </nav>
       </div>
     </header>

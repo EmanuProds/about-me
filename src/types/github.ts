@@ -1,19 +1,33 @@
+/**
+ * Basic GitHub user information
+ */
 export interface GithubUser {
+  /** GitHub username */
   login: string;
+  /** URL to the user's avatar image */
   avatar_url: string;
+  /** URL to the user's GitHub profile */
   html_url: string;
+  /** Display name of the user */
   name: string;
 }
 
-export interface GithubStatsData {
+/**
+ * GitHub statistics response from API
+ */
+export interface GithubStatsResponse {
+  /** Number of public repositories */
   publicRepos: number;
+  /** Total contributions across all time */
   totalContributions: number;
-  contributionsYear: number;
+  /** Years of coding experience */
   yearsOfExperience: number;
 }
 
-export interface GithubStatsResponse {
-  publicRepos: number;
-  totalContributions: number;
-  yearsOfExperience: number;
+/**
+ * Extended GitHub statistics including yearly contributions
+ */
+export interface GithubStatsData extends GithubStatsResponse {
+  /** Contributions in the current year */
+  contributionsYear: number;
 }

@@ -1,23 +1,31 @@
+/**
+ * Translation keys for the application
+ */
 export interface Translations {
+  /** Header navigation translations */
   header: {
     home: string;
     about: string;
     projects: string;
     education: string;
   };
+  /** Profile section translations */
   profile: {
     name: string;
     title: string;
   };
+  /** About section translations */
   about: {
     title: string;
     description: string;
   };
-    github: {
+  /** GitHub section translations */
+  github: {
     publicRepos: string;
     contributions: (year: number) => string;
     yearsExperience: string;
   };
+  /** Projects section translations */
   projects: {
     title: string;
     viewProject: string;
@@ -31,6 +39,7 @@ export interface Translations {
       notaryConnect: string;
     };
   };
+  /** Academic section translations */
   academic: {
     title: string;
     viewCertificate: string;
@@ -53,9 +62,13 @@ export interface Translations {
       logicaProgramacao: string;
     };
   };
+  /** Footer translations */
   footer: {
     copyright: string;
   };
 }
 
+/**
+ * Supported locales for the application
+ */
 export type Locale = "pt-BR" | "en";

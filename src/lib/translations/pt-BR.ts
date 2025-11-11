@@ -1,11 +1,12 @@
 /**
- * Translation file for Brazilian Portuguese (pt-BR).
- * Contains all interface strings translated to Portuguese.
+ * Brazilian Portuguese (pt-BR) translations.
+ * Contains all user interface strings translated to Portuguese.
  */
 
 import { Translations } from "@/types/translations";
 
 export const ptBR: Translations = {
+  // Navigation and header translations
   header: {
     home: "Início",
     about: "Sobre",
@@ -22,7 +23,7 @@ export const ptBR: Translations = {
 
 Destaques e Projetos de Desenvolvimento
 
-• Desenvolvimento de Plataforma de Atendimento - Notary Connect X (TypeScript, React/React Native, TailwindCSS/Nativewind, Expo, Node.js, Express.js, Python, Django, SQLite): Criação e implementação de soluções integradas ao WhatsApp para otimização do atendimento ao cliente, incluindo funcionalidades de redirecionamento setorial e gestão de arquivos.
+• Desenvolvimento de Plataforma de Atendimento - Notary Connect X (TypeScript, React/React Native, TailwindCSS/Nativewind, Expo, Node.js, Express.js, Python, SQLite): Criação e implementação de soluções integradas ao WhatsApp para otimização do atendimento ao cliente, incluindo funcionalidades de redirecionamento setorial e gestão de arquivos.
 
 • Automação Técnica: Demonstração de aptidão em programação através do desenvolvimento de um shellscript para automatizar a complexa pós-instalação do Arch Linux.
 

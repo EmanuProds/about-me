@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React from "react";
 import {
   FaGraduationCap,
   FaCertificate,
@@ -16,32 +16,29 @@ import { ImBlocked } from "react-icons/im";
 import { useTranslations } from "@/hooks/useTranslations";
 import { useCertificateModal } from "@/hooks/useCertificateModal";
 import { academicRecords } from "@/lib/data";
-
-// Constants for common Tailwind classes to maintain consistency
-const CARD_BASE_CLASSES =
-  "relative bg-gray-300/40 dark:bg-black/30 backdrop-blur-sm rounded-2xl border border-gray-400/20 dark:border-gray-200/20 p-8 hover:bg-slate-400/40 dark:hover:bg-slate-600/40 active:bg-slate-400/40 dark:active:bg-slate-600/40 transition-all duration-300 hover:scale-[1.02] active:scale-[1.02] hover:shadow-lg active:shadow-lg flex flex-col h-full cursor-pointer";
-const BUTTON_BASE_CLASSES =
-  "inline-flex items-center justify-center gap-2 text-sm font-medium transition-all duration-300 rounded-lg px-4 py-2 shadow-md hover:shadow-lg active:shadow-lg mt-auto w-full";
+import Card, {
+  CARD_BASE_CLASSES,
+  BUTTON_BASE_CLASSES,
+} from "@/components/layout/Card";
 
 /**
- * Component to render icons dynamically based on name.
- * @param iconName - Name of the icon to be rendered
+ * Icon mapping for academic records
  */
-const IconComponent = ({ iconName }: { iconName: string }) => {
-  switch (iconName) {
-    case "Clock":
-      return <FaClock className="w-6 h-6" />;
-    case "IoChatbubble":
-      return <IoChatbubble className="w-6 h-6" />;
-    case "FaShieldAlt":
-      return <FaShieldAlt className="w-6 h-6" />;
-    case "FaRocket":
-      return <FaRocket className="w-6 h-6" />;
-    case "GiNinjaMask":
-      return <GiNinjaMask className="w-6 h-6" />;
-    default:
-      return <FaGraduationCap className="w-6 h-6" />;
-  }
+const ACADEMIC_ICONS = {
+  Clock: FaClock,
+  IoChatbubble: IoChatbubble,
+  FaShieldAlt: FaShieldAlt,
+  FaRocket: FaRocket,
+  GiNinjaMask: GiNinjaMask,
+} as const;
+
+/**
+ * Component to render academic record icons dynamically
+ */
+const AcademicIcon = ({ iconName }: { iconName: string }) => {
+  const Icon =
+    ACADEMIC_ICONS[iconName as keyof typeof ACADEMIC_ICONS] || FaGraduationCap;
+  return <Icon className="w-6 h-6" />;
 };
 
 const AcademicCard = ({
@@ -54,25 +51,15 @@ const AcademicCard = ({
   const { t, locale } = useTranslations();
   const { handleCertificateClick } = useCertificateModal();
 
-  /**
-   * Returns the translated academic record type based on type.
-   * Uses specific translations for known types or the default type.
-   * @param type - Academic record type key
-   * @returns Translated type or default
-   */
   const getTranslatedType = (type: string) => {
     if (type === "specializationCourse") {
-      return locale === "en" ? "Specialization Course" : "Curso de Especialização";
+      return locale === "en"
+        ? "Specialization Course"
+        : "Curso de Especialização";
     }
     return type;
   };
 
-  /**
-   * Returns the translated academic record title based on ID.
-   * Uses specific translations for known records or the default title.
-   * @param recordId - Unique academic record ID
-   * @returns Translated title or default
-   */
   const getTranslatedTitle = (recordId: number) => {
     switch (recordId) {
       case 1:
@@ -90,12 +77,6 @@ const AcademicCard = ({
     }
   };
 
-  /**
-   * Returns the translated academic record description based on ID.
-   * Uses specific descriptions for known records or the default description.
-   * @param recordId - Unique academic record ID
-   * @returns Translated description or default
-   */
   const getTranslatedDescription = (recordId: number) => {
     switch (recordId) {
       case 1:
@@ -113,11 +94,6 @@ const AcademicCard = ({
     }
   };
 
-  /**
-   * Returns the gradient color based on institution.
-   * @param institution - Institution name
-   * @returns Tailwind gradient class
-   */
   const getInstitutionColor = (institution: string) => {
     switch (institution.toLowerCase()) {
       case "rocketseat":
@@ -163,7 +139,7 @@ const AcademicCard = ({
         <div
           className={`p-3 rounded-xl bg-linear-to-br ${gradientColor} text-gray-100 shadow-lg`}
         >
-          <IconComponent iconName={record.icon || "default"} />
+          <AcademicIcon iconName={record.icon || "default"} />
         </div>
         <div>
           <span
@@ -224,43 +200,36 @@ const AcademicCard = ({
   );
 };
 
-const Academic = () => {
-  const { t, locale } = useTranslations();
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    // Simulates a small loading delay to show the skeleton
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 1000);
-
-    return () => clearTimeout(timer);
-  }, []);
+const AcademicContent = ({ loading }: { loading: boolean }) => {
+  const { locale } = useTranslations();
 
   return (
-    <section
-      id="formacao"
-      className="w-full max-w-6xl mx-auto px-4 py-16 scroll-mt-12"
-    >
-      <div className="text-center space-y-8">
-        <div className="space-y-4">
-          <h2 className="text-4xl font-bold text-gray-900 dark:text-gray-100">
-            {t.academic.title}
-          </h2>
-          <div className="w-24 h-1 bg-linear-to-r bg-slate-600 dark:bg-slate-400 mx-auto rounded-full" />
-        </div>
+    <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {academicRecords.map((record) => (
+        <AcademicCard
+          key={`${record.id}-${locale}`}
+          record={record}
+          loading={loading}
+        />
+      ))}
+    </div>
+  );
+};
 
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {academicRecords.map((record) => (
-            <AcademicCard
-              key={`${record.id}-${locale}`}
-              record={record}
-              loading={loading}
-            />
-          ))}
-        </div>
-      </div>
-    </section>
+const Academic = () => {
+  const { t } = useTranslations();
+
+  return (
+    <Card
+      id="formacao"
+      title={t.academic.title}
+      titleClass="mt-28"
+      maxWidth="6xl"
+      scrollMargin="28"
+      loadingDelay={1000}
+    >
+      {(loading) => <AcademicContent loading={loading} />}
+    </Card>
   );
 };
 

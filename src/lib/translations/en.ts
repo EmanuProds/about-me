@@ -1,6 +1,12 @@
+/**
+ * English (en) translations.
+ * Contains all user interface strings translated to English.
+ */
+
 import { Translations } from "@/types/translations";
 
 export const en: Translations = {
+  // Navigation and header translations
   header: {
     home: "Home",
     about: "About",
@@ -17,7 +23,7 @@ export const en: Translations = {
 
 Development Highlights and Projects
 
-• Customer Service Platform Development - Notary Connect X (TypeScript, React/React Native, TailwindCSS/Nativewind, Expo, Node.js, Express.js, Python, Django, SQLite): Creation and implementation of integrated WhatsApp solutions for customer service optimization, including sector redirection features and file management.
+• Customer Service Platform Development - Notary Connect X (TypeScript, React/React Native, TailwindCSS/Nativewind, Expo, Node.js, Express.js, Python, SQLite): Creation and implementation of integrated WhatsApp solutions for customer service optimization, including sector redirection features and file management.
 
 • Technical Automation: Demonstration of programming aptitude through the development of a shell script to automate the complex post-installation of Arch Linux.
 

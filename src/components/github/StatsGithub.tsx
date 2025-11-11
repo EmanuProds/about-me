@@ -1,46 +1,70 @@
+"use client";
+
 import React from "react";
+import { useGithubStats } from "@/hooks/useGithubStats";
 import { useTranslations } from "@/hooks/useTranslations";
 
 /**
- * Props para o componente GithubStats.
+ * Card individual para estatística do GitHub.
  */
-interface GithubStatsProps {
-  /** Nome de usuário do GitHub */
-  username: string;
-}
+const StatCard = ({
+  value,
+  label,
+  className = "",
+}: {
+  value: string | number;
+  label: string;
+  className?: string;
+}) => (
+  <div
+    className={`bg-gray-300/40 dark:bg-black/30 backdrop-blur-sm rounded-2xl border border-gray-400/20 dark:border-gray-200/20 p-6 text-center hover:bg-slate-400/40 dark:hover:bg-slate-600/40 transition-all duration-300 ${className}`}
+  >
+    <div className="text-3xl md:text-4xl font-bold text-slate-600 dark:text-slate-400 mb-2">
+      {value}
+    </div>
+    <div className="text-sm font-medium text-gray-700 dark:text-gray-300">
+      {label}
+    </div>
+  </div>
+);
 
 /**
- * Componente que exibe estatísticas do GitHub usando GitHub Readme Stats.
- * Mostra estatísticas como imagens SVG dinâmicas do serviço github-readme-stats.
+ * Componente que exibe estatísticas do GitHub em cards customizados.
+ * Mostra 3 estatísticas principais: repositórios, contribuições e experiência.
  */
-const GithubStats: React.FC<GithubStatsProps> = ({ username }) => {
+const GithubStats = ({ username }: { username: string }) => {
   const { t } = useTranslations();
+  const { stats, loading } = useGithubStats(username);
 
-  // URLs para as imagens SVG do GitHub Readme Stats
-  const statsUrl = `https://github-readme-stats.vercel.app/api?username=${username}&show_icons=true&theme=transparent&hide_border=true&include_all_commits=true&count_private=true`;
-  const languagesUrl = `https://github-readme-stats.vercel.app/api/top-langs/?username=${username}&theme=transparent&hide_border=true&layout=compact`;
+  if (loading) {
+    return (
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+        {Array.from({ length: 3 }, (_, i) => (
+          <div
+            key={i}
+            className="bg-gray-300/40 dark:bg-black/30 backdrop-blur-sm rounded-2xl border border-gray-400/20 dark:border-gray-200/20 p-6 text-center animate-pulse"
+          >
+            <div className="h-8 bg-gray-400/30 rounded w-16 mx-auto mb-2" />
+            <div className="h-4 bg-gray-400/30 rounded w-20 mx-auto" />
+          </div>
+        ))}
+      </div>
+    );
+  }
+
+  if (!stats) return null;
 
   return (
-    <div className="flex flex-col items-center space-y-6 mt-4">
-      {/* Estatísticas principais */}
-      <div className="flex justify-center">
-        <img
-          src={statsUrl}
-          alt={`Estatísticas do GitHub de ${username}`}
-          className="max-w-full h-auto"
-          loading="lazy"
-        />
-      </div>
-
-      {/* Linguagens mais usadas */}
-      <div className="flex justify-center">
-        <img
-          src={languagesUrl}
-          alt={`Linguagens mais usadas por ${username}`}
-          className="max-w-full h-auto"
-          loading="lazy"
-        />
-      </div>
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+      <StatCard value={stats.publicRepos} label={t.github.publicRepos} />
+      <StatCard
+        value={`${stats.totalContributions}+`}
+        label={t.github.contributions}
+      />
+      <StatCard
+        value={`${stats.yearsOfExperience}+`}
+        label={t.github.yearsExperience}
+      />
     </div>
   );
 };

@@ -74,10 +74,10 @@ Multidisciplinary Experience
         "Comprehensive training in programming logic that establishes the fundamental bases of computational thinking, from basic algorithms and control structures to advanced concepts such as recursion, optimization and complex problem solving.",
     },
   },
-  stats: {
-    repositories: "Repositories",
-    contributions: "Contributions",
-    experience: "Years of Experience",
+  github: {
+    publicRepos: "Public Repositories",
+    contributions: "Public Contributions",
+    yearsExperience: "Years of Experience",
   },
   footer: {
     copyright: "All rights reserved.",

@@ -45,10 +45,10 @@ export interface Translations {
       logicaProgramacao: string;
     };
   };
-  stats: {
-    repositories: string;
+  github: {
+    publicRepos: string;
     contributions: string;
-    experience: string;
+    yearsExperience: string;
   };
   footer: {
     copyright: string;

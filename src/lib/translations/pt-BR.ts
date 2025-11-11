@@ -79,10 +79,10 @@ Experiência Multidisciplinar
         "Formação abrangente em lógica de programação que estabelece as bases fundamentais do pensamento computacional, desde algoritmos básicos e estruturas de controle até conceitos avançados como recursão, otimização e resolução de problemas complexos.",
     },
   },
-  stats: {
-    repositories: "Repositórios",
-    contributions: "Contribuições",
-    experience: "Anos de Experiência",
+  github: {
+    publicRepos: "Repositórios Públicos",
+    contributions: "Contribuições Públicas",
+    yearsExperience: "Anos de Experiência",
   },
   footer: {
     copyright: "Todos os direitos reservados.",

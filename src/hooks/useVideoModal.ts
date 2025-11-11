@@ -29,6 +29,7 @@ export const useVideoModal = () => {
       `;
       clonedVideo.controls = false;
       clonedVideo.muted = false;
+      clonedVideo.currentTime = videoElement.currentTime; // Manter o progresso do vídeo original
 
       let modalVideoPlaying = false;
 
@@ -44,11 +45,25 @@ export const useVideoModal = () => {
       clonedVideo.addEventListener("play", () => {
         modalVideoPlaying = true;
         renderIcon();
+        // Sincronizar com o vídeo original
+        if (videoElement.paused) {
+          videoElement.play().catch(console.error);
+        }
       });
       clonedVideo.addEventListener("pause", () => {
         modalVideoPlaying = false;
         renderIcon();
+        // Sincronizar com o vídeo original
+        if (!videoElement.paused) {
+          videoElement.pause();
+        }
       });
+
+      // Sincronizar progresso em tempo real
+      const syncProgress = () => {
+        videoElement.currentTime = clonedVideo.currentTime;
+      };
+      clonedVideo.addEventListener("timeupdate", syncProgress);
 
       const styleId = "custom-video-styles";
       if (!document.getElementById(styleId)) {

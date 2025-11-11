@@ -9,28 +9,23 @@ export const useVideoPlayer = (videoSrc?: string) => {
 
   useEffect(() => {
     const videoElement = videoRef.current;
-    const cardElement = cardRef.current;
 
-    if (!videoElement || !cardElement || !videoSrc) return;
+    if (!videoElement || !videoSrc) return;
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          videoElement.play().catch((error) => {
-            if (error.name !== "NotAllowedError") {
-              console.error("Erro ao tentar dar play no vídeo:", error);
-            }
-          });
-        } else {
-          videoElement.pause();
-          videoElement.currentTime = 0;
+    // Reproduzir automaticamente quando o vídeo carrega
+    const handleCanPlay = () => {
+      videoElement.play().catch((error) => {
+        if (error.name !== "NotAllowedError") {
+          console.error("Erro ao tentar dar play no vídeo:", error);
         }
-      },
-      { threshold: 0.5 }
-    );
+      });
+    };
 
-    observer.observe(cardElement);
-    return () => observer.unobserve(cardElement);
+    videoElement.addEventListener("canplay", handleCanPlay);
+
+    return () => {
+      videoElement.removeEventListener("canplay", handleCanPlay);
+    };
   }, [videoSrc]);
 
   useEffect(() => {

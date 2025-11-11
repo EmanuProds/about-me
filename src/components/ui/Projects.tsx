@@ -68,7 +68,7 @@ const ProjectCard = ({
   const projectTechs = techKeys.map((key) => technologies[key]).filter(Boolean);
 
   return (
-    <div className="group relative bg-gray-300/40 dark:bg-black/30 backdrop-blur-sm rounded-2xl border border-gray-400/20 dark:border-gray-200/20 p-6 hover:bg-slate-400/40 dark:hover:bg-slate-600/40 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg flex flex-col h-full">
+    <div className="group relative bg-gray-300/40 dark:bg-black/30 backdrop-blur-sm rounded-2xl border border-gray-400/20 dark:border-gray-200/20 p-8 hover:bg-slate-400/40 dark:hover:bg-slate-600/40 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg flex flex-col h-full">
       <div className="relative aspect-video bg-gray-800 rounded-xl overflow-hidden mb-4">
         {videoSrc ? (
           <>
@@ -178,7 +178,10 @@ const Projects = () => {
   const { t } = useTranslations();
 
   return (
-    <section id="projetos" className="w-full max-w-6xl mx-auto px-4 py-16 scroll-mt-16">
+    <section
+      id="projetos"
+      className="w-full max-w-6xl mx-auto px-4 py-16 scroll-mt-16"
+    >
       <div className="text-center space-y-8">
         <div className="space-y-4">
           <h2 className="text-4xl font-bold text-gray-900 dark:text-white">

@@ -25,6 +25,7 @@
 /* Prevenção de scroll excessivo em dispositivos móveis */
 html, body {
   overscroll-behavior: none;
+  overflow-x: hidden;
 }
 
 /* Scroll suave para navegação por âncoras */

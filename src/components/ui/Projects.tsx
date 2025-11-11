@@ -126,7 +126,7 @@ const ProjectCard = ({
         {getTranslatedTitle(id)}
       </h3>
 
-      <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed mb-4 line-clamp-3 grow">
+      <p className="text-gray-700 dark:text-gray-300 text-sm text-justify leading-relaxed mb-4 line-clamp-3 grow">
         {getTranslatedDescription(id)}
       </p>
 

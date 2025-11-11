@@ -1,22 +1,22 @@
 # 🚀 Portfólio
 
-[![Next.js](https://img.shields.io/badge/Next.js-16.0.1-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
-[![React](https://img.shields.io/badge/React-19.2.0-61DAFB?style=for-the-badge&logo=react)](https://reactjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178C6?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
+[![React](https://img.shields.io/badge/React-19.2.0-61DAFB?style=for-the-badge&logo=react)](https://reactjs.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4.0-38B2AC?style=for-the-badge&logo=tailwind-css)](https://tailwindcss.com/)
+[![Next.js](https://img.shields.io/badge/Next.js-16.0.1-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
 
 Um portfólio moderno e responsivo desenvolvido com as tecnologias mais recentes do ecossistema React. Apresenta minhas habilidades, projetos e formação acadêmica de forma interativa e atrativa.
 
 ## ✨ Funcionalidades
 
-- 🎨 **Design Moderno**: Interface elegante com tema escuro/claro
-- 🌍 **Multilíngue**: Suporte completo para português brasileiro e inglês
-- 📱 **Responsivo**: Otimizado para desktop, tablet e mobile
-- 🎥 **Projetos Interativos**: Cards com vídeos demonstrativos e links diretos
 - 📊 **Integração GitHub**: Estatísticas e perfil diretamente do GitHub
+- 🌍 **Multilíngue**: Suporte completo para português brasileiro e inglês
+- 🎨 **Design Moderno**: Interface elegante com tema escuro/claro automático
+- 📱 **Responsivo**: Otimizado para desktop, tablet e mobile
+- 🔧 **Tecnologias em Destaque**: Scroll horizontal das principais tecnologias
+- 🎥 **Projetos Interativos**: Cards com vídeos demonstrativos e links diretos
 - 🎓 **Formação Acadêmica**: Seção dedicada com certificados e cursos
 - ⚡ **Performance**: Otimizado com Next.js 16 e React Compiler
-- 🔧 **Tecnologias em Destaque**: Scroll horizontal das principais tecnologias
 
 ## 🛠️ Tecnologias Utilizadas
 
@@ -129,11 +129,3 @@ O sistema de tradução é baseado em arquivos JSON organizados por seções da 
 - **React Compiler**: Compilação otimizada de componentes
 - **Lazy Loading**: Carregamento sob demanda
 - **Code Splitting**: Divisão automática de bundles
-
-## 📄 Licença
-
-Este projeto está sob a licença MIT. Veja o arquivo `LICENSE` para mais detalhes.
-
----
-
-⭐ **Feito com ❤️ usando TypeScript, React.js e Next.js**

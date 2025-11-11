@@ -40,15 +40,15 @@ const TechCard = ({ tech, loading = false }: { tech: TechIcon; loading?: boolean
 const TechRow = ({ stack, direction, loading = false }: { stack: TechIcon[]; direction: "left" | "right"; loading?: boolean }) => {
   const duplicatedStack = [...stack, ...stack, ...stack];
   const animationClass = direction === "left"
-    ? "animate-[scroll_40s_linear_infinite]"
-    : "animate-[scroll_40s_linear_infinite_reverse]";
+    ? "animate-[scroll_40s_linear_infinite] md:animate-[scroll_20s_linear_infinite]"
+    : "animate-[scroll_40s_linear_infinite_reverse] md:animate-[scroll_20s_linear_infinite_reverse]";
 
   return (
     <div className="relative overflow-hidden">
-      <div className="absolute left-0 top-0 bottom-0 w-24 bg-linear-to-r from-background via-background/80 to-transparent z-10" />
-      <div className="absolute right-0 top-0 bottom-0 w-24 bg-linear-to-l from-background via-background/80 to-transparent z-10" />
+      <div className="absolute left-0 top-0 bottom-0 w-12 md:w-24 bg-linear-to-r from-background via-background/80 to-transparent z-10" />
+      <div className="absolute right-0 top-0 bottom-0 w-12 md:w-24 bg-linear-to-l from-background via-background/80 to-transparent z-10" />
 
-      <div className={`flex gap-6 ${animationClass} hover:[animation-play-state:paused]`}>
+      <div className={`flex gap-4 md:gap-6 ${animationClass} hover:[animation-play-state:paused]`}>
         {duplicatedStack.map((tech, index) => (
           <TechCard key={`${tech.name}-${index}-${direction}`} tech={tech} loading={loading} />
         ))}

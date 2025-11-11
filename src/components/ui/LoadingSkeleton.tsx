@@ -3,24 +3,24 @@
 import React from "react";
 
 /**
- * Props para o componente LoadingSkeleton.
+ * Props for the LoadingSkeleton component.
  */
 interface LoadingSkeletonProps {
-  /** Mensagem opcional exibida abaixo do spinner */
+  /** Optional message displayed below the spinner */
   message?: string;
-  /** Tamanho do spinner de loading */
+  /** Loading spinner size */
   size?: "sm" | "md" | "lg";
 }
 
 /**
- * Componente de loading com spinner animado.
- * Exibe um indicador visual de carregamento com suporte a diferentes tamanhos e mensagens.
+ * Loading component with animated spinner.
+ * Displays a visual loading indicator with support for different sizes and messages.
  */
 const LoadingSkeleton: React.FC<LoadingSkeletonProps> = ({
   message,
   size = "md",
 }) => {
-  // Mapeamento de tamanhos para classes Tailwind
+  // Size mapping to Tailwind classes
   const sizeClasses = {
     sm: "w-6 h-6",
     md: "w-8 h-8",

@@ -5,15 +5,15 @@ import { useTranslations } from "@/hooks/useTranslations";
 import { Locale } from "@/types/translations";
 
 /**
- * Componente para alternar entre idiomas da aplicação.
- * Salva a preferência no localStorage e recarrega a página para aplicar as mudanças.
+ * Component to toggle between application languages.
+ * Saves preference in localStorage and reloads the page to apply changes.
  */
 const LanguageToggle: React.FC = () => {
   const { locale, t } = useTranslations();
 
   /**
-   * Alterna entre português e inglês, salvando a preferência e recarregando a página.
-   * Recarregamento é necessário para aplicar as traduções em todos os componentes.
+   * Toggles between Portuguese and English, saving preference and reloading the page.
+   * Reloading is necessary to apply translations in all components.
    */
   const toggleLanguage = () => {
     const newLocale: Locale = locale === "pt-BR" ? "en" : "pt-BR";

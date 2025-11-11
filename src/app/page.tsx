@@ -7,8 +7,8 @@ import Academic from "@/components/ui/Academic";
 import Footer from "@/components/layout/Footer";
 
 /**
- * Página principal do portfólio.
- * Organiza todos os componentes em uma única página com scroll.
+ * Main portfolio page.
+ * Organizes all components in a single scrollable page.
  */
 export default function Home() {
   return (

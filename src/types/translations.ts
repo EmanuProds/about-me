@@ -13,6 +13,11 @@ export interface Translations {
     title: string;
     description: string;
   };
+    github: {
+    publicRepos: string;
+    contributions: (year: number) => string;
+    yearsExperience: string;
+  };
   projects: {
     title: string;
     viewProject: string;
@@ -30,6 +35,9 @@ export interface Translations {
     title: string;
     viewCertificate: string;
     certificateNotIssued: string;
+    types: {
+      specializationCourse: string;
+    };
     titles: {
       reactNativeExpo: string;
       bootcampReactCSharp: string;
@@ -45,14 +53,8 @@ export interface Translations {
       logicaProgramacao: string;
     };
   };
-  github: {
-    publicRepos: string;
-    contributions: (year: number) => string;
-    yearsExperience: string;
-  };
   footer: {
     copyright: string;
-    madeWith: string;
   };
 }
 

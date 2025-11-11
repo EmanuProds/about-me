@@ -9,7 +9,7 @@ import { projects } from "@/lib/data";
 import { useVideoPlayer } from "@/hooks/useVideoPlayer";
 import { useVideoModal } from "@/hooks/useVideoModal";
 
-// Constantes para classes Tailwind comuns para manter consistência
+// Constants for common Tailwind classes to maintain consistency
 const CARD_BASE_CLASSES =
   "relative bg-gray-300/40 dark:bg-black/30 backdrop-blur-sm rounded-2xl border border-gray-400/20 dark:border-gray-200/20 p-8 hover:bg-slate-400/40 dark:hover:bg-slate-600/40 active:bg-slate-400/40 dark:active:bg-slate-600/40 transition-all duration-300 hover:scale-[1.02] active:scale-[1.02] hover:shadow-lg active:shadow-lg flex flex-col h-full cursor-pointer";
 const VIDEO_CONTAINER_CLASSES =
@@ -32,10 +32,10 @@ const ProjectCard = ({
   const [videoError, setVideoError] = useState(false);
 
   /**
-   * Retorna o título traduzido do projeto baseado no ID.
-   * Utiliza traduções específicas para projetos conhecidos ou o título padrão.
-   * @param projectId - ID único do projeto
-   * @returns Título traduzido ou padrão
+   * Returns the translated project title based on ID.
+   * Uses specific translations for known projects or the default title.
+   * @param projectId - Unique project ID
+   * @returns Translated title or default
    */
   const getTranslatedTitle = (projectId: number) => {
     switch (projectId) {
@@ -49,10 +49,10 @@ const ProjectCard = ({
   };
 
   /**
-   * Retorna a descrição traduzida do projeto baseada no ID.
-   * Utiliza descrições específicas para projetos conhecidos ou a descrição padrão.
-   * @param recordId - ID único do registro acadêmico
-   * @returns Descrição traduzida ou padrão
+   * Returns the translated project description based on ID.
+   * Uses specific descriptions for known projects or the default description.
+   * @param projectId - Unique project ID
+   * @returns Translated description or default
    */
   const getTranslatedDescription = (projectId: number) => {
     switch (projectId) {
@@ -93,7 +93,7 @@ const ProjectCard = ({
   } = useVideoPlayer(adjustedVideoSrc, !loading && !videoError);
 
   /**
-   * Manipula erros do vídeo e define estado de erro.
+   * Handles video errors and sets error state.
    */
   const handleVideoErrorFallback = () => {
     setVideoError(true);
@@ -103,8 +103,8 @@ const ProjectCard = ({
   const { handleExpandClick } = useVideoModal();
 
   /**
-   * Manipula a expansão do vídeo em modal.
-   * Verifica se o vídeo existe antes de chamar a função de expansão.
+   * Handles video expansion in modal.
+   * Checks if video exists before calling the expansion function.
    */
   const handleExpand = () => {
     if (videoRef.current) {
@@ -173,7 +173,7 @@ const ProjectCard = ({
               <button
                 onClick={handleExpand}
                 className="absolute top-3 right-3 p-2 bg-black/50 hover:bg-black/70 active:bg-black/80 text-gray-100 rounded-lg transition-colors duration-200 z-20 cursor-pointer"
-                title="Expandir vídeo"
+                title="Expand video"
               >
                 <FaExpand className="w-4 h-4" />
               </button>
@@ -251,7 +251,7 @@ const Projects = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Simula um pequeno delay de loading para mostrar o skeleton
+    // Simulates a small loading delay to show the skeleton
     const timer = setTimeout(() => {
       setLoading(false);
     }, 1200);

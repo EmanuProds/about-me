@@ -1,8 +1,4 @@
-// Constantes para integração com GitHub API
-export const GITHUB_USERNAME = "EmanuProds";
-export const GITHUB_API_BASE = "https://api.github.com";
-
-// Configuração dos links sociais
+// Social links configuration
 export const socialLinks = [
   {
     href: "https://linkedin.com/in/emanuel-pereira-100717260",
@@ -23,3 +19,7 @@ export const socialLinks = [
     hoverColor: "hover:text-slate-500 dark:hover:text-slate-400",
   },
 ];
+
+// Constants for GitHub API integration
+export const GITHUB_USERNAME = "EmanuProds";
+export const GITHUB_API_BASE = "https://api.github.com";

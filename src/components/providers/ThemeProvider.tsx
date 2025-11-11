@@ -9,12 +9,12 @@ import {
 } from "react";
 
 /**
- * Tipos de tema suportados.
+ * Supported theme types.
  */
 type Theme = "light" | "dark";
 
 /**
- * Interface do contexto de tema.
+ * Theme context interface.
  */
 interface ThemeContextType {
   theme: Theme;
@@ -22,13 +22,13 @@ interface ThemeContextType {
 }
 
 /**
- * Contexto para gerenciamento de tema da aplicação.
+ * Context for application theme management.
  */
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 /**
- * Hook personalizado para acessar o contexto de tema.
- * Deve ser usado dentro de um ThemeProvider.
+ * Custom hook to access theme context.
+ * Must be used within a ThemeProvider.
  */
 export function useTheme() {
   const context = useContext(ThemeContext);
@@ -39,28 +39,28 @@ export function useTheme() {
 }
 
 /**
- * Props para o ThemeProvider.
+ * Props for ThemeProvider.
  */
 interface ThemeProviderProps {
   children: ReactNode;
 }
 
 /**
- * Provedor de contexto para gerenciamento de tema.
- * Detecta automaticamente a preferência do sistema e permite alternância manual.
- * Persiste a escolha do usuário no localStorage.
+ * Context provider for theme management.
+ * Automatically detects system preference and allows manual switching.
+ * Persists user choice in localStorage.
  */
 export function ThemeProvider({ children }: ThemeProviderProps) {
   const [theme, setTheme] = useState<Theme>("dark");
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    // Só executar no cliente
+    // Only execute on client
     const savedTheme = localStorage.getItem("theme") as Theme;
     if (savedTheme && (savedTheme === "light" || savedTheme === "dark")) {
       setTheme(savedTheme);
     } else {
-      // Detectar preferência do sistema
+      // Detect system preference
       const prefersDark = window.matchMedia(
         "(prefers-color-scheme: dark)"
       ).matches;
@@ -85,7 +85,7 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
     setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
   };
 
-  // Evitar renderizar até estar montado para prevenir hydration mismatch
+  // Avoid rendering until mounted to prevent hydration mismatch
   if (!mounted) {
     return <div style={{ visibility: "hidden" }}>{children}</div>;
   }

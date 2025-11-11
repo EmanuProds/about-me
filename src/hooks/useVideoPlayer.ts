@@ -1,11 +1,11 @@
 import { useRef, useEffect, useState } from "react";
 
 /**
- * Hook personalizado para gerenciar o estado e comportamento de um player de vídeo.
- * Controla reprodução automática, estados de loading e interações do usuário.
- * @param videoSrc - URL opcional do vídeo a ser reproduzido
- * @param enabled - Se o hook deve estar ativo (padrão: true)
- * @returns Objeto com refs, estados e handlers para o vídeo
+ * Custom hook to manage video player state and behavior.
+ * Controls automatic playback, loading states and user interactions.
+ * @param videoSrc - Optional video URL to be played
+ * @param enabled - Whether the hook should be active (default: true)
+ * @returns Object with refs, states and handlers for the video
  */
 export const useVideoPlayer = (videoSrc?: string, enabled: boolean = true) => {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -14,7 +14,7 @@ export const useVideoPlayer = (videoSrc?: string, enabled: boolean = true) => {
   const [videoPlaying, setVideoPlaying] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
 
-  // Efeito para reprodução automática quando o vídeo carrega
+  // Effect for automatic playback when video loads
   useEffect(() => {
     if (!enabled) return;
 
@@ -23,13 +23,13 @@ export const useVideoPlayer = (videoSrc?: string, enabled: boolean = true) => {
     if (!videoElement || !videoSrc) return;
 
     /**
-     * Manipula o evento 'canplay' do vídeo, iniciando reprodução automática.
-     * Trata erros de permissão de reprodução automática do navegador.
+     * Handles video 'canplay' event, starting automatic playback.
+     * Handles browser autoplay permission errors.
      */
     const handleCanPlay = () => {
       videoElement.play().catch((error) => {
         if (error.name !== "NotAllowedError") {
-          console.error("Erro ao tentar dar play no vídeo:", error);
+          console.error("Error trying to play video:", error);
         }
       });
     };
@@ -41,7 +41,7 @@ export const useVideoPlayer = (videoSrc?: string, enabled: boolean = true) => {
     };
   }, [videoSrc, enabled]);
 
-  // Efeito para sincronizar estado quando o vídeo muda externamente
+  // Effect to sync state when video changes externally
   useEffect(() => {
     if (!enabled) return;
 
@@ -58,10 +58,10 @@ export const useVideoPlayer = (videoSrc?: string, enabled: boolean = true) => {
       }
     };
 
-    // Verificar estado periodicamente
+    // Check state periodically
     const interval = setInterval(checkVideoState, 100);
 
-    // Também verificar em eventos importantes
+    // Also check on important events
     const handlePlay = () => setVideoPlaying(true);
     const handlePause = () => setVideoPlaying(false);
     const handleEnded = () => setVideoPlaying(false);
@@ -78,7 +78,7 @@ export const useVideoPlayer = (videoSrc?: string, enabled: boolean = true) => {
     };
   }, [enabled, videoPlaying]);
 
-  // Efeito para timeout de loading do vídeo
+  // Effect for video loading timeout
   useEffect(() => {
     if (!enabled || !videoSrc) return;
 
@@ -90,32 +90,32 @@ export const useVideoPlayer = (videoSrc?: string, enabled: boolean = true) => {
   }, [videoSrc, enabled]);
 
   /**
-   * Manipula o início do carregamento do vídeo.
-   * Define o estado de loading como verdadeiro.
+   * Handles video loading start.
+   * Sets loading state to true.
    */
   const handleVideoLoadStart = () => {
     setVideoLoading(true);
   };
 
   /**
-   * Manipula quando o vídeo está pronto para reprodução.
-   * Define o estado de loading como falso.
+   * Handles when video is ready for playback.
+   * Sets loading state to false.
    */
   const handleVideoCanPlay = () => {
     setVideoLoading(false);
   };
 
   /**
-   * Manipula erros durante o carregamento do vídeo.
-   * Define o estado de loading como falso.
+   * Handles errors during video loading.
+   * Sets loading state to false.
    */
   const handleVideoError = () => {
     setVideoLoading(false);
   };
 
   /**
-   * Manipula cliques no vídeo para alternar entre play e pause.
-   * Trata erros de permissão de reprodução automática.
+   * Handles video clicks to toggle between play and pause.
+   * Handles autoplay permission errors.
    */
   const handleVideoClick = () => {
     const videoElement = videoRef.current;
@@ -124,7 +124,7 @@ export const useVideoPlayer = (videoSrc?: string, enabled: boolean = true) => {
     if (videoElement.paused) {
       videoElement.play().catch((error) => {
         if (error.name !== "NotAllowedError") {
-          console.error("Erro ao tentar dar play no vídeo:", error);
+          console.error("Error trying to play video:", error);
         }
       });
       setVideoPlaying(true);
@@ -135,37 +135,37 @@ export const useVideoPlayer = (videoSrc?: string, enabled: boolean = true) => {
   };
 
   /**
-   * Manipula o evento de play do vídeo.
-   * Define o estado de reprodução como verdadeiro.
+   * Handles video play event.
+   * Sets playback state to true.
    */
   const handleVideoPlay = () => {
     setVideoPlaying(true);
   };
 
   /**
-   * Manipula o evento de pause do vídeo.
-   * Define o estado de reprodução como falso.
+   * Handles video pause event.
+   * Sets playback state to false.
    */
   const handleVideoPause = () => {
     setVideoPlaying(false);
   };
 
   /**
-   * Manipula entrada do mouse no vídeo.
-   * Define o estado de hover como verdadeiro.
+   * Handles mouse enter on video.
+   * Sets hover state to true.
    */
   const handleMouseEnter = () => setIsHovered(true);
 
   /**
-   * Manipula saída do mouse do vídeo.
-   * Define o estado de hover como falso.
+   * Handles mouse leave on video.
+   * Sets hover state to false.
    */
   const handleMouseLeave = () => setIsHovered(false);
 
   /**
-   * Força atualização do estado de reprodução do vídeo.
-   * Útil para sincronização externa (ex: modal).
-   * @param playing - Novo estado de reprodução
+   * Forces update of video playback state.
+   * Useful for external synchronization (e.g., modal).
+   * @param playing - New playback state
    */
   const forcePlayingState = (playing: boolean) => {
     setVideoPlaying(playing);

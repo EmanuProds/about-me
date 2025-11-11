@@ -3,13 +3,13 @@
 import { useTheme as useThemeContext } from "@/components/providers/ThemeProvider";
 
 /**
- * Tipos de tema suportados pela aplicação.
+ * Theme types supported by the application.
  */
 export type Theme = "light" | "dark";
 
 /**
- * Hook personalizado para acessar o contexto de tema.
- * Wrapper simplificado para o ThemeProvider context.
+ * Custom hook to access theme context.
+ * Simplified wrapper for ThemeProvider context.
  */
 export const useTheme = () => {
   return useThemeContext();

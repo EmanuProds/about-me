@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 import { GithubStatsData } from "@/types/github";
 
 /**
- * Hook customizado para buscar estatísticas do GitHub.
- * Compatível com GitHub Pages (static export).
+ * Custom hook to fetch GitHub statistics.
+ * Compatible with GitHub Pages (static export).
  */
 export const useGithubStats = (username: string) => {
   const [stats, setStats] = useState<GithubStatsData | null>(null);
@@ -16,13 +16,13 @@ export const useGithubStats = (username: string) => {
         setLoading(true);
         setError(null);
 
-        // Buscar dados do usuário
+        // Fetch user data
         const userResponse = await fetch(
           `https://api.github.com/users/${username}`
         );
         if (!userResponse.ok) {
           if (userResponse.status === 403) {
-            // Rate limit - usar dados mock
+            // Rate limit - use mock data
             console.warn("GitHub API rate limited for user data");
             throw new Error("RATE_LIMIT");
           }
@@ -31,7 +31,7 @@ export const useGithubStats = (username: string) => {
 
         const userData = await userResponse.json();
 
-        // Buscar mais repositórios para calcular anos de experiência
+        // Fetch more repositories to calculate years of experience
         const reposResponse = await fetch(
           `https://api.github.com/users/${username}/repos?sort=created&per_page=1`
         );
@@ -39,7 +39,7 @@ export const useGithubStats = (username: string) => {
 
         const reposData = await reposResponse.json();
 
-        // Calcular anos de experiência baseado no primeiro repo
+        // Calculate years of experience based on first repo
         const firstRepoYear =
           reposData.length > 0 && reposData[0]?.created_at
             ? new Date(reposData[0].created_at).getFullYear()
@@ -50,13 +50,13 @@ export const useGithubStats = (username: string) => {
           1
         );
 
-        // Calcular contribuições baseado em dados reais disponíveis
-        // Como a API de contribuições pode ter problemas de CORS/rate limit,
-        // usar uma estimativa mais precisa baseada nos repositórios e atividade
+        // Calculate contributions based on available real data
+        // Since the contributions API may have CORS/rate limit issues,
+        // use a more accurate estimate based on repositories and activity
         let totalContributions = 0;
 
         try {
-          // Tentar buscar eventos recentes para estimativa mais precisa
+          // Try to fetch recent events for more accurate estimate
           const eventsResponse = await fetch(
             `https://api.github.com/users/${username}/events?per_page=50`
           );
@@ -68,7 +68,7 @@ export const useGithubStats = (username: string) => {
             );
 
             if (pushEvents.length > 0) {
-              // Contar commits dos eventos recentes
+              // Count commits from recent events
               const recentCommits = pushEvents.reduce(
                 (total: number, event: any) => {
                   return total + (event.payload?.commits?.length || 1);
@@ -76,11 +76,11 @@ export const useGithubStats = (username: string) => {
                 0
               );
 
-              // Estimar contribuições anuais baseado na atividade recente
-              // Assumir que 50 eventos representam ~1-2 meses de atividade
+              // Estimate annual contributions based on recent activity
+              // Assume 50 events represent ~1-2 months of activity
               const monthsOfData = 2;
               const monthlyCommits = recentCommits / monthsOfData;
-              totalContributions = Math.round(monthlyCommits * 12); // anual
+              totalContributions = Math.round(monthlyCommits * 12); // annual
             }
           }
         } catch (error) {
@@ -90,7 +90,7 @@ export const useGithubStats = (username: string) => {
           );
         }
 
-        // Se não conseguiu dados de eventos, usar estimativa baseada em repositórios
+        // If couldn't get event data, use repository-based estimate
         if (totalContributions === 0) {
           totalContributions = Math.max(
             userData.public_repos * 25,
@@ -98,7 +98,7 @@ export const useGithubStats = (username: string) => {
           );
         }
 
-        // Garantir mínimo realista
+        // Ensure realistic minimum
         totalContributions = Math.max(totalContributions, 50);
 
         const finalStats = {
@@ -113,7 +113,7 @@ export const useGithubStats = (username: string) => {
         console.warn("GitHub API failed, using fallback data:", err);
         setError("Failed to load GitHub stats");
 
-        // Fallback data mais realista baseado no perfil conhecido
+        // More realistic fallback data based on known profile
         setStats({
           publicRepos: 6,
           totalContributions: 200, 

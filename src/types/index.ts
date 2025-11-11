@@ -1,26 +1,26 @@
-// Re-export de todos os tipos do projeto para facilitar importações
-export * from "./github";
-export * from "./academic";
-export * from "./projects";
+// Re-export of all project types to facilitate imports
 export * from "./tech";
+export * from "./github";
+export * from "./projects";
+export * from "./academic";
 
-// Tipos para links sociais utilizados em componentes de contato e footer
-export interface SocialLink {
-  name: string;
-  url: string;
-  icon: string;
-  ariaLabel: string;
+// Types for theme options (light, dark, system)
+export interface ThemeOption {
+  value: "light" | "dark" | "system";
+  label: string;
+  icon: React.ElementType;
 }
 
-// Tipos para itens de navegação no header/menu
+// Types for navigation items in header/menu
 export interface NavigationItem {
   label: string;
   href: string;
 }
 
-// Tipos para opções de tema (claro, escuro, sistema)
-export interface ThemeOption {
-  value: "light" | "dark" | "system";
-  label: string;
-  icon: React.ElementType;
+// Types for social links used in contact and footer components
+export interface SocialLink {
+  name: string;
+  url: string;
+  icon: string;
+  ariaLabel: string;
 }

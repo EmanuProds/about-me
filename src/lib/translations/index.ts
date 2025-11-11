@@ -1,6 +1,6 @@
 /**
- * Sistema de traduções da aplicação.
- * Centraliza todas as strings traduzidas para português e inglês.
+ * Application translation system.
+ * Centralizes all strings translated to Portuguese and English.
  */
 
 import { ptBR } from "./pt-BR";
@@ -8,13 +8,13 @@ import { en } from "./en";
 import { Translations, Locale } from "@/types/translations";
 
 /**
- * Objeto principal contendo todas as traduções organizadas por locale.
- * Usado pelo hook useTranslations para fornecer strings localizadas.
+ * Main object containing all translations organized by locale.
+ * Used by the useTranslations hook to provide localized strings.
  */
 export const translations: Record<Locale, Translations> = {
   "pt-BR": ptBR,
   en: en,
 };
 
-// Re-export das traduções individuais para uso direto se necessário
+// Re-export individual translations for direct use if necessary
 export { ptBR, en };

@@ -5,7 +5,7 @@ import { useGithubStats } from "@/hooks/useGithubStats";
 import { useTranslations } from "@/hooks/useTranslations";
 
 /**
- * Card individual para estatística do GitHub.
+ * Individual card for GitHub statistic.
  */
 const StatCard = ({
   value,
@@ -29,8 +29,8 @@ const StatCard = ({
 );
 
 /**
- * Componente que exibe estatísticas do GitHub em cards customizados.
- * Mostra 3 estatísticas principais: repositórios, contribuições e experiência.
+ * Component that displays GitHub statistics in custom cards.
+ * Shows 3 main statistics: repositories, contributions and experience.
  */
 const GithubStats = ({ username }: { username: string }) => {
   const { t } = useTranslations();

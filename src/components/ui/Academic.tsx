@@ -17,15 +17,15 @@ import { useTranslations } from "@/hooks/useTranslations";
 import { useCertificateModal } from "@/hooks/useCertificateModal";
 import { academicRecords } from "@/lib/data";
 
-// Constantes para classes Tailwind comuns para manter consistência
+// Constants for common Tailwind classes to maintain consistency
 const CARD_BASE_CLASSES =
   "relative bg-gray-300/40 dark:bg-black/30 backdrop-blur-sm rounded-2xl border border-gray-400/20 dark:border-gray-200/20 p-8 hover:bg-slate-400/40 dark:hover:bg-slate-600/40 active:bg-slate-400/40 dark:active:bg-slate-600/40 transition-all duration-300 hover:scale-[1.02] active:scale-[1.02] hover:shadow-lg active:shadow-lg flex flex-col h-full cursor-pointer";
 const BUTTON_BASE_CLASSES =
   "inline-flex items-center justify-center gap-2 text-sm font-medium transition-all duration-300 rounded-lg px-4 py-2 shadow-md hover:shadow-lg active:shadow-lg mt-auto w-full";
 
 /**
- * Componente para renderizar ícones dinamicamente baseado no nome.
- * @param iconName - Nome do ícone a ser renderizado
+ * Component to render icons dynamically based on name.
+ * @param iconName - Name of the icon to be rendered
  */
 const IconComponent = ({ iconName }: { iconName: string }) => {
   switch (iconName) {
@@ -55,10 +55,23 @@ const AcademicCard = ({
   const { handleCertificateClick } = useCertificateModal();
 
   /**
-   * Retorna o título traduzido do registro acadêmico baseado no ID.
-   * Utiliza traduções específicas para registros conhecidos ou o título padrão.
-   * @param recordId - ID único do registro acadêmico
-   * @returns Título traduzido ou padrão
+   * Returns the translated academic record type based on type.
+   * Uses specific translations for known types or the default type.
+   * @param type - Academic record type key
+   * @returns Translated type or default
+   */
+  const getTranslatedType = (type: string) => {
+    if (type === "specializationCourse") {
+      return locale === "en" ? "Specialization Course" : "Curso de Especialização";
+    }
+    return type;
+  };
+
+  /**
+   * Returns the translated academic record title based on ID.
+   * Uses specific translations for known records or the default title.
+   * @param recordId - Unique academic record ID
+   * @returns Translated title or default
    */
   const getTranslatedTitle = (recordId: number) => {
     switch (recordId) {
@@ -78,10 +91,10 @@ const AcademicCard = ({
   };
 
   /**
-   * Retorna a descrição traduzida do registro acadêmico baseada no ID.
-   * Utiliza descrições específicas para registros conhecidos ou a descrição padrão.
-   * @param recordId - ID único do registro acadêmico
-   * @returns Descrição traduzida ou padrão
+   * Returns the translated academic record description based on ID.
+   * Uses specific descriptions for known records or the default description.
+   * @param recordId - Unique academic record ID
+   * @returns Translated description or default
    */
   const getTranslatedDescription = (recordId: number) => {
     switch (recordId) {
@@ -101,9 +114,9 @@ const AcademicCard = ({
   };
 
   /**
-   * Retorna a cor do gradiente baseada na instituição.
-   * @param institution - Nome da instituição
-   * @returns Classe de gradiente Tailwind
+   * Returns the gradient color based on institution.
+   * @param institution - Institution name
+   * @returns Tailwind gradient class
    */
   const getInstitutionColor = (institution: string) => {
     switch (institution.toLowerCase()) {
@@ -156,7 +169,7 @@ const AcademicCard = ({
           <span
             className={`inline-block px-3 py-1 text-sm font-semibold rounded-full bg-linear-to-r ${gradientColor} text-gray-100 shadow-sm select-none`}
           >
-            {record.type}
+            {getTranslatedType(record.type)}
           </span>
         </div>
       </div>
@@ -168,7 +181,9 @@ const AcademicCard = ({
       <div className="flex items-center justify-between text-gray-600 dark:text-gray-400">
         <div className="flex items-center mb-4 gap-2">
           <FaBuilding className="w-4 h-4 select-none" />
-          <span className="text-sm font-medium select-none">{record.institution}</span>
+          <span className="text-sm font-medium select-none">
+            {record.institution}
+          </span>
         </div>
         <div className="flex items-center mb-4 gap-2 text-gray-500 dark:text-gray-500">
           <FaCalendarAlt className="w-4 h-4 select-none" />
@@ -210,11 +225,11 @@ const AcademicCard = ({
 };
 
 const Academic = () => {
-  const { t } = useTranslations();
+  const { t, locale } = useTranslations();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Simula um pequeno delay de loading para mostrar o skeleton
+    // Simulates a small loading delay to show the skeleton
     const timer = setTimeout(() => {
       setLoading(false);
     }, 1000);
@@ -237,7 +252,11 @@ const Academic = () => {
 
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {academicRecords.map((record) => (
-            <AcademicCard key={record.id} record={record} loading={loading} />
+            <AcademicCard
+              key={`${record.id}-${locale}`}
+              record={record}
+              loading={loading}
+            />
           ))}
         </div>
       </div>

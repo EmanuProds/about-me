@@ -5,14 +5,14 @@ import { translations } from "@/lib/translations";
 import { Locale } from "@/types/translations";
 
 /**
- * Hook para gerenciar traduções e idioma da aplicação.
- * Detecta automaticamente o idioma do navegador e permite persistência da preferência do usuário.
+ * Hook to manage application translations and language.
+ * Automatically detects browser language and allows persistence of user preference.
  */
 export function useTranslations() {
   const [locale, setLocale] = useState<Locale>("pt-BR");
 
   useEffect(() => {
-    // Carrega idioma salvo ou detecta automaticamente
+    // Load saved language or detect automatically
     const savedLanguage = localStorage.getItem("preferred-language") as Locale;
 
     if (
@@ -21,14 +21,14 @@ export function useTranslations() {
     ) {
       setLocale(savedLanguage);
     } else {
-      // Fallback para detecção automática baseada no navegador
+      // Fallback to automatic detection based on browser
       const browserLang = navigator.language || "pt-BR";
       const detectedLocale = browserLang.startsWith("pt") ? "pt-BR" : "en";
       setLocale(detectedLocale);
     }
   }, []);
 
-  // Memoiza as traduções para evitar recálculos desnecessários
+  // Memoize translations to avoid unnecessary recalculations
   const t = useMemo(() => translations[locale], [locale]);
 
   return {

@@ -7,13 +7,13 @@ import { useTranslations } from "@/hooks/useTranslations";
 import ProfileGithub from "@/components/github/ProfileGithub";
 
 /**
- * Componente do perfil principal.
- * Exibe informações básicas do usuário e integra com o componente de perfil do GitHub.
+ * Main profile component.
+ * Displays basic user information and integrates with the GitHub profile component.
  */
 const Profile: React.FC = () => {
   const { t } = useTranslations();
 
-  // Função para obter o ícone correto baseado no nome
+  // Function to get the correct icon based on name
   const getIcon = (iconName: string) => {
     switch (iconName) {
       case "FaLinkedin":

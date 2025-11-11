@@ -5,8 +5,8 @@ import { useTranslations } from "@/hooks/useTranslations";
 import GithubStats from "@/components/github/StatsGithub";
 
 /**
- * Componente da seção "Sobre".
- * Exibe informações pessoais e estatísticas do GitHub.
+ * "About" section component.
+ * Displays personal information and GitHub statistics.
  */
 const About = () => {
   const { t } = useTranslations();

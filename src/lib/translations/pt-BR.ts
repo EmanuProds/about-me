@@ -1,6 +1,6 @@
 /**
- * Arquivo de traduções para português brasileiro (pt-BR).
- * Contém todas as strings da interface traduzidas para português.
+ * Translation file for Brazilian Portuguese (pt-BR).
+ * Contains all interface strings translated to Portuguese.
  */
 
 import { Translations } from "@/types/translations";
@@ -40,6 +40,11 @@ Experiência Multidisciplinar
 
 • Serviços Complementares: Experiência em digitalização de documentos, atendimento ao cliente, vendas e organização de estoque, complementando um perfil proativo e versátil.`,
   },
+  github: {
+    publicRepos: "Repositórios Públicos",
+    contributions: (year: number) => `Contribuições em ${year}`,
+    yearsExperience: "Anos de Experiência",
+  },
   projects: {
     title: "Alguns Projetos",
     viewProject: "Ver Projeto",
@@ -59,6 +64,9 @@ Experiência Multidisciplinar
     title: "Formação Acadêmica",
     viewCertificate: "Ver certificado",
     certificateNotIssued: "Certificado não emitido",
+    types: {
+      specializationCourse: "Curso de Especialização",
+    },
     titles: {
       reactNativeExpo: "React Native com Expo",
       bootcampReactCSharp: "Akad - Desenvolvedor Fullstack",
@@ -79,13 +87,7 @@ Experiência Multidisciplinar
         "Formação abrangente em lógica de programação que estabelece as bases fundamentais do pensamento computacional, desde algoritmos básicos e estruturas de controle até conceitos avançados como recursão, otimização e resolução de problemas complexos.",
     },
   },
-  github: {
-    publicRepos: "Repositórios Públicos",
-    contributions: (year: number) => `Contribuições em ${year}`,
-    yearsExperience: "Anos de Experiência",
-  },
   footer: {
-    copyright: "Todos os direitos reservados.",
-    madeWith: "Feito com ❤️ usando TypeScript, React.js e Next.js",
+    copyright: " Todos os direitos reservados.",
   },
 };

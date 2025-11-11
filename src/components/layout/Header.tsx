@@ -6,8 +6,8 @@ import LanguageToggle from "@/components/ui/LanguageToggle";
 import { useTranslations } from "@/hooks/useTranslations";
 
 /**
- * Componente de cabeçalho fixo da aplicação.
- * Contém navegação principal e seletor de idioma.
+ * Fixed header component of the application.
+ * Contains main navigation and language selector.
  */
 const Header = () => {
   const { t } = useTranslations();

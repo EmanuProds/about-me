@@ -2,16 +2,16 @@ import React from "react";
 import { FaPause, FaPlay } from "react-icons/fa";
 
 /**
- * Hook personalizado para gerenciar a expansão de vídeos em modal.
- * Cria um modal overlay com controles de vídeo e sincronização com o vídeo original.
- * @returns Objeto com função para expandir vídeo
+ * Custom hook to manage video expansion in modal.
+ * Creates a modal overlay with video controls and synchronization with the original video.
+ * @returns Object with function to expand video
  */
 export const useVideoModal = () => {
   /**
-   * Manipula a expansão de um vídeo em modal.
-   * Cria um modal overlay com controles personalizados e sincroniza com o vídeo original.
-   * @param videoElement - Elemento de vídeo a ser expandido
-   * @param onStateSync - Callback opcional para sincronizar estado quando modal fecha
+   * Handles video expansion in modal.
+   * Creates a modal overlay with custom controls and synchronizes with the original video.
+   * @param videoElement - Video element to be expanded
+   * @param onStateSync - Optional callback to sync state when modal closes
    */
   const handleExpandClick = async (
     videoElement: HTMLVideoElement,
@@ -43,7 +43,7 @@ export const useVideoModal = () => {
       `;
       clonedVideo.controls = false;
       clonedVideo.muted = false;
-      clonedVideo.currentTime = videoElement.currentTime; // Manter o progresso do vídeo original
+      clonedVideo.currentTime = videoElement.currentTime; // Keep original video progress
 
       let modalVideoPlaying = false;
 
@@ -59,7 +59,7 @@ export const useVideoModal = () => {
       clonedVideo.addEventListener("play", () => {
         modalVideoPlaying = true;
         renderIcon();
-        // Sincronizar com o vídeo original
+        // Sync with original video
         if (videoElement.paused) {
           videoElement.play().catch(console.error);
         }
@@ -67,13 +67,13 @@ export const useVideoModal = () => {
       clonedVideo.addEventListener("pause", () => {
         modalVideoPlaying = false;
         renderIcon();
-        // Sincronizar com o vídeo original
+        // Sync with original video
         if (!videoElement.paused) {
           videoElement.pause();
         }
       });
 
-      // Sincronizar progresso em tempo real
+      // Sync progress in real time
       const syncProgress = () => {
         videoElement.currentTime = clonedVideo.currentTime;
       };
@@ -84,7 +84,7 @@ export const useVideoModal = () => {
         const style = document.createElement("style");
         style.id = styleId;
         style.textContent = `
-          /* Esconde botão de fullscreen */
+          /* Hide fullscreen button */
           video::-webkit-media-controls-fullscreen-button {
             display: none !important;
           }
@@ -113,17 +113,17 @@ export const useVideoModal = () => {
       `;
 
       closeButton.onclick = () => {
-        // Sincronizar vídeo primeiro
+        // Sync video first
         if (modalVideoPlaying && videoElement.paused) {
           videoElement.play().catch(console.error);
         } else if (!modalVideoPlaying && !videoElement.paused) {
           videoElement.pause();
         }
 
-        // Fechar modal
+        // Close modal
         document.body.removeChild(container);
 
-        // Sincronizar estado do hook APÓS fechar modal (garante que o DOM foi atualizado)
+        // Sync hook state AFTER closing modal (ensures DOM was updated)
         setTimeout(() => {
           onStateSync?.(modalVideoPlaying);
         }, 0);
@@ -184,13 +184,13 @@ export const useVideoModal = () => {
       document.body.appendChild(container);
 
       const closeModal = () => {
-        // Sincronizar estado de reprodução ao fechar modal
+        // Sync playback state when closing modal
         if (modalVideoPlaying && videoElement.paused) {
           videoElement.play().catch(console.error);
         } else if (!modalVideoPlaying && !videoElement.paused) {
           videoElement.pause();
         }
-        // Sincronizar estado no hook imediatamente
+        // Sync state in hook immediately
         onStateSync?.(modalVideoPlaying);
         document.body.removeChild(container);
       };
@@ -211,7 +211,7 @@ export const useVideoModal = () => {
 
       clonedVideo.play().catch(console.error);
     } catch (error) {
-      console.error("Erro ao tentar expandir vídeo:", error);
+      console.error("Error trying to expand video:", error);
     }
   };
 

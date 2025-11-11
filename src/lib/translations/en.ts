@@ -35,6 +35,11 @@ Multidisciplinary Experience
 
 • Complementary Services: Experience in document digitization, customer service, sales and inventory organization, complementing a proactive and versatile profile.`,
   },
+  github: {
+    publicRepos: "Public Repositories",
+    contributions: (year: number) => `Contributions in ${year}`,
+    yearsExperience: "Years of Experience",
+  },
   projects: {
     title: "Some Projects",
     viewProject: "View Project",
@@ -54,6 +59,9 @@ Multidisciplinary Experience
     title: "Education",
     viewCertificate: "View certificate",
     certificateNotIssued: "Certificate not issued",
+    types: {
+      specializationCourse: "Specialization Course",
+    },
     titles: {
       reactNativeExpo: "React Native with Expo",
       bootcampReactCSharp: "Akad - Fullstack Developer",
@@ -74,13 +82,7 @@ Multidisciplinary Experience
         "Comprehensive training in programming logic that establishes the fundamental bases of computational thinking, from basic algorithms and control structures to advanced concepts such as recursion, optimization and complex problem solving.",
     },
   },
-  github: {
-    publicRepos: "Public Repositories",
-    contributions: (year: number) => `Contributions in ${year}`,
-    yearsExperience: "Years of Experience",
-  },
   footer: {
-    copyright: "All rights reserved.",
-    madeWith: "Made with ❤️ using TypeScript, React.js and Next.js",
+    copyright: " All rights reserved.",
   },
 };

@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import { TechIcon, ScrollContainerProps } from "@/types/tech";
 import { langProgramming, toolsTech, systemOperation } from "@/lib/data";
 
-// Constantes para classes Tailwind comuns
+// Constants for common Tailwind classes
 const TECH_CARD_CLASSES =
   "group flex flex-col items-center justify-center p-4 md:p-6 m-1 min-w-[100px] md:min-w-[120px] rounded-2xl bg-gray-300/40 dark:bg-black/30 backdrop-blur-sm border border-gray-400/20 dark:border-gray-200/20 hover:bg-slate-400/40 dark:hover:bg-slate-600/40 active:bg-slate-400/40 dark:active:bg-slate-600/40 hover:scale-105 active:scale-105 transition-all duration-300 ease-out cursor-pointer";
 const TECH_ICON_CLASSES =
@@ -13,9 +13,9 @@ const TECH_TEXT_CLASSES =
   "text-xs md:text-sm font-medium text-gray-900 dark:text-gray-100 group-hover:text-gray-700 dark:group-hover:text-gray-200 group-active:text-gray-700 dark:group-active:text-gray-200 transition-colors duration-300 select-none";
 
 /**
- * Componente para exibir um cartão de tecnologia com loading state.
- * @param tech - Objeto contendo ícone e nome da tecnologia
- * @param loading - Indica se o cartão está em estado de loading
+ * Component to display a technology card with loading state.
+ * @param tech - Object containing technology icon and name
+ * @param loading - Indicates if the card is in loading state
  */
 const TechCard = ({
   tech,
@@ -80,7 +80,7 @@ const TechScroll = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Simula um pequeno delay de loading para mostrar o skeleton
+    // Simulates a small loading delay to show the skeleton
     const timer = setTimeout(() => {
       setLoading(false);
     }, 800);

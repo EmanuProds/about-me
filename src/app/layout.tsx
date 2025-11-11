@@ -3,7 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 
-// Configuração das fontes Geist para toda a aplicação
+// Geist font configuration for the entire application
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-// Metadados SEO da aplicação
+// Application SEO metadata
 export const metadata: Metadata = {
   title: "Portfólio",
   description:

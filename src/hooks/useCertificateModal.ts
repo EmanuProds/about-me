@@ -1,15 +1,15 @@
 import React from "react";
 
 /**
- * Hook para gerenciar abertura de certificados em modal.
- * Trata certificados especiais como devlinks que variam por idioma.
+ * Hook to manage certificate opening in modal.
+ * Handles special certificates like devlinks that vary by language.
  */
 export const useCertificateModal = () => {
   /**
-   * Abre certificado em nova aba.
-   * Suporta certificados dinâmicos baseados no idioma atual.
-   * @param certificateUrl - URL ou identificador do certificado
-   * @param currentLanguage - Idioma atual da aplicação
+   * Opens certificate in new tab.
+   * Supports dynamic certificates based on current language.
+   * @param certificateUrl - Certificate URL or identifier
+   * @param currentLanguage - Current application language
    */
   const handleCertificateClick = (
     certificateUrl: string,
@@ -36,7 +36,7 @@ export const useCertificateModal = () => {
       // Open PDF in new tab for better compatibility with GitHub Pages
       window.open(certificateUrl, "_blank", "noopener,noreferrer");
     } catch (error) {
-      console.error("Erro ao tentar abrir certificado:", error);
+      console.error("Error trying to open certificate:", error);
     }
   };
 

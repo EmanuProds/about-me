@@ -1,6 +1,6 @@
 /**
- * Dados estáticos do portfólio - registros acadêmicos, projetos e tecnologias.
- * Centraliza todas as informações exibidas nos componentes da aplicação.
+ * Static portfolio data - academic records, projects and technologies.
+ * Centralizes all information displayed in the application components.
  */
 
 import { AcademicRecord } from "@/types/academic";
@@ -28,29 +28,6 @@ import {
   SiSqlite,
   SiGithub,
 } from "react-icons/si";
-
-export const projects = [
-  {
-    id: 1,
-    title: "Image2DOC",
-    description:
-      "Uma aplicação em GTK4/Libadwaita com foco em extração de dados via OCR para conversão, renomiação e organização de documentos.",
-    videoSrc: "/videos/image2doc.mp4",
-    technologies: ["python"],
-    projectUrl: "",
-    githubUrl: "https://github.com/EmanuProds/image2doc",
-  },
-  {
-    id: 2,
-    title: "Notary Connect X (antigo)",
-    description:
-      "Um sistema local com interface web, focado em atendimento automatizado e humanizado, utilizando a API do WhatsApp",
-    videoSrc: "",
-    technologies: ["html", "css", "javascript", "nodejs", "express.js"],
-    projectUrl: "",
-    githubUrl: "https://github.com/EmanuProds/notary-connect-old",
-  },
-];
 
 export const langProgramming: TechIcon[] = [
   { Icon: FaHtml5, name: "HTML", color: "text-orange-500" },
@@ -87,13 +64,36 @@ export const systemOperation: TechIcon[] = [
   { Icon: FaTerminal, name: "ShellScript", color: "text-green-400" },
 ];
 
+export const projects = [
+  {
+    id: 1,
+    title: "Image2DOC",
+    description:
+      "A GTK4/Libadwaita application focused on OCR data extraction for document conversion, renaming and organization.",
+    videoSrc: "/videos/image2doc.mp4",
+    technologies: ["python"],
+    projectUrl: "",
+    githubUrl: "https://github.com/EmanuProds/image2doc",
+  },
+  {
+    id: 2,
+    title: "Notary Connect X (antigo)",
+    description:
+      "A local system with web interface, focused on automated and humanized customer service, using WhatsApp API",
+    videoSrc: "",
+    technologies: ["html", "css", "javascript", "nodejs", "express.js"],
+    projectUrl: "",
+    githubUrl: "https://github.com/EmanuProds/notary-connect-old",
+  },
+];
+
 export const academicRecords = [
   {
     id: 1,
     course: "React Native com Expo",
     institution: "Rocketseat",
-    type: "Curso de Especialização",
-    duration: "Cursando",
+    type: "specializationCourse",
+    duration: "In Progress",
     description:
       "Curso intensivo focado no desenvolvimento de aplicações móveis nativas para iOS e Android utilizando TypeScript, React Native e Expo Framework, abrangendo desde conceitos fundamentais até técnicas avançadas de desenvolvimento mobile.",
     icon: "Clock",
@@ -103,8 +103,8 @@ export const academicRecords = [
     id: 2,
     course: "Bootcamp React e C#",
     institution: "Dio.io",
-    type: "Curso de Especialização",
-    duration: "Cursando",
+    type: "specializationCourse",
+    duration: "In Progress",
     description:
       "Programa completo de formação full-stack que combina desenvolvimento frontend moderno com TypeScript, React e Vite, e desenvolvimento backend robusto utilizando C# e ASP.NET, preparando para construção de aplicações web completas.",
     icon: "Clock",
@@ -114,7 +114,7 @@ export const academicRecords = [
     id: 3,
     course: "LGPD e seus Serviços",
     institution: "ENNOR",
-    type: "Curso de Especialização",
+    type: "specializationCourse",
     duration: "2h",
     description:
       "Formação especializada em Lei Geral de Proteção de Dados (LGPD) que aborda os princípios fundamentais da legislação, responsabilidades das organizações e implementação prática de medidas de compliance para proteção de dados pessoais.",
@@ -125,7 +125,7 @@ export const academicRecords = [
     id: 4,
     course: "Devlinks",
     institution: "Rocketseat",
-    type: "Curso de Especialização",
+    type: "specializationCourse",
     duration: "5h",
     description:
       "Curso introdutório aos fundamentos do desenvolvimento web moderno, cobrindo HTML5 semântico, CSS3 para estilização avançada, JavaScript para interatividade, controle de versão com Git e colaboração através do GitHub.",
@@ -136,7 +136,7 @@ export const academicRecords = [
     id: 5,
     course: "Lógica de programação",
     institution: "Dev Samurai",
-    type: "Curso de Especialização",
+    type: "specializationCourse",
     duration: "18h",
     description:
       "Formação abrangente em lógica de programação que estabelece as bases fundamentais do pensamento computacional, desde algoritmos básicos e estruturas de controle até conceitos avançados como recursão, otimização e resolução de problemas complexos.",

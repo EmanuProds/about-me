@@ -76,7 +76,7 @@ const ProfileGithub: React.FC<GithubProfileProps> = ({ username }) => {
     setLoading(false);
   };
 
-  const imageContainerClasses = "relative w-64 h-64 mx-auto";
+  const imageContainerClasses = "relative w-38 h-38 md:w-64 md:h-64 mx-auto";
 
   if (error) {
     return <p className="text-red-500 text-center">Erro: {error}</p>;
@@ -92,7 +92,7 @@ const ProfileGithub: React.FC<GithubProfileProps> = ({ username }) => {
         <img
           src={user.avatar_url}
           alt={`${user.login} imagem de perfil do GitHub`}
-          className={`w-64 h-64 border-4 border-slate-400 rounded-full transition-opacity duration-300 ${
+          className={`w-38 h-38 md:w-64 md:h-64 border-4 border-slate-400 rounded-full transition-opacity duration-300 ${
             imageLoaded ? "opacity-100" : "opacity-0"
           }`}
           onLoad={handleImageLoad}

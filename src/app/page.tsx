@@ -12,7 +12,7 @@ import Footer from "@/components/layout/Footer";
  */
 export default function Home() {
   return (
-    <main className="pt-20">
+    <main className="pt-12 md:pt-20">
       <Header />
       <Profile />
       <TechScroll />

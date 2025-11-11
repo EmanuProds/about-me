@@ -30,10 +30,10 @@ const Profile: React.FC = () => {
   return (
     <main id="inicio" className="flex flex-col items-center p-10 scroll-mt-20">
       <ProfileGithub username={GITHUB_USERNAME} />
-      <h1 className="text-3xl font-bold mt-4 text-gray-900 dark:text-white">
+      <h1 className="text-3xl font-bold mt-4 text-gray-900 dark:text-white text-center md:text-left">
         {t.profile.name}
       </h1>
-      <p className="text-xl mt-2 text-gray-500 dark:text-slate-400">
+      <p className="text-xl mt-2 text-gray-500 dark:text-slate-400 text-center md:text-left">
         {t.profile.title}
       </p>
       <div className="flex items-center justify-center gap-4 mt-4">

@@ -29,6 +29,11 @@ export interface Translations {
   academic: {
     title: string;
     viewCertificate: string;
+    descriptions: {
+      ads: string;
+      bootcampReact: string;
+      awsPractitioner: string;
+    };
   };
   stats: {
     repositories: string;

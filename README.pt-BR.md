@@ -37,7 +37,7 @@ Um portfólio moderno e responsivo desenvolvido com as tecnologias mais recentes
 - **React Icons** - Biblioteca abrangente de ícones
 
 ### Integrações
-- **GitHub API** - Estatísticas e dados do perfil
+- **GitHub Readme Stats** - Estatísticas dinâmicas como imagens SVG
 
 ## 📁 Estrutura do Projeto
 
@@ -129,6 +129,35 @@ O sistema de tradução é baseado em arquivos JSON organizados por seções da 
 - **React Compiler**: Compilação otimizada de componentes
 - **Lazy Loading**: Carregamento sob demanda
 - **Code Splitting**: Divisão automática de bundles
+
+## 🚀 Deploy no GitHub Pages
+
+Este projeto está configurado para deploy automático no GitHub Pages usando GitHub Actions.
+
+### Configuração Inicial
+
+1. **No seu repositório GitHub**, vá para **Settings > Pages**
+2. **Source**: Selecione "GitHub Actions"
+3. **Commit e push** as mudanças para a branch `main`
+
+### Como Funciona
+
+- O workflow `.github/workflows/deploy.yml` é executado automaticamente em cada push
+- O Next.js gera arquivos estáticos na pasta `out/`
+- Os arquivos são publicados no GitHub Pages
+- O site fica disponível em `https://[username].github.io/[repository-name]`
+
+### Arquivos de Configuração
+
+- `next.config.ts`: Configurado para exportação estática
+- `.github/workflows/deploy.yml`: Workflow de CI/CD
+- `package.json`: Script de build otimizado
+
+### Limitações do GitHub Pages
+
+- Sem suporte a APIs server-side (por isso usamos GitHub Readme Stats)
+- Apenas arquivos estáticos
+- Rate limits nas APIs externas
 
 ---
 

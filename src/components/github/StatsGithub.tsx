@@ -1,7 +1,4 @@
-"use client";
-
-import React, { useState, useEffect } from "react";
-import { GithubStatsData } from "@/types/github";
+import React from "react";
 import { useTranslations } from "@/hooks/useTranslations";
 
 /**
@@ -13,87 +10,36 @@ interface GithubStatsProps {
 }
 
 /**
- * Componente que exibe estatísticas do GitHub.
- * Busca dados via API própria e exibe repositórios, contribuições e experiência.
+ * Componente que exibe estatísticas do GitHub usando GitHub Readme Stats.
+ * Mostra estatísticas como imagens SVG dinâmicas do serviço github-readme-stats.
  */
 const GithubStats: React.FC<GithubStatsProps> = ({ username }) => {
   const { t } = useTranslations();
-  const [stats, setStats] = useState<GithubStatsData | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    /**
-     * Busca estatísticas do GitHub via API própria.
-     * Em caso de erro, define valores padrão para não quebrar a UI.
-     */
-    const fetchStats = async () => {
-      setLoading(true);
-      setError(null);
-
-      try {
-        const response = await fetch("/api/github-stats", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ username }),
-        });
-
-        if (!response.ok) {
-          throw new Error(`Erro na API: ${response.status}`);
-        }
-
-        const data = await response.json();
-        setStats(data);
-      } catch (err) {
-        console.error("Erro ao buscar estatísticas:", err);
-        setError(err instanceof Error ? err.message : "Erro desconhecido");
-        // Valores padrão para evitar quebra da UI
-        setStats({
-          publicRepos: 0,
-          totalContributions: 0,
-          yearsOfExperience: 0,
-        });
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchStats();
-  }, [username]);
-
-  if (loading) {
-    return (
-      <div className="flex justify-center items-center py-8">
-        <div className="w-16 h-16 border-4 border-gray-300 dark:border-gray-600 border-t-slate-500 dark:border-t-slate-400 rounded-full animate-spin"></div>
-      </div>
-    );
-  }
-
-  if (error) {
-    return <p className="text-red-500 mt-4">Erro: {error}</p>;
-  }
+  // URLs para as imagens SVG do GitHub Readme Stats
+  const statsUrl = `https://github-readme-stats.vercel.app/api?username=${username}&show_icons=true&theme=transparent&hide_border=true&include_all_commits=true&count_private=true`;
+  const languagesUrl = `https://github-readme-stats.vercel.app/api/top-langs/?username=${username}&theme=transparent&hide_border=true&layout=compact`;
 
   return (
-    <div className="flex space-x-14 mt-4 text-center justify-center">
-      <div className="flex flex-col">
-        <span className="text-6xl font-bold text-slate-600 dark:text-slate-400">
-          {stats?.publicRepos ?? 0}
-        </span>
-        <span className="mt-2 text-1xl text-gray-900 dark:text-gray-100">{t.stats.repositories}</span>
+    <div className="flex flex-col items-center space-y-6 mt-4">
+      {/* Estatísticas principais */}
+      <div className="flex justify-center">
+        <img
+          src={statsUrl}
+          alt={`Estatísticas do GitHub de ${username}`}
+          className="max-w-full h-auto"
+          loading="lazy"
+        />
       </div>
 
-      <div className="flex flex-col">
-        <span className="text-6xl font-bold text-slate-600 dark:text-slate-400">
-          {stats?.totalContributions ?? 0}
-        </span>
-        <span className="mt-2 text-1xl text-gray-900 dark:text-gray-100">{t.stats.contributions}</span>
-      </div>
-
-      <div className="flex flex-col">
-        <span className="text-6xl font-bold text-slate-600 dark:text-slate-400">
-          {stats?.yearsOfExperience ?? 0}+
-        </span>
-        <span className="mt-2 text-1xl text-gray-900 dark:text-gray-100">{t.stats.experience}</span>
+      {/* Linguagens mais usadas */}
+      <div className="flex justify-center">
+        <img
+          src={languagesUrl}
+          alt={`Linguagens mais usadas por ${username}`}
+          className="max-w-full h-auto"
+          loading="lazy"
+        />
       </div>
     </div>
   );

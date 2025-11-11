@@ -176,15 +176,11 @@ const ProjectCard = ({
         )}
       </div>
 
-      <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 group-hover:text-gray-700 dark:group-hover:text-gray-200 transition-colors min-h-10 line-clamp-2 mb-3">
+      <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 group-hover:text-gray-700 dark:group-hover:text-gray-200 transition-colors min-h-10 line-clamp-2 mb-2">
         {getTranslatedTitle(id)}
       </h3>
 
-      <p className="text-gray-700 dark:text-gray-300 text-sm text-justify leading-relaxed mb-4 line-clamp-3 grow">
-        {getTranslatedDescription(id)}
-      </p>
-
-      <div className="flex flex-wrap gap-2 mb-4 min-h-8 items-center justify-center">
+      <div className="flex flex-wrap gap-2 mb-4 min-h-8 items-start justify-center">
         {projectTechs.map((tech) => {
           const Icon = tech.icon;
           return (
@@ -199,6 +195,10 @@ const ProjectCard = ({
           );
         })}
       </div>
+
+      <p className="text-gray-700 dark:text-gray-300 text-sm text-justify leading-relaxed mb-4 line-clamp-3 grow">
+        {getTranslatedDescription(id)}
+      </p>
 
       <div className="flex gap-3 mt-auto">
         {projectUrl && (

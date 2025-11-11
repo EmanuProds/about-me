@@ -16,16 +16,21 @@ export const useCertificateModal = () => {
     currentLanguage: string
   ) => {
     try {
+      const basePath =
+        typeof window !== "undefined" && window.location.hostname === "localhost"
+          ? ""
+          : "/about-me";
+
       // Handle devlinks certificates based on language
       if (certificateUrl === "devlinks") {
         const langSuffix = currentLanguage === "pt-BR" ? "pt-br" : "en";
-        certificateUrl = `/about-me/certificates/devlinks-certificate_${langSuffix}.pdf`;
+        certificateUrl = `${basePath}/certificates/devlinks-certificate_${langSuffix}.pdf`;
       } else {
-        certificateUrl = `/about-me${certificateUrl}`;
+        certificateUrl = `${basePath}${certificateUrl}`;
       }
 
       // Open PDF in new tab for better compatibility with GitHub Pages
-      window.open(certificateUrl, '_blank', 'noopener,noreferrer');
+      window.open(certificateUrl, "_blank", "noopener,noreferrer");
     } catch (error) {
       console.error("Erro ao tentar abrir certificado:", error);
     }

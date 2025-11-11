@@ -35,7 +35,7 @@ export const projects = [
     title: "Image2DOC",
     description:
       "Uma aplicação em GTK4/Libadwaita com foco em extração de dados via OCR para conversão, renomiação e organização de documentos.",
-    videoSrc: "/about-me/videos/image2doc.mp4",
+    videoSrc: "/videos/image2doc.mp4",
     technologies: ["python"],
     projectUrl: "",
     githubUrl: "https://github.com/EmanuProds/image2doc",

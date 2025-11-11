@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { FaPlay, FaPause, FaCode, FaGlobe, FaExpand } from "react-icons/fa";
+import { useRouter } from "next/navigation";
 import { useTranslations } from "@/hooks/useTranslations";
 import { ProjectCardProps, technologies } from "@/types/projects";
 import { projects } from "@/lib/data";
@@ -27,6 +28,7 @@ const ProjectCard = ({
   loading = false,
 }: ProjectCardProps & { loading?: boolean }) => {
   const { t } = useTranslations();
+  const router = useRouter();
   const [videoError, setVideoError] = useState(false);
 
   /**
@@ -63,6 +65,12 @@ const ProjectCard = ({
     }
   };
 
+  const basePath =
+    typeof window !== "undefined" && window.location.hostname === "localhost"
+      ? ""
+      : "/about-me";
+  const adjustedVideoSrc = videoSrc ? `${basePath}${videoSrc}` : "";
+
   const {
     videoRef,
     cardRef,
@@ -78,7 +86,7 @@ const ProjectCard = ({
     handleMouseEnter,
     handleMouseLeave,
     forcePlayingState,
-  } = useVideoPlayer(videoSrc, !loading && !videoError);
+  } = useVideoPlayer(adjustedVideoSrc, !loading && !videoError);
 
   /**
    * Manipula erros do vídeo e define estado de erro.
@@ -136,7 +144,7 @@ const ProjectCard = ({
           <>
             <video
               ref={videoRef}
-              src={videoSrc}
+              src={adjustedVideoSrc}
               loop
               muted
               playsInline

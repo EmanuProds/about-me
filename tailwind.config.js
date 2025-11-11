@@ -6,7 +6,12 @@ export default {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      screens: {
+        'xs': '475px',
+        'tall': { 'raw': '(min-height: 800px)' },
+      },
+    },
   },
   plugins: [],
 };

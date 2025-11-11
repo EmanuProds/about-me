@@ -194,7 +194,7 @@ const ProjectCard = ({
         )}
       </div>
 
-      <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 group-hover:text-gray-700 dark:group-hover:text-gray-200 transition-colors min-h-10 line-clamp-2 mb-2">
+      <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 group-hover:text-gray-700 dark:group-hover:text-gray-200 transition-colors min-h-10 line-clamp-2 mb-2 select-none">
         {getTranslatedTitle(id)}
       </h3>
 
@@ -204,17 +204,17 @@ const ProjectCard = ({
           return (
             <span
               key={tech.name}
-              className={`flex items-center text-xs font-medium px-2 py-1 rounded-full ${tech.color} bg-gray-100 dark:bg-gray-700/50`}
+              className={`flex items-center text-xs font-medium px-2 py-1 rounded-full ${tech.color} bg-gray-100 dark:bg-gray-700/50 select-none`}
               title={tech.name}
             >
-              <Icon className="w-4 h-4 mr-1" />
+              <Icon className="w-4 h-4 mr-1 select-none" />
               {tech.name}
             </span>
           );
         })}
       </div>
 
-      <p className="text-gray-700 dark:text-gray-300 text-sm text-justify leading-relaxed mb-4 line-clamp-3 grow">
+      <p className="text-gray-700 dark:text-gray-300 text-sm text-justify leading-relaxed mb-4 line-clamp-3 grow select-none">
         {getTranslatedDescription(id)}
       </p>
 
@@ -224,9 +224,9 @@ const ProjectCard = ({
             href={projectUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className={`flex-1 ${BUTTON_BASE_CLASSES} text-gray-100 bg-linear-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700`}
+            className={`flex-1 ${BUTTON_BASE_CLASSES} text-gray-100 bg-linear-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 select-none`}
           >
-            <FaGlobe className="w-4 h-4" />
+            <FaGlobe className="w-4 h-4 select-none" />
             {t.projects.viewProject}
           </a>
         )}
@@ -235,9 +235,9 @@ const ProjectCard = ({
             href={githubUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className={`flex-1 ${BUTTON_BASE_CLASSES} text-white dark:text-gray-100 bg-slate-500 dark:bg-gray-600 hover:bg-slate-700`}
+            className={`flex-1 ${BUTTON_BASE_CLASSES} text-white dark:text-gray-100 bg-slate-500 dark:bg-gray-600 hover:bg-slate-700 select-none`}
           >
-            <FaCode className="w-4 h-4" />
+            <FaCode className="w-4 h-4 select-none" />
             GitHub
           </a>
         )}

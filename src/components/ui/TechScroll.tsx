@@ -10,7 +10,7 @@ const TECH_CARD_CLASSES =
 const TECH_ICON_CLASSES =
   "h-8 w-8 md:h-10 md:w-10 mb-2 md:mb-3 group-hover:scale-110 group-active:scale-110 transition-transform duration-300";
 const TECH_TEXT_CLASSES =
-  "text-xs md:text-sm font-medium text-gray-900 dark:text-gray-100 group-hover:text-gray-700 dark:group-hover:text-gray-200 group-active:text-gray-700 dark:group-active:text-gray-200 transition-colors duration-300";
+  "text-xs md:text-sm font-medium text-gray-900 dark:text-gray-100 group-hover:text-gray-700 dark:group-hover:text-gray-200 group-active:text-gray-700 dark:group-active:text-gray-200 transition-colors duration-300 select-none";
 
 /**
  * Componente para exibir um cartão de tecnologia com loading state.

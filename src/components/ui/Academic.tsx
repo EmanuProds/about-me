@@ -154,29 +154,29 @@ const AcademicCard = ({
         </div>
         <div>
           <span
-            className={`inline-block px-3 py-1 text-sm font-semibold rounded-full bg-linear-to-r ${gradientColor} text-gray-100 shadow-sm`}
+            className={`inline-block px-3 py-1 text-sm font-semibold rounded-full bg-linear-to-r ${gradientColor} text-gray-100 shadow-sm select-none`}
           >
             {record.type}
           </span>
         </div>
       </div>
 
-      <h3 className="text-lg font-bold text-gray-900 dark:text-gray-100 group-hover:text-gray-700 dark:group-hover:text-gray-200 transition-colors mb-4 line-clamp-2">
+      <h3 className="text-lg font-bold text-gray-900 dark:text-gray-100 group-hover:text-gray-700 dark:group-hover:text-gray-200 transition-colors mb-4 line-clamp-2 select-none">
         {getTranslatedTitle(record.id)}
       </h3>
 
       <div className="flex items-center justify-between text-gray-600 dark:text-gray-400">
         <div className="flex items-center mb-4 gap-2">
-          <FaBuilding className="w-4 h-4" />
-          <span className="text-sm font-medium">{record.institution}</span>
+          <FaBuilding className="w-4 h-4 select-none" />
+          <span className="text-sm font-medium select-none">{record.institution}</span>
         </div>
         <div className="flex items-center mb-4 gap-2 text-gray-500 dark:text-gray-500">
-          <FaCalendarAlt className="w-4 h-4" />
-          <span className="text-sm">{record.duration}</span>
+          <FaCalendarAlt className="w-4 h-4 select-none" />
+          <span className="text-sm select-none">{record.duration}</span>
         </div>
       </div>
 
-      <p className="text-gray-700 dark:text-gray-300 text-sm text-justify leading-relaxed mb-4 grow">
+      <p className="text-gray-700 dark:text-gray-300 text-sm text-justify leading-relaxed mb-4 grow select-none">
         {getTranslatedDescription(record.id)}
       </p>
 
@@ -189,18 +189,18 @@ const AcademicCard = ({
         disabled={!(record.id === 3 || record.id === 4)}
         className={`${BUTTON_BASE_CLASSES} ${
           record.id === 3 || record.id === 4
-            ? "text-white dark:text-gray-100 bg-slate-500 dark:bg-gray-600 hover:bg-slate-700 hover:shadow-lg cursor-pointer"
-            : "text-slate-500 dark:text-gray-100 bg-gray-300 dark:bg-gray-700 cursor-not-allowed opacity-60"
+            ? "text-white dark:text-gray-100 bg-slate-500 dark:bg-gray-600 hover:bg-slate-700 hover:shadow-lg cursor-pointer select-none"
+            : "text-slate-500 dark:text-gray-100 bg-gray-300 dark:bg-gray-700 cursor-not-allowed opacity-60 select-none"
         }`}
       >
         {record.id === 3 || record.id === 4 ? (
           <>
-            <FaCertificate className="w-4 h-4" />
+            <FaCertificate className="w-4 h-4 select-none" />
             {t.academic.viewCertificate}
           </>
         ) : (
           <>
-            <ImBlocked className="w-4 h-4" />
+            <ImBlocked className="w-4 h-4 select-none" />
             {t.academic.certificateNotIssued}
           </>
         )}

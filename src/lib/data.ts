@@ -11,6 +11,7 @@ import {
   FaDocker,
   FaGit,
   FaLinux,
+  FaTerminal,
 } from "react-icons/fa";
 import {
   SiTypescript,
@@ -20,6 +21,7 @@ import {
   SiExpo,
   SiVite,
   SiSqlite,
+  SiGithub,
 } from "react-icons/si";
 
 export const academicRecords = [
@@ -87,10 +89,10 @@ export const langProgramming: TechIcon[] = [
 
 export const toolsTech: TechIcon[] = [
   { Icon: FaReact, name: "React", color: "text-cyan-600" },
-  { Icon: SiTailwindcss, name: "Tailwind CSS", color: "text-teal-500" },
+  { Icon: SiTailwindcss, name: "TailwindCSS", color: "text-teal-500" },
   { Icon: FaNodeJs, name: "Node.js", color: "text-green-500" },
-  { Icon: SiExpress, name: "Express.js", color: "text-gray-400" },
-  { Icon: SiNextdotjs, name: "Next.js", color: "text-white" },
+  { Icon: SiExpress, name: "Express.js", color: "text-gray-700 dark:text-gray-400" },
+  { Icon: SiNextdotjs, name: "Next.js", color: "text-gray-800 dark:text-white" },
   { Icon: SiVite, name: "Vite", color: "text-purple-500" },
   { Icon: SiExpo, name: "Expo", color: "text-slate-400" },
 ];
@@ -99,5 +101,7 @@ export const systemOperation: TechIcon[] = [
   { Icon: FaDocker, name: "Docker", color: "text-blue-400" },
   { Icon: SiSqlite, name: "SQLite", color: "text-blue-600" },
   { Icon: FaGit, name: "Git", color: "text-red-600" },
-  { Icon: FaLinux, name: "Linux", color: "text-gray-200" },
+  { Icon: SiGithub, name: "GitHub", color: "text-gray-800 dark:text-gray-300" },
+  { Icon: FaLinux, name: "Linux", color: "text-gray-600 dark:text-gray-200" },
+  { Icon: FaTerminal, name: "ShellScript", color: "text-green-400" },
 ];

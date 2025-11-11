@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { FaPlay, FaPause, FaCode, FaGlobe, FaExpand } from "react-icons/fa";
 import { useTranslations } from "@/hooks/useTranslations";
 import { ProjectCardProps, technologies } from "@/types/projects";
@@ -9,9 +9,12 @@ import { useVideoPlayer } from "@/hooks/useVideoPlayer";
 import { useVideoModal } from "@/hooks/useVideoModal";
 
 // Constantes para classes Tailwind comuns para manter consistência
-const CARD_BASE_CLASSES = "relative bg-gray-300/40 dark:bg-black/30 backdrop-blur-sm rounded-2xl border border-gray-400/20 dark:border-gray-200/20 p-8 hover:bg-slate-400/40 dark:hover:bg-slate-600/40 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg flex flex-col h-full";
-const VIDEO_CONTAINER_CLASSES = "relative aspect-video bg-gray-800 rounded-xl overflow-hidden mb-4";
-const BUTTON_BASE_CLASSES = "inline-flex items-center justify-center gap-2 text-sm font-medium transition-all duration-300 rounded-lg px-4 py-2 shadow-md hover:shadow-lg";
+const CARD_BASE_CLASSES =
+  "relative bg-gray-300/40 dark:bg-black/30 backdrop-blur-sm rounded-2xl border border-gray-400/20 dark:border-gray-200/20 p-8 hover:bg-slate-400/40 dark:hover:bg-slate-600/40 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg flex flex-col h-full";
+const VIDEO_CONTAINER_CLASSES =
+  "relative aspect-video bg-gray-800 rounded-xl overflow-hidden mb-4";
+const BUTTON_BASE_CLASSES =
+  "inline-flex items-center justify-center gap-2 text-sm font-medium transition-all duration-300 rounded-lg px-4 py-2 shadow-md hover:shadow-lg";
 
 const ProjectCard = ({
   title,
@@ -21,7 +24,8 @@ const ProjectCard = ({
   projectUrl,
   githubUrl,
   id,
-}: ProjectCardProps) => {
+  loading = false,
+}: ProjectCardProps & { loading?: boolean }) => {
   const { t } = useTranslations();
 
   /**
@@ -72,7 +76,8 @@ const ProjectCard = ({
     handleVideoPause,
     handleMouseEnter,
     handleMouseLeave,
-  } = useVideoPlayer(videoSrc);
+    forcePlayingState,
+  } = useVideoPlayer(videoSrc, !loading);
 
   const { handleExpandClick } = useVideoModal();
 
@@ -82,15 +87,45 @@ const ProjectCard = ({
    */
   const handleExpand = () => {
     if (videoRef.current) {
-      handleExpandClick(videoRef.current);
+      handleExpandClick(videoRef.current, forcePlayingState);
     }
   };
 
   const projectTechs = techKeys.map((key) => technologies[key]).filter(Boolean);
 
+  if (loading) {
+    return (
+      <div className={`group ${CARD_BASE_CLASSES} relative`}>
+        <div className="absolute inset-0 bg-slate-600 dark:bg-slate-400 rounded-2xl animate-pulse" />
+        <div className="opacity-0">
+          <div className={`${VIDEO_CONTAINER_CLASSES} bg-gray-300`} />
+          <div className="h-6 bg-gray-300 rounded w-3/4 mb-3" />
+          <div className="space-y-2 mb-4 grow">
+            <div className="h-4 bg-gray-300 rounded" />
+            <div className="h-4 bg-gray-300 rounded w-5/6" />
+            <div className="h-4 bg-gray-300 rounded w-4/6" />
+          </div>
+          <div className="flex flex-wrap gap-2 mb-4 min-h-8 items-center justify-center">
+            <div className="h-6 bg-gray-300 rounded-full w-16" />
+            <div className="h-6 bg-gray-300 rounded-full w-20" />
+            <div className="h-6 bg-gray-300 rounded-full w-14" />
+          </div>
+          <div className="flex gap-3 mt-auto">
+            <div className="h-10 bg-gray-300 rounded flex-1" />
+            <div className="h-10 bg-gray-300 rounded flex-1" />
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className={`group ${CARD_BASE_CLASSES}`}>
-      <div className={VIDEO_CONTAINER_CLASSES}>
+      <div
+        className={VIDEO_CONTAINER_CLASSES}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      >
         {videoSrc ? (
           <>
             <video
@@ -106,14 +141,12 @@ const ProjectCard = ({
               onPlay={handleVideoPlay}
               onPause={handleVideoPause}
               onClick={handleVideoClick}
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
             />
             {!videoLoading && (
               <div className="absolute inset-0 flex items-center justify-center opacity-80 pointer-events-none transition-opacity duration-300">
                 {videoPlaying && isHovered ? (
                   <FaPause className="w-12 h-12 text-white transition-opacity duration-300" />
-                ) : !videoPlaying ? (
+                ) : !videoPlaying && isHovered ? (
                   <FaPlay className="w-12 h-12 text-white transition-opacity duration-300" />
                 ) : null}
               </div>
@@ -121,7 +154,7 @@ const ProjectCard = ({
             {!videoLoading && (
               <button
                 onClick={handleExpand}
-                className="absolute top-3 right-3 p-2 bg-black/50 hover:bg-black/70 text-gray-100 rounded-lg transition-colors duration-200 z-10"
+                className="absolute top-3 right-3 p-2 bg-black/50 hover:bg-black/70 text-gray-100 rounded-lg transition-colors duration-200 z-20 cursor-pointer"
                 title="Expandir vídeo"
               >
                 <FaExpand className="w-4 h-4" />
@@ -197,6 +230,16 @@ const ProjectCard = ({
 
 const Projects = () => {
   const { t } = useTranslations();
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Simula um pequeno delay de loading para mostrar o skeleton
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 1200);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <section
@@ -213,7 +256,7 @@ const Projects = () => {
 
         <div className="grid gap-8 md:grid-cols-1 lg:grid-cols-2 max-w-5xl mx-auto">
           {projects.map((project) => (
-            <ProjectCard key={project.id} {...project} />
+            <ProjectCard key={project.id} {...project} loading={loading} />
           ))}
         </div>
       </div>

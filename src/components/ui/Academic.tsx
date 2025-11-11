@@ -1,5 +1,6 @@
 "use client";
 
+import React, { useState, useEffect } from "react";
 import {
   FaGraduationCap,
   FaCertificate,
@@ -41,7 +42,7 @@ const IconComponent = ({ iconName }: { iconName: string }) => {
   }
 };
 
-const AcademicCard = ({ record }: { record: (typeof academicRecords)[0] }) => {
+const AcademicCard = ({ record, loading = false }: { record: (typeof academicRecords)[0]; loading?: boolean }) => {
   const { t, locale } = useTranslations();
   const { handleCertificateClick } = useCertificateModal();
 
@@ -113,6 +114,31 @@ const AcademicCard = ({ record }: { record: (typeof academicRecords)[0] }) => {
 
   const gradientColor = getInstitutionColor(record.institution);
 
+  if (loading) {
+    return (
+      <div className={`group ${CARD_BASE_CLASSES} relative`}>
+        <div className="absolute inset-0 bg-slate-600 dark:bg-slate-400 rounded-2xl animate-pulse" />
+        <div className="opacity-0">
+          <div className="flex items-center gap-4 mb-4">
+            <div className="p-3 rounded-xl bg-gray-300 w-12 h-12" />
+            <div className="h-6 bg-gray-300 rounded w-20" />
+          </div>
+          <div className="h-6 bg-gray-300 rounded w-3/4 mb-4" />
+          <div className="flex items-center justify-between mb-4">
+            <div className="h-4 bg-gray-300 rounded w-24" />
+            <div className="h-4 bg-gray-300 rounded w-16" />
+          </div>
+          <div className="space-y-2 mb-4 grow">
+            <div className="h-4 bg-gray-300 rounded" />
+            <div className="h-4 bg-gray-300 rounded w-5/6" />
+            <div className="h-4 bg-gray-300 rounded w-4/6" />
+          </div>
+          <div className="h-10 bg-gray-300 rounded w-full mt-auto" />
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className={`group ${CARD_BASE_CLASSES}`}>
       <div className="flex items-center gap-4 mb-4">
@@ -180,6 +206,16 @@ const AcademicCard = ({ record }: { record: (typeof academicRecords)[0] }) => {
 
 const Academic = () => {
   const { t } = useTranslations();
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Simula um pequeno delay de loading para mostrar o skeleton
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <section id="formacao" className="w-full max-w-6xl mx-auto px-4 py-16 scroll-mt-12">
@@ -193,7 +229,7 @@ const Academic = () => {
 
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {academicRecords.map((record) => (
-            <AcademicCard key={record.id} record={record} />
+            <AcademicCard key={record.id} record={record} loading={loading} />
           ))}
         </div>
       </div>

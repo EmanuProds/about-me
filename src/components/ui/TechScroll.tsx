@@ -1,5 +1,6 @@
 "use client";
 
+import React, { useState, useEffect } from "react";
 import { TechIcon, ScrollContainerProps } from "@/types/tech";
 import { langProgramming, toolsTech, systemOperation } from "@/lib/data";
 
@@ -9,19 +10,34 @@ const TECH_ICON_CLASSES = "h-10 w-10 mb-3 group-hover:scale-110 transition-trans
 const TECH_TEXT_CLASSES = "text-sm font-medium text-gray-900 dark:text-gray-100 group-hover:text-gray-700 dark:group-hover:text-gray-200 transition-colors duration-300";
 
 /**
- * Componente para exibir um cartão de tecnologia.
+ * Componente para exibir um cartão de tecnologia com loading state.
  * @param tech - Objeto contendo ícone e nome da tecnologia
+ * @param loading - Indica se o cartão está em estado de loading
  */
-const TechCard = ({ tech }: { tech: TechIcon }) => (
-  <div className={TECH_CARD_CLASSES}>
-    <tech.Icon className={`${TECH_ICON_CLASSES} ${tech.color}`} />
-    <span className={TECH_TEXT_CLASSES}>
-      {tech.name}
-    </span>
-  </div>
-);
+const TechCard = ({ tech, loading = false }: { tech: TechIcon; loading?: boolean }) => {
+  if (loading) {
+    return (
+      <div className={`${TECH_CARD_CLASSES} relative`}>
+        <div className="absolute inset-0 bg-slate-600 dark:bg-slate-400 rounded-2xl animate-pulse" />
+        <div className="opacity-0">
+          <div className={`${TECH_ICON_CLASSES} bg-gray-300 rounded`} />
+          <div className="h-4 bg-gray-300 rounded w-16 mt-3" />
+        </div>
+      </div>
+    );
+  }
 
-const TechRow = ({ stack, direction }: { stack: TechIcon[]; direction: "left" | "right" }) => {
+  return (
+    <div className={TECH_CARD_CLASSES}>
+      <tech.Icon className={`${TECH_ICON_CLASSES} ${tech.color}`} />
+      <span className={TECH_TEXT_CLASSES}>
+        {tech.name}
+      </span>
+    </div>
+  );
+};
+
+const TechRow = ({ stack, direction, loading = false }: { stack: TechIcon[]; direction: "left" | "right"; loading?: boolean }) => {
   const duplicatedStack = [...stack, ...stack, ...stack];
   const animationClass = direction === "left"
     ? "animate-[scroll_40s_linear_infinite]"
@@ -34,7 +50,7 @@ const TechRow = ({ stack, direction }: { stack: TechIcon[]; direction: "left" | 
 
       <div className={`flex gap-6 ${animationClass} hover:[animation-play-state:paused]`}>
         {duplicatedStack.map((tech, index) => (
-          <TechCard key={`${tech.name}-${index}-${direction}`} tech={tech} />
+          <TechCard key={`${tech.name}-${index}-${direction}`} tech={tech} loading={loading} />
         ))}
       </div>
     </div>
@@ -42,19 +58,30 @@ const TechRow = ({ stack, direction }: { stack: TechIcon[]; direction: "left" | 
 };
 
 const TechScroll = () => {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Simula um pequeno delay de loading para mostrar o skeleton
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 800);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <section className="w-full max-w-4xl mx-auto px-4 py-2">
       <div className="space-y-8">
         <div className="text-center mb-8">
-          <TechRow stack={langProgramming} direction="left" />
+          <TechRow stack={langProgramming} direction="left" loading={loading} />
         </div>
 
         <div className="text-center mb-8">
-          <TechRow stack={toolsTech} direction="right" />
+          <TechRow stack={toolsTech} direction="right" loading={loading} />
         </div>
 
         <div className="text-center">
-          <TechRow stack={systemOperation} direction="left" />
+          <TechRow stack={systemOperation} direction="left" loading={loading} />
         </div>
       </div>
     </section>

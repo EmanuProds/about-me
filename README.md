@@ -1,36 +1,139 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🚀 Portfólio
 
-## Getting Started
+[![Next.js](https://img.shields.io/badge/Next.js-16.0.1-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
+[![React](https://img.shields.io/badge/React-19.2.0-61DAFB?style=for-the-badge&logo=react)](https://reactjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178C6?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4.0-38B2AC?style=for-the-badge&logo=tailwind-css)](https://tailwindcss.com/)
 
-First, run the development server:
+Um portfólio moderno e responsivo desenvolvido com as tecnologias mais recentes do ecossistema React. Apresenta minhas habilidades, projetos e formação acadêmica de forma interativa e atrativa.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## ✨ Funcionalidades
+
+- 🎨 **Design Moderno**: Interface elegante com tema escuro/claro
+- 🌍 **Multilíngue**: Suporte completo para português brasileiro e inglês
+- 📱 **Responsivo**: Otimizado para desktop, tablet e mobile
+- 🎥 **Projetos Interativos**: Cards com vídeos demonstrativos e links diretos
+- 📊 **Integração GitHub**: Estatísticas e perfil diretamente do GitHub
+- 🎓 **Formação Acadêmica**: Seção dedicada com certificados e cursos
+- ⚡ **Performance**: Otimizado com Next.js 16 e React Compiler
+- 🔧 **Tecnologias em Destaque**: Scroll horizontal das principais tecnologias
+
+## 🛠️ Tecnologias Utilizadas
+
+### Core Framework
+- **Next.js 16** - Framework React com App Router
+- **React 19** - Biblioteca para interfaces de usuário
+- **TypeScript** - Superset JavaScript com tipagem estática
+
+### Estilização
+- **Tailwind CSS v4** - Framework CSS utilitário
+- **Geist Fonts** - Tipografia moderna do Google Fonts
+
+### Desenvolvimento
+- **ESLint** - Linting e formatação de código
+- **React Compiler** - Otimização automática de componentes
+
+### Ícones e UI
+- **React Icons** - Biblioteca abrangente de ícones
+
+### Integrações
+- **GitHub API** - Estatísticas e dados do perfil
+
+## 📁 Estrutura do Projeto
+
+```
+src/
+├── app/                    # Páginas Next.js (App Router)
+│   ├── api/               # Endpoints da API
+│   ├── globals.css        # Estilos globais
+│   ├── layout.tsx         # Layout raiz da aplicação
+│   └── page.tsx           # Página inicial
+├── components/            # Componentes React
+│   ├── github/           # Integração com GitHub
+│   ├── layout/           # Header e Footer
+│   ├── providers/        # Context Providers
+│   ├── ui/               # Componentes da interface
+│   └── ...
+├── hooks/                # Hooks customizados
+├── lib/                  # Utilitários e dados
+│   ├── constants.ts      # Constantes da aplicação
+│   ├── data.ts           # Dados estáticos (projetos, cursos)
+│   └── translations/     # Sistema de internacionalização
+├── types/                # Definições TypeScript
+└── ...
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🎯 Seções do Portfólio
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 🏠 Início
+- Perfil profissional com foto e informações básicas
+- Integração com dados do GitHub
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 👨‍💻 Sobre Mim
+- Biografia detalhada com experiência profissional
+- Destaques em desenvolvimento e infraestrutura
+- Experiência multidisciplinar em TI
 
-## Learn More
+### 💼 Projetos
+- **Image2DOC**: Aplicação GTK4 para OCR e organização de documentos
+- **Notary Connect X**: Sistema de atendimento automatizado via WhatsApp
 
-To learn more about Next.js, take a look at the following resources:
+### 🎓 Formação Acadêmica
+- Cursos de especialização em desenvolvimento
+- Certificações em LGPD e programação
+- Formação contínua em tecnologias modernas
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 🛠️ Tecnologias
+- Linguagens de programação (HTML, CSS, JS, TS, Python)
+- Frameworks e bibliotecas (React, Next.js, Node.js)
+- Ferramentas de desenvolvimento (Git, Docker, Linux)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🌐 Internacionalização
 
-## Deploy on Vercel
+O portfólio suporta dois idiomas:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **Português Brasileiro (pt-BR)** - Idioma padrão
+- **English (en)** - Suporte completo
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+O sistema de tradução é baseado em arquivos JSON organizados por seções da aplicação.
+
+## 🎨 Tema
+
+- **Modo Claro/Escuro**: Alternância automática baseada no sistema do usuário
+- **Design System**: Paleta de cores consistente
+- **Animações**: Transições suaves e micro-interações
+
+## 📱 Responsividade
+
+- **Mobile First**: Design otimizado para dispositivos móveis
+- **Breakpoints**: Adaptação para tablet e desktop
+- **Performance**: Imagens e vídeos otimizados
+
+## 🔧 Desenvolvimento
+
+### Hooks Customizados
+- `useTranslations` - Gerenciamento de idiomas
+- `useTheme` - Controle de tema claro/escuro
+- `useVideoPlayer` - Controle de vídeos nos projetos
+- `useCertificateModal` - Modal para certificados
+
+### Componentes Reutilizáveis
+- `Profile` - Seção de perfil com GitHub
+- `Projects` - Grid responsivo de projetos
+- `TechScroll` - Carrossel horizontal de tecnologias
+- `Academic` - Lista de formações acadêmicas
+
+## 📈 Performance
+
+- **Next.js 16**: App Router e otimizações automáticas
+- **React Compiler**: Compilação otimizada de componentes
+- **Lazy Loading**: Carregamento sob demanda
+- **Code Splitting**: Divisão automática de bundles
+
+## 📄 Licença
+
+Este projeto está sob a licença MIT. Veja o arquivo `LICENSE` para mais detalhes.
+
+---
+
+⭐ **Feito com ❤️ usando TypeScript, React.js e Next.js**

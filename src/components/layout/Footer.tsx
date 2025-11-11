@@ -36,28 +36,30 @@ const Footer = () => {
   return (
     <footer className="mt-16 bg-gray-200/60 dark:bg-black/20 backdrop-blur-sm border-t border-gray-400/20 dark:border-gray-100/20 transition-colors duration-300">
       <div className="container mx-auto px-6 py-8">
-        <div className="flex items-center justify-between gap-6 text-sm font-semibold text-gray-800 dark:text-gray-200">
-          <p>
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 md:gap-6 text-sm font-semibold text-gray-800 dark:text-gray-200">
+          <p className="text-center md:text-left">
             © {currentYear} EmanuProds {t.footer.copyright}
           </p>
 
-          <div className="flex items-center gap-4">
-            <span className="text-sm mr-2">{t.footer.contacts}</span>
-            {socialLinks.map(({ href, icon: Icon, label, hoverColor }) => (
-              <a
-                key={label}
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`text-2xl text-gray-800 dark:text-gray-200 transition-colors duration-200 ${hoverColor}`}
-                aria-label={label}
-              >
-                <Icon />
-              </a>
-            ))}
+          <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-4">
+            <span className="hidden md:inline text-sm md:mr-2">{t.footer.contacts}</span>
+            <div className="flex items-center justify-center gap-4">
+              {socialLinks.map(({ href, icon: Icon, label, hoverColor }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`text-2xl text-gray-800 dark:text-gray-200 transition-colors duration-200 ${hoverColor}`}
+                  aria-label={label}
+                >
+                  <Icon />
+                </a>
+              ))}
+            </div>
           </div>
 
-          <p>{t.footer.madeWith}</p>
+          <p className="text-center md:text-right">{t.footer.madeWith}</p>
         </div>
       </div>
     </footer>

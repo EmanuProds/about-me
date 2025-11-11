@@ -9,15 +9,34 @@ export const ptBR: Translations = {
   },
   profile: {
     name: "Emanuel Pereira",
-    title: "Desenvolvedor Fullstack",
+    title: "Desenvolvedor Fullstack | DevOps | Técnico de TI",
   },
   about: {
     title: "Sobre mim",
-    description:
-      "Olá, meu nome é Emanuel da Costa Pereira, sou um desenvolvedor Full-Stack apaixonado por tecnologia e inovação. Minha jornada na tecnologia começou aos 9 anos com o Windows XP e evoluiu para uma paixão por desenvolvimento e automação. Um marco nesse percurso foi a criação de um shellscript que automatiza a complexa pós-instalação do Arch Linux, um projeto que não apenas demonstrou minha aptidão técnica, mas também me revelou como programador. Além de ter uma experiência como instrutor de TI na empresa Microlins, enfatizando minha habilidade em ensinar e compartilhar conhecimento. Sou movido pela curiosidade e pelo desejo de aprendizado contínuo, sempre em busca de novas oportunidades onde eu possa contribuir e crescer profissionalmente.",
+    description: `Olá, meu nome é Emanuel da Costa Pereira, sou um desenvolvedor Fullstack e profissional de TI com uma sólida base em tecnologia, movido pela curiosidade e pela busca contínua por inovação e aprendizado. Possuo experiência prática na criação de soluções de automação e otimização de processos, combinada com uma forte aptidão para infraestrutura e suporte técnico. Minha paixão por compartilhar conhecimento foi consolidada pela experiência como instrutor de TI, enfatizando minha capacidade de orientação e liderança técnica.
+
+Destaques e Projetos de Desenvolvimento
+
+• Desenvolvimento de Plataforma de Atendimento - Notary Connect X (TypeScript, React/React Native, TailwindCSS/Nativewind, Expo, Node.js, Express.js, Python, Django, SQLite): Criação e implementação de soluções integradas ao WhatsApp para otimização do atendimento ao cliente, incluindo funcionalidades de redirecionamento setorial e gestão de arquivos.
+
+• Automação Técnica: Demonstração de aptidão em programação através do desenvolvimento de um shellscript para automatizar a complexa pós-instalação do Arch Linux.
+
+Experiência em Tecnologia e Infraestrutura
+
+• Suporte e Manutenção de TI: Prestação de serviços de infraestrutura de TI, incluindo manutenção e suporte técnico para computadores, redes locais e servidores, visando a continuidade e segurança das operações.
+
+• Instrutor de TI (Microlins): Orientação e auxílio a alunos em cursos de administração, informática, programação, design e marketing, reforçando a habilidade de comunicação e ensino de conceitos técnicos.
+
+• Transição e Gestão Digital: Atuação proativa na transição digital de uma organização, responsável pela produção técnica de lives no YouTube, edição de conteúdo audiovisual e gráfico, e gerenciamento de site e aplicativo.
+
+Experiência Multidisciplinar
+
+• Suporte a Serviços Extrajudiciais: Atuação especializada em rotinas de cartórios (RCPN e Tabelionatos de Notas), prestando auxílio em buscas, emissão de certidões, apostilamentos de Haia e gerenciamento de índices.
+
+• Serviços Complementares: Experiência em digitalização de documentos, atendimento ao cliente, vendas e organização de estoque, complementando um perfil proativo e versátil.`,
   },
   projects: {
-    title: "Projetos",
+    title: "Alguns Projetos",
     viewProject: "Ver Projeto",
     videoComingSoon: "Vídeo em breve",
     titles: {
@@ -63,5 +82,6 @@ export const ptBR: Translations = {
   footer: {
     copyright: "Todos os direitos reservados.",
     madeWith: "Feito com ❤️ usando TypeScript, React.js e Next.js",
+    contacts: "Contatos",
   },
 };

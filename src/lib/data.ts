@@ -1,6 +1,6 @@
-import { AcademicRecord } from '@/types/academic';
-import { Project } from '@/types/projects';
-import { TechIcon } from '@/types/tech';
+import { AcademicRecord } from "@/types/academic";
+import { Project } from "@/types/projects";
+import { TechIcon } from "@/types/tech";
 import {
   FaHtml5,
   FaCss3,
@@ -31,7 +31,8 @@ export const academicRecords = [
     institution: "Rocketseat",
     type: "Curso de Especialização",
     duration: "Cursando",
-    description: "Curso intensivo focado no desenvolvimento de aplicações móveis nativas para iOS e Android utilizando TypeScript, React Native e Expo Framework, abrangendo desde conceitos fundamentais até técnicas avançadas de desenvolvimento mobile.",
+    description:
+      "Curso intensivo focado no desenvolvimento de aplicações móveis nativas para iOS e Android utilizando TypeScript, React Native e Expo Framework, abrangendo desde conceitos fundamentais até técnicas avançadas de desenvolvimento mobile.",
     icon: "Clock",
     isClickable: false,
   },
@@ -41,7 +42,8 @@ export const academicRecords = [
     institution: "Dio.io",
     type: "Curso de Especialização",
     duration: "Cursando",
-    description: "Programa completo de formação full-stack que combina desenvolvimento frontend moderno com TypeScript, React e Vite, e desenvolvimento backend robusto utilizando C# e ASP.NET, preparando para construção de aplicações web completas.",
+    description:
+      "Programa completo de formação full-stack que combina desenvolvimento frontend moderno com TypeScript, React e Vite, e desenvolvimento backend robusto utilizando C# e ASP.NET, preparando para construção de aplicações web completas.",
     icon: "Clock",
     isClickable: false,
   },
@@ -51,7 +53,8 @@ export const academicRecords = [
     institution: "ENNOR",
     type: "Curso de Especialização",
     duration: "2h",
-    description: "Formação especializada em Lei Geral de Proteção de Dados (LGPD) que aborda os princípios fundamentais da legislação, responsabilidades das organizações e implementação prática de medidas de compliance para proteção de dados pessoais.",
+    description:
+      "Formação especializada em Lei Geral de Proteção de Dados (LGPD) que aborda os princípios fundamentais da legislação, responsabilidades das organizações e implementação prática de medidas de compliance para proteção de dados pessoais.",
     icon: "FaShieldAlt",
     certificateUrl: "/certificates/ENNOR-LGPD.pdf",
   },
@@ -61,7 +64,8 @@ export const academicRecords = [
     institution: "Rocketseat",
     type: "Curso de Especialização",
     duration: "5h",
-    description: "Curso introdutório aos fundamentos do desenvolvimento web moderno, cobrindo HTML5 semântico, CSS3 para estilização avançada, JavaScript para interatividade, controle de versão com Git e colaboração através do GitHub.",
+    description:
+      "Curso introdutório aos fundamentos do desenvolvimento web moderno, cobrindo HTML5 semântico, CSS3 para estilização avançada, JavaScript para interatividade, controle de versão com Git e colaboração através do GitHub.",
     icon: "FaRocket",
     certificateUrl: "devlinks",
   },
@@ -71,7 +75,8 @@ export const academicRecords = [
     institution: "Dev Samurai",
     type: "Curso de Especialização",
     duration: "18h",
-    description: "Formação abrangente em lógica de programação que estabelece as bases fundamentais do pensamento computacional, desde algoritmos básicos e estruturas de controle até conceitos avançados como recursão, otimização e resolução de problemas complexos.",
+    description:
+      "Formação abrangente em lógica de programação que estabelece as bases fundamentais do pensamento computacional, desde algoritmos básicos e estruturas de controle até conceitos avançados como recursão, otimização e resolução de problemas complexos.",
     icon: "GiNinjaMask",
     isClickable: false,
   },
@@ -112,8 +117,16 @@ export const toolsTech: TechIcon[] = [
   { Icon: FaReact, name: "React", color: "text-cyan-600" },
   { Icon: SiTailwindcss, name: "TailwindCSS", color: "text-teal-500" },
   { Icon: FaNodeJs, name: "Node.js", color: "text-green-500" },
-  { Icon: SiExpress, name: "Express.js", color: "text-gray-700 dark:text-gray-400" },
-  { Icon: SiNextdotjs, name: "Next.js", color: "text-gray-800 dark:text-white" },
+  {
+    Icon: SiExpress,
+    name: "Express.js",
+    color: "text-gray-700 dark:text-gray-400",
+  },
+  {
+    Icon: SiNextdotjs,
+    name: "Next.js",
+    color: "text-gray-800 dark:text-white",
+  },
   { Icon: SiVite, name: "Vite", color: "text-purple-500" },
   { Icon: SiExpo, name: "Expo", color: "text-slate-400" },
 ];

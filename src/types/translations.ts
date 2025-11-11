@@ -53,6 +53,7 @@ export interface Translations {
   footer: {
     copyright: string;
     madeWith: string;
+    contacts: string;
   };
 }
 

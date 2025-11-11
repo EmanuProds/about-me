@@ -163,9 +163,13 @@ const ProjectCard = ({
             {!videoLoading && (
               <div className="absolute inset-0 flex items-center justify-center opacity-80 pointer-events-none transition-opacity duration-300">
                 {videoPlaying && isHovered ? (
-                  <FaPause className="w-12 h-12 text-white transition-opacity duration-300" />
+                  <div className="w-16 h-16 bg-black/70 rounded-full flex items-center justify-center">
+                    <FaPause className="w-8 h-8 text-white" />
+                  </div>
                 ) : !videoPlaying && isHovered ? (
-                  <FaPlay className="w-12 h-12 text-white transition-opacity duration-300" />
+                  <div className="w-16 h-16 bg-black/70 rounded-full flex items-center justify-center">
+                    <FaPlay className="w-8 h-8 text-white" />
+                  </div>
                 ) : null}
               </div>
             )}

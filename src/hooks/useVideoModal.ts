@@ -52,8 +52,8 @@ export const useVideoModal = () => {
         if (!iconContainer) return;
 
         iconContainer.innerHTML = modalVideoPlaying
-          ? '<svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 320 512" height="2rem" width="2rem"><path d="M48 64C21.5 64 0 85.5 0 112V400c0 26.5 21.5 48 48 48H80c26.5 0 48-21.5 48-48V112c0-26.5-21.5-48-48-48H48zm192 0c-26.5 0-48 21.5-48 48v288c0 26.5 21.5 48 48 48h32c26.5 0 48-21.5 48-48V112c0-26.5-21.5-48-48-48h-32z"></path></svg>'
-          : '<svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 448 512" height="2rem" width="2rem"><path d="M424.4 214.7L72.4 6.6C43.8-10.3 0 6.1 0 47.9V464c0 37.5 40.7 60.1 72.4 41.3l352-208c31.4-18.5 31.5-64.1 0-82.6z"></path></svg>';
+          ? '<svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 320 512" class="w-8 h-8 text-white"><path d="M48 64C21.5 64 0 85.5 0 112V400c0 26.5 21.5 48 48 48H80c26.5 0 48-21.5 48-48V112c0-26.5-21.5-48-48-48H48zm192 0c-26.5 0-48 21.5-48 48v288c0 26.5 21.5 48 48 48h32c26.5 0 48-21.5 48-48V112c0-26.5-21.5-48-48-48h-32z"></path></svg>'
+          : '<svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 448 512" class="w-8 h-8 text-white"><path d="M424.4 214.7L72.4 6.6C43.8-10.3 0 6.1 0 47.9V464c0 37.5 40.7 60.1 72.4 41.3l352-208c31.4-18.5 31.5-64.1 0-82.6z"></path></svg>';
       };
 
       clonedVideo.addEventListener("play", () => {

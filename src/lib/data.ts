@@ -80,7 +80,7 @@ export const projects = [
     title: "Notary Connect X (antigo)",
     description:
       "A local system with web interface, focused on automated and humanized customer service, using WhatsApp API",
-    videoSrc: "",
+    videoSrc: "/videos/notary-connect-old.mp4",
     technologies: ["html", "css", "javascript", "nodejs", "express.js"],
     projectUrl: "",
     githubUrl: "https://github.com/EmanuProds/notary-connect-old",

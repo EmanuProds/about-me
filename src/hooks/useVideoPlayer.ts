@@ -4,9 +4,10 @@ import { useRef, useEffect, useState } from "react";
  * Hook personalizado para gerenciar o estado e comportamento de um player de vídeo.
  * Controla reprodução automática, estados de loading e interações do usuário.
  * @param videoSrc - URL opcional do vídeo a ser reproduzido
+ * @param enabled - Se o hook deve estar ativo (padrão: true)
  * @returns Objeto com refs, estados e handlers para o vídeo
  */
-export const useVideoPlayer = (videoSrc?: string) => {
+export const useVideoPlayer = (videoSrc?: string, enabled: boolean = true) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const cardRef = useRef<HTMLDivElement>(null);
   const [videoLoading, setVideoLoading] = useState(true);
@@ -15,6 +16,8 @@ export const useVideoPlayer = (videoSrc?: string) => {
 
   // Efeito para reprodução automática quando o vídeo carrega
   useEffect(() => {
+    if (!enabled) return;
+
     const videoElement = videoRef.current;
 
     if (!videoElement || !videoSrc) return;
@@ -36,18 +39,52 @@ export const useVideoPlayer = (videoSrc?: string) => {
     return () => {
       videoElement.removeEventListener("canplay", handleCanPlay);
     };
-  }, [videoSrc]);
+  }, [videoSrc, enabled]);
+
+  // Efeito para sincronizar estado quando o vídeo muda externamente
+  useEffect(() => {
+    if (!enabled) return;
+
+    const videoElement = videoRef.current;
+    if (!videoElement) return;
+
+    const checkVideoState = () => {
+      const isActuallyPlaying = !videoElement.paused && !videoElement.ended && videoElement.readyState > 2;
+      if (isActuallyPlaying !== videoPlaying) {
+        setVideoPlaying(isActuallyPlaying);
+      }
+    };
+
+    // Verificar estado periodicamente
+    const interval = setInterval(checkVideoState, 100);
+
+    // Também verificar em eventos importantes
+    const handlePlay = () => setVideoPlaying(true);
+    const handlePause = () => setVideoPlaying(false);
+    const handleEnded = () => setVideoPlaying(false);
+
+    videoElement.addEventListener("play", handlePlay);
+    videoElement.addEventListener("pause", handlePause);
+    videoElement.addEventListener("ended", handleEnded);
+
+    return () => {
+      clearInterval(interval);
+      videoElement.removeEventListener("play", handlePlay);
+      videoElement.removeEventListener("pause", handlePause);
+      videoElement.removeEventListener("ended", handleEnded);
+    };
+  }, [enabled, videoPlaying]);
 
   // Efeito para timeout de loading do vídeo
   useEffect(() => {
-    if (!videoSrc) return;
+    if (!enabled || !videoSrc) return;
 
     const timeout = setTimeout(() => {
       setVideoLoading(false);
     }, 10000);
 
     return () => clearTimeout(timeout);
-  }, [videoSrc]);
+  }, [videoSrc, enabled]);
 
   /**
    * Manipula o início do carregamento do vídeo.
@@ -122,6 +159,15 @@ export const useVideoPlayer = (videoSrc?: string) => {
    */
   const handleMouseLeave = () => setIsHovered(false);
 
+  /**
+   * Força atualização do estado de reprodução do vídeo.
+   * Útil para sincronização externa (ex: modal).
+   * @param playing - Novo estado de reprodução
+   */
+  const forcePlayingState = (playing: boolean) => {
+    setVideoPlaying(playing);
+  };
+
   return {
     videoRef,
     cardRef,
@@ -136,5 +182,6 @@ export const useVideoPlayer = (videoSrc?: string) => {
     handleVideoPause,
     handleMouseEnter,
     handleMouseLeave,
+    forcePlayingState,
   };
 };

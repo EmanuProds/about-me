@@ -11,8 +11,9 @@ export const useVideoModal = () => {
    * Manipula a expansão de um vídeo em modal.
    * Cria um modal overlay com controles personalizados e sincroniza com o vídeo original.
    * @param videoElement - Elemento de vídeo a ser expandido
+   * @param onStateSync - Callback opcional para sincronizar estado quando modal fecha
    */
-  const handleExpandClick = async (videoElement: HTMLVideoElement) => {
+  const handleExpandClick = async (videoElement: HTMLVideoElement, onStateSync?: (playing: boolean) => void) => {
     try {
       const container = document.createElement("div");
       container.style.cssText = `
@@ -109,7 +110,20 @@ export const useVideoModal = () => {
       `;
 
       closeButton.onclick = () => {
+        // Sincronizar vídeo primeiro
+        if (modalVideoPlaying && videoElement.paused) {
+          videoElement.play().catch(console.error);
+        } else if (!modalVideoPlaying && !videoElement.paused) {
+          videoElement.pause();
+        }
+
+        // Fechar modal
         document.body.removeChild(container);
+
+        // Sincronizar estado do hook APÓS fechar modal (garante que o DOM foi atualizado)
+        setTimeout(() => {
+          onStateSync?.(modalVideoPlaying);
+        }, 0);
       };
 
       const playPauseButton = document.createElement("button");
@@ -166,15 +180,27 @@ export const useVideoModal = () => {
       container.appendChild(playPauseButton);
       document.body.appendChild(container);
 
+      const closeModal = () => {
+        // Sincronizar estado de reprodução ao fechar modal
+        if (modalVideoPlaying && videoElement.paused) {
+          videoElement.play().catch(console.error);
+        } else if (!modalVideoPlaying && !videoElement.paused) {
+          videoElement.pause();
+        }
+        // Sincronizar estado no hook imediatamente
+        onStateSync?.(modalVideoPlaying);
+        document.body.removeChild(container);
+      };
+
       container.onclick = (e) => {
         if (e.target === container) {
-          document.body.removeChild(container);
+          closeModal();
         }
       };
 
       const handleEscape = (e: KeyboardEvent) => {
         if (e.key === "Escape") {
-          document.body.removeChild(container);
+          closeModal();
           document.removeEventListener("keydown", handleEscape);
         }
       };

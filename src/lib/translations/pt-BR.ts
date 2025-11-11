@@ -1,3 +1,8 @@
+/**
+ * Arquivo de traduções para português brasileiro (pt-BR).
+ * Contém todas as strings da interface traduzidas para português.
+ */
+
 import { Translations } from "@/types/translations";
 
 export const ptBR: Translations = {

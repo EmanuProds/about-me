@@ -1,5 +1,9 @@
 import { NextResponse } from "next/server";
 
+/**
+ * Query GraphQL para buscar estatísticas básicas do usuário GitHub.
+ * Obtém repositórios públicos, contribuições totais e data de criação da conta.
+ */
 const GITHUB_GRAPHQL_QUERY = `
 query ($username: String!) {
   user(login: $username) {
@@ -15,6 +19,10 @@ query ($username: String!) {
   }
 }`;
 
+/**
+ * Endpoint POST para buscar estatísticas do GitHub.
+ * Processa dados do GraphQL e calcula anos de experiência baseado na data de criação da conta.
+ */
 export async function POST(request: Request) {
   const { username } = await request.json();
 

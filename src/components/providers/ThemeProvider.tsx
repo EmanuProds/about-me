@@ -2,15 +2,28 @@
 
 import { createContext, useContext, useEffect, useState, ReactNode } from 'react';
 
+/**
+ * Tipos de tema suportados.
+ */
 type Theme = 'light' | 'dark';
 
+/**
+ * Interface do contexto de tema.
+ */
 interface ThemeContextType {
   theme: Theme;
   toggleTheme: () => void;
 }
 
+/**
+ * Contexto para gerenciamento de tema da aplicação.
+ */
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
+/**
+ * Hook personalizado para acessar o contexto de tema.
+ * Deve ser usado dentro de um ThemeProvider.
+ */
 export function useTheme() {
   const context = useContext(ThemeContext);
   if (context === undefined) {
@@ -19,10 +32,18 @@ export function useTheme() {
   return context;
 }
 
+/**
+ * Props para o ThemeProvider.
+ */
 interface ThemeProviderProps {
   children: ReactNode;
 }
 
+/**
+ * Provedor de contexto para gerenciamento de tema.
+ * Detecta automaticamente a preferência do sistema e permite alternância manual.
+ * Persiste a escolha do usuário no localStorage.
+ */
 export function ThemeProvider({ children }: ThemeProviderProps) {
   const [theme, setTheme] = useState<Theme>('dark');
   const [mounted, setMounted] = useState(false);

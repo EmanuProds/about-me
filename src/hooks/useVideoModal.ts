@@ -1,7 +1,17 @@
 import React from "react";
 import { FaPause, FaPlay } from "react-icons/fa";
 
+/**
+ * Hook personalizado para gerenciar a expansão de vídeos em modal.
+ * Cria um modal overlay com controles de vídeo e sincronização com o vídeo original.
+ * @returns Objeto com função para expandir vídeo
+ */
 export const useVideoModal = () => {
+  /**
+   * Manipula a expansão de um vídeo em modal.
+   * Cria um modal overlay com controles personalizados e sincroniza com o vídeo original.
+   * @param videoElement - Elemento de vídeo a ser expandido
+   */
   const handleExpandClick = async (videoElement: HTMLVideoElement) => {
     try {
       const container = document.createElement("div");

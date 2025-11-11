@@ -1,3 +1,8 @@
+/**
+ * Dados estáticos do portfólio - registros acadêmicos, projetos e tecnologias.
+ * Centraliza todas as informações exibidas nos componentes da aplicação.
+ */
+
 import { AcademicRecord } from "@/types/academic";
 import { Project } from "@/types/projects";
 import { TechIcon } from "@/types/tech";
@@ -97,7 +102,7 @@ export const projects = [
     id: 2,
     title: "Notary Connect X (antigo)",
     description:
-      "Um sistema local com interface web, focado em antendimento automatizado e humanizado, utilizando a API do WhatsApp",
+      "Um sistema local com interface web, focado em atendimento automatizado e humanizado, utilizando a API do WhatsApp",
     videoSrc: "",
     technologies: ["html", "css", "javascript", "nodejs", "express.js"],
     projectUrl: "",

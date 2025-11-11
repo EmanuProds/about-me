@@ -3,10 +3,18 @@
 import React, { useState, useEffect } from "react";
 import { GithubUser } from "@/types/github";
 
+/**
+ * Props para o componente ProfileGithub.
+ */
 interface GithubProfileProps {
+  /** Nome de usuário do GitHub */
   username: string;
 }
 
+/**
+ * Componente que exibe a imagem de perfil do GitHub.
+ * Busca dados do usuário via GitHub API e exibe avatar com loading state.
+ */
 const ProfileGithub: React.FC<GithubProfileProps> = ({ username }) => {
   const [user, setUser] = useState<GithubUser | null>(null);
   const [loading, setLoading] = useState<boolean>(true);

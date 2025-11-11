@@ -1,6 +1,16 @@
 import React from "react";
 
+/**
+ * Hook para gerenciar abertura de certificados em modal.
+ * Trata certificados especiais como devlinks que variam por idioma.
+ */
 export const useCertificateModal = () => {
+  /**
+   * Abre certificado em modal overlay.
+   * Suporta certificados dinâmicos baseados no idioma atual.
+   * @param certificateUrl - URL ou identificador do certificado
+   * @param currentLanguage - Idioma atual da aplicação
+   */
   const handleCertificateClick = (
     certificateUrl: string,
     currentLanguage: string

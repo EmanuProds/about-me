@@ -26,7 +26,7 @@ export interface Project {
   githubUrl: string;
 }
 
-export interface ProjectCardProps extends Project {}
+export type ProjectCardProps = Project;
 
 export const technologies: Record<string, Technology> = {
   react: { name: "React", icon: LuComponent, color: "text-cyan-600" },

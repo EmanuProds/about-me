@@ -5,6 +5,10 @@ import { FaGithub, FaLinkedin, FaWhatsapp } from "react-icons/fa";
 import LanguageToggle from "@/components/ui/LanguageToggle";
 import { useTranslations } from "@/hooks/useTranslations";
 
+/**
+ * Componente de cabeçalho fixo da aplicação.
+ * Contém navegação principal e seletor de idioma.
+ */
 const Header = () => {
   const { t } = useTranslations();
 

@@ -4,6 +4,10 @@ import { GITHUB_USERNAME } from "@/lib/constants";
 import { useTranslations } from "@/hooks/useTranslations";
 import GithubStats from "@/components/github/StatsGithub";
 
+/**
+ * Componente da seção "Sobre".
+ * Exibe informações pessoais e estatísticas do GitHub.
+ */
 const About = () => {
   const { t } = useTranslations();
 

@@ -3,9 +3,12 @@
 import React from "react";
 import { GITHUB_USERNAME } from "@/lib/constants";
 import { useTranslations } from "@/hooks/useTranslations";
-
 import ProfileGithub from "@/components/github/ProfileGithub";
 
+/**
+ * Componente do perfil principal.
+ * Exibe informações básicas do usuário e integra com o componente de perfil do GitHub.
+ */
 const Profile: React.FC = () => {
   const { t } = useTranslations();
 

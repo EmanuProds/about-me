@@ -6,6 +6,10 @@ import Projects from "@/components/ui/Projects";
 import Academic from "@/components/ui/Academic";
 import Footer from "@/components/layout/Footer";
 
+/**
+ * Página principal do portfólio.
+ * Organiza todos os componentes em uma única página com scroll.
+ */
 export default function Home() {
   return (
     <main className="pt-20">

@@ -8,6 +8,11 @@ import { projects } from "@/lib/data";
 import { useVideoPlayer } from "@/hooks/useVideoPlayer";
 import { useVideoModal } from "@/hooks/useVideoModal";
 
+// Constantes para classes Tailwind comuns para manter consistência
+const CARD_BASE_CLASSES = "relative bg-gray-300/40 dark:bg-black/30 backdrop-blur-sm rounded-2xl border border-gray-400/20 dark:border-gray-200/20 p-8 hover:bg-slate-400/40 dark:hover:bg-slate-600/40 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg flex flex-col h-full";
+const VIDEO_CONTAINER_CLASSES = "relative aspect-video bg-gray-800 rounded-xl overflow-hidden mb-4";
+const BUTTON_BASE_CLASSES = "inline-flex items-center justify-center gap-2 text-sm font-medium transition-all duration-300 rounded-lg px-4 py-2 shadow-md hover:shadow-lg";
+
 const ProjectCard = ({
   title,
   description,
@@ -19,6 +24,12 @@ const ProjectCard = ({
 }: ProjectCardProps) => {
   const { t } = useTranslations();
 
+  /**
+   * Retorna o título traduzido do projeto baseado no ID.
+   * Utiliza traduções específicas para projetos conhecidos ou o título padrão.
+   * @param projectId - ID único do projeto
+   * @returns Título traduzido ou padrão
+   */
   const getTranslatedTitle = (projectId: number) => {
     switch (projectId) {
       case 1:
@@ -30,6 +41,12 @@ const ProjectCard = ({
     }
   };
 
+  /**
+   * Retorna a descrição traduzida do projeto baseada no ID.
+   * Utiliza descrições específicas para projetos conhecidos ou a descrição padrão.
+   * @param projectId - ID único do projeto
+   * @returns Descrição traduzida ou padrão
+   */
   const getTranslatedDescription = (projectId: number) => {
     switch (projectId) {
       case 1:
@@ -59,6 +76,10 @@ const ProjectCard = ({
 
   const { handleExpandClick } = useVideoModal();
 
+  /**
+   * Manipula a expansão do vídeo em modal.
+   * Verifica se o vídeo existe antes de chamar a função de expansão.
+   */
   const handleExpand = () => {
     if (videoRef.current) {
       handleExpandClick(videoRef.current);
@@ -68,8 +89,8 @@ const ProjectCard = ({
   const projectTechs = techKeys.map((key) => technologies[key]).filter(Boolean);
 
   return (
-    <div className="group relative bg-gray-300/40 dark:bg-black/30 backdrop-blur-sm rounded-2xl border border-gray-400/20 dark:border-gray-200/20 p-8 hover:bg-slate-400/40 dark:hover:bg-slate-600/40 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg flex flex-col h-full">
-      <div className="relative aspect-video bg-gray-800 rounded-xl overflow-hidden mb-4">
+    <div className={`group ${CARD_BASE_CLASSES}`}>
+      <div className={VIDEO_CONTAINER_CLASSES}>
         {videoSrc ? (
           <>
             <video
@@ -152,7 +173,7 @@ const ProjectCard = ({
             href={projectUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex-1 inline-flex items-center justify-center gap-2 text-sm font-medium text-gray-100 bg-linear-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 transition-all duration-300 rounded-lg px-4 py-2 shadow-md hover:shadow-lg"
+            className={`flex-1 ${BUTTON_BASE_CLASSES} text-gray-100 bg-linear-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700`}
           >
             <FaGlobe className="w-4 h-4" />
             {t.projects.viewProject}
@@ -163,7 +184,7 @@ const ProjectCard = ({
             href={githubUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex-1 inline-flex items-center justify-center gap-2 text-sm font-medium text-gray-900 dark:text-gray-100 bg-gray-200 dark:bg-gray-600 hover:bg-gray-300 dark:hover:bg-gray-700 transition-all duration-300 rounded-lg px-4 py-2 shadow-md hover:shadow-lg"
+            className={`flex-1 ${BUTTON_BASE_CLASSES} text-gray-900 dark:text-gray-100 bg-gray-200 dark:bg-gray-600 hover:bg-gray-300 dark:hover:bg-gray-700`}
           >
             <FaCode className="w-4 h-4" />
             GitHub

@@ -4,10 +4,18 @@ import React, { useState, useEffect } from "react";
 import { GithubStatsData } from "@/types/github";
 import { useTranslations } from "@/hooks/useTranslations";
 
+/**
+ * Props para o componente GithubStats.
+ */
 interface GithubStatsProps {
+  /** Nome de usuário do GitHub */
   username: string;
 }
 
+/**
+ * Componente que exibe estatísticas do GitHub.
+ * Busca dados via API própria e exibe repositórios, contribuições e experiência.
+ */
 const GithubStats: React.FC<GithubStatsProps> = ({ username }) => {
   const { t } = useTranslations();
   const [stats, setStats] = useState<GithubStatsData | null>(null);
@@ -15,6 +23,10 @@ const GithubStats: React.FC<GithubStatsProps> = ({ username }) => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    /**
+     * Busca estatísticas do GitHub via API própria.
+     * Em caso de erro, define valores padrão para não quebrar a UI.
+     */
     const fetchStats = async () => {
       setLoading(true);
       setError(null);
@@ -35,6 +47,7 @@ const GithubStats: React.FC<GithubStatsProps> = ({ username }) => {
       } catch (err) {
         console.error("Erro ao buscar estatísticas:", err);
         setError(err instanceof Error ? err.message : "Erro desconhecido");
+        // Valores padrão para evitar quebra da UI
         setStats({
           publicRepos: 0,
           totalContributions: 0,

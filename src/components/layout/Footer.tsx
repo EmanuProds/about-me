@@ -3,10 +3,15 @@
 import { FaGithub, FaLinkedin, FaWhatsapp } from "react-icons/fa";
 import { useTranslations } from "@/hooks/useTranslations";
 
+/**
+ * Componente de rodapé da aplicação.
+ * Exibe copyright, ano atual e links para redes sociais.
+ */
 const Footer = () => {
   const { t } = useTranslations();
   const currentYear = new Date().getFullYear();
 
+  // Configuração dos links sociais com ícones e cores de hover
   const socialLinks = [
     {
       href: "https://linkedin.com/in/EmanuProds",

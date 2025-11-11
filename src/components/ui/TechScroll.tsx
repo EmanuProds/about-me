@@ -3,10 +3,19 @@
 import { TechIcon, ScrollContainerProps } from "@/types/tech";
 import { langProgramming, toolsTech, systemOperation } from "@/lib/data";
 
+// Constantes para classes Tailwind comuns
+const TECH_CARD_CLASSES = "group flex flex-col items-center justify-center p-6 m-2 min-w-[120px] rounded-2xl bg-gray-300/40 dark:bg-black/30 backdrop-blur-sm border border-gray-400/20 dark:border-gray-200/20 hover:bg-slate-400/40 dark:hover:bg-slate-600/40 hover:scale-105 transition-all duration-300 ease-out";
+const TECH_ICON_CLASSES = "h-10 w-10 mb-3 group-hover:scale-110 transition-transform duration-300";
+const TECH_TEXT_CLASSES = "text-sm font-medium text-gray-900 dark:text-gray-100 group-hover:text-gray-700 dark:group-hover:text-gray-200 transition-colors duration-300";
+
+/**
+ * Componente para exibir um cartão de tecnologia.
+ * @param tech - Objeto contendo ícone e nome da tecnologia
+ */
 const TechCard = ({ tech }: { tech: TechIcon }) => (
-  <div className="group flex flex-col items-center justify-center p-6 m-2 min-w-[120px] rounded-2xl bg-gray-300/40 dark:bg-black/30 backdrop-blur-sm border border-gray-400/20 dark:border-gray-200/20 hover:bg-slate-400/40 dark:hover:bg-slate-600/40 hover:scale-105 transition-all duration-300 ease-out">
-    <tech.Icon className={`h-10 w-10 mb-3 ${tech.color} group-hover:scale-110 transition-transform duration-300`} />
-    <span className="text-sm font-medium text-gray-900 dark:text-gray-100 group-hover:text-gray-700 dark:group-hover:text-gray-200 transition-colors duration-300">
+  <div className={TECH_CARD_CLASSES}>
+    <tech.Icon className={`${TECH_ICON_CLASSES} ${tech.color}`} />
+    <span className={TECH_TEXT_CLASSES}>
       {tech.name}
     </span>
   </div>

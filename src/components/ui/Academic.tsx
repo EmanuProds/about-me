@@ -16,10 +16,41 @@ import { useTranslations } from "@/hooks/useTranslations";
 import { useCertificateModal } from "@/hooks/useCertificateModal";
 import { academicRecords } from "@/lib/data";
 
+// Constantes para classes Tailwind comuns para manter consistência
+const CARD_BASE_CLASSES = "relative bg-gray-300/40 dark:bg-black/30 backdrop-blur-sm rounded-2xl border border-gray-400/20 dark:border-gray-200/20 p-8 hover:bg-slate-400/40 dark:hover:bg-slate-600/40 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg flex flex-col h-full";
+const BUTTON_BASE_CLASSES = "inline-flex items-center justify-center gap-2 text-sm font-medium transition-all duration-300 rounded-lg px-4 py-2 shadow-md mt-auto w-full";
+
+/**
+ * Componente para renderizar ícones dinamicamente baseado no nome.
+ * @param iconName - Nome do ícone a ser renderizado
+ */
+const IconComponent = ({ iconName }: { iconName: string }) => {
+  switch (iconName) {
+    case "Clock":
+      return <FaClock className="w-6 h-6" />;
+    case "IoChatbubble":
+      return <IoChatbubble className="w-6 h-6" />;
+    case "FaShieldAlt":
+      return <FaShieldAlt className="w-6 h-6" />;
+    case "FaRocket":
+      return <FaRocket className="w-6 h-6" />;
+    case "GiNinjaMask":
+      return <GiNinjaMask className="w-6 h-6" />;
+    default:
+      return <FaGraduationCap className="w-6 h-6" />;
+  }
+};
+
 const AcademicCard = ({ record }: { record: (typeof academicRecords)[0] }) => {
   const { t, locale } = useTranslations();
   const { handleCertificateClick } = useCertificateModal();
 
+  /**
+   * Retorna o título traduzido do registro acadêmico baseado no ID.
+   * Utiliza traduções específicas para registros conhecidos ou o título padrão.
+   * @param recordId - ID único do registro acadêmico
+   * @returns Título traduzido ou padrão
+   */
   const getTranslatedTitle = (recordId: number) => {
     switch (recordId) {
       case 1:
@@ -37,6 +68,12 @@ const AcademicCard = ({ record }: { record: (typeof academicRecords)[0] }) => {
     }
   };
 
+  /**
+   * Retorna a descrição traduzida do registro acadêmico baseada no ID.
+   * Utiliza descrições específicas para registros conhecidos ou a descrição padrão.
+   * @param recordId - ID único do registro acadêmico
+   * @returns Descrição traduzida ou padrão
+   */
   const getTranslatedDescription = (recordId: number) => {
     switch (recordId) {
       case 1:
@@ -54,36 +91,11 @@ const AcademicCard = ({ record }: { record: (typeof academicRecords)[0] }) => {
     }
   };
 
-  const getCustomIcon = (iconName: string) => {
-    switch (iconName) {
-      case "Clock":
-        return FaClock;
-      case "IoChatbubble":
-        return IoChatbubble;
-      case "FaShieldAlt":
-        return FaShieldAlt;
-      case "FaRocket":
-        return FaRocket;
-      case "GiNinjaMask":
-        return GiNinjaMask;
-      default:
-        return FaGraduationCap;
-    }
-  };
-
-  const getTypeIcon = (type: string) => {
-    switch (type.toLowerCase()) {
-      case "graduação tecnológica":
-      case "graduação":
-        return FaGraduationCap;
-      case "curso de especialização":
-      case "certificação profissional":
-        return FaGraduationCap;
-      default:
-        return FaGraduationCap;
-    }
-  };
-
+  /**
+   * Retorna a cor do gradiente baseada na instituição.
+   * @param institution - Nome da instituição
+   * @returns Classe de gradiente Tailwind
+   */
   const getInstitutionColor = (institution: string) => {
     switch (institution.toLowerCase()) {
       case "rocketseat":
@@ -99,31 +111,15 @@ const AcademicCard = ({ record }: { record: (typeof academicRecords)[0] }) => {
     }
   };
 
-  const getTypeColor = (type: string) => {
-    switch (type.toLowerCase()) {
-      case "graduação tecnológica":
-        return "from-blue-500 to-purple-600";
-      case "curso de especialização":
-        return "from-green-500 to-teal-600";
-      case "certificação profissional":
-        return "from-orange-500 to-red-600";
-      default:
-        return "from-gray-500 to-slate-600";
-    }
-  };
-
-  const Icon = record.icon
-    ? getCustomIcon(record.icon)
-    : getTypeIcon(record.type);
   const gradientColor = getInstitutionColor(record.institution);
 
   return (
-    <div className="group relative bg-gray-300/40 dark:bg-black/30 backdrop-blur-sm rounded-2xl border border-gray-400/20 dark:border-gray-200/20 p-8 hover:bg-slate-400/40 dark:hover:bg-slate-600/40 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg flex flex-col h-full">
+    <div className={`group ${CARD_BASE_CLASSES}`}>
       <div className="flex items-center gap-4 mb-4">
         <div
           className={`p-3 rounded-xl bg-linear-to-br ${gradientColor} text-gray-100 shadow-lg`}
         >
-          <Icon className="w-6 h-6" />
+          <IconComponent iconName={record.icon || "default"} />
         </div>
         <div>
           <span
@@ -160,10 +156,10 @@ const AcademicCard = ({ record }: { record: (typeof academicRecords)[0] }) => {
           }
         }}
         disabled={!(record.id === 3 || record.id === 4)}
-        className={`inline-flex items-center justify-center gap-2 text-sm font-medium text-gray-700 dark:text-gray-100 transition-all duration-300 rounded-lg px-4 py-2 shadow-md mt-auto w-full ${
+        className={`${BUTTON_BASE_CLASSES} ${
           record.id === 3 || record.id === 4
-            ? "bg-slate-400 dark:bg-slate-600 hover:dark:bg-slate-700 hover:shadow-lg cursor-pointer"
-            : "bg-gray-300 dark:bg-gray-700 cursor-not-allowed opacity-60"
+            ? "text-gray-700 dark:text-gray-100 bg-slate-400 dark:bg-slate-600 hover:dark:bg-slate-700 hover:shadow-lg cursor-pointer"
+            : "text-gray-700 dark:text-gray-100 bg-gray-300 dark:bg-gray-700 cursor-not-allowed opacity-60"
         }`}
       >
         {record.id === 3 || record.id === 4 ? (

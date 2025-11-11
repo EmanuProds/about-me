@@ -10,4 +10,4 @@ export interface AcademicRecord {
   isClickable?: boolean;
 }
 
-export interface AcademicCardProps extends AcademicRecord {}
+export type AcademicCardProps = AcademicRecord;

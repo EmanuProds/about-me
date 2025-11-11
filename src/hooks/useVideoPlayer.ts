@@ -49,7 +49,10 @@ export const useVideoPlayer = (videoSrc?: string, enabled: boolean = true) => {
     if (!videoElement) return;
 
     const checkVideoState = () => {
-      const isActuallyPlaying = !videoElement.paused && !videoElement.ended && videoElement.readyState > 2;
+      const isActuallyPlaying =
+        !videoElement.paused &&
+        !videoElement.ended &&
+        videoElement.readyState > 2;
       if (isActuallyPlaying !== videoPlaying) {
         setVideoPlaying(isActuallyPlaying);
       }

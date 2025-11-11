@@ -59,7 +59,7 @@ const GithubStats = ({ username }: { username: string }) => {
       <StatCard value={stats.publicRepos} label={t.github.publicRepos} />
       <StatCard
         value={`${stats.totalContributions}+`}
-        label={t.github.contributions}
+        label={t.github.contributions(stats.contributionsYear)}
       />
       <StatCard
         value={`${stats.yearsOfExperience}+`}

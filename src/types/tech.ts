@@ -1,4 +1,4 @@
-import { ElementType } from 'react';
+import { ElementType } from "react";
 
 export interface TechIcon {
   Icon: ElementType;
@@ -8,7 +8,7 @@ export interface TechIcon {
 
 export interface ScrollContainerProps {
   stack: TechIcon[];
-  direction: 'left' | 'right';
+  direction: "left" | "right";
   className?: string;
   style?: React.CSSProperties;
 }

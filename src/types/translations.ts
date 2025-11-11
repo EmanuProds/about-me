@@ -47,14 +47,13 @@ export interface Translations {
   };
   github: {
     publicRepos: string;
-    contributions: string;
+    contributions: (year: number) => string;
     yearsExperience: string;
   };
   footer: {
     copyright: string;
     madeWith: string;
-    contacts: string;
   };
 }
 
-export type Locale = 'pt-BR' | 'en';
+export type Locale = "pt-BR" | "en";

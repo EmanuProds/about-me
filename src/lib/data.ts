@@ -29,6 +29,64 @@ import {
   SiGithub,
 } from "react-icons/si";
 
+export const projects = [
+  {
+    id: 1,
+    title: "Image2DOC",
+    description:
+      "Uma aplicação em GTK4/Libadwaita com foco em extração de dados via OCR para conversão, renomiação e organização de documentos.",
+    videoSrc: "/videos/image2doc.mp4",
+    technologies: ["python"],
+    projectUrl: "",
+    githubUrl: "https://github.com/EmanuProds/image2doc",
+  },
+  {
+    id: 2,
+    title: "Notary Connect X (antigo)",
+    description:
+      "Um sistema local com interface web, focado em atendimento automatizado e humanizado, utilizando a API do WhatsApp",
+    videoSrc: "",
+    technologies: ["html", "css", "javascript", "nodejs", "express.js"],
+    projectUrl: "",
+    githubUrl: "https://github.com/EmanuProds/notary-connect-old",
+  },
+];
+
+export const langProgramming: TechIcon[] = [
+  { Icon: FaHtml5, name: "HTML", color: "text-orange-500" },
+  { Icon: FaCss3, name: "CSS", color: "text-blue-500" },
+  { Icon: FaJs, name: "JavaScript", color: "text-yellow-500" },
+  { Icon: SiTypescript, name: "TypeScript", color: "text-blue-700" },
+  { Icon: FaPython, name: "Python", color: "text-blue-500" },
+];
+
+export const toolsTech: TechIcon[] = [
+  { Icon: FaReact, name: "React", color: "text-cyan-600" },
+  { Icon: SiTailwindcss, name: "TailwindCSS", color: "text-teal-500" },
+  { Icon: FaNodeJs, name: "Node.js", color: "text-green-500" },
+  {
+    Icon: SiExpress,
+    name: "Express.js",
+    color: "text-gray-700 dark:text-gray-400",
+  },
+  {
+    Icon: SiNextdotjs,
+    name: "Next.js",
+    color: "text-gray-800 dark:text-white",
+  },
+  { Icon: SiVite, name: "Vite", color: "text-purple-500" },
+  { Icon: SiExpo, name: "Expo", color: "text-slate-400" },
+];
+
+export const systemOperation: TechIcon[] = [
+  { Icon: FaDocker, name: "Docker", color: "text-blue-400" },
+  { Icon: SiSqlite, name: "SQLite", color: "text-blue-600" },
+  { Icon: FaGit, name: "Git", color: "text-red-600" },
+  { Icon: SiGithub, name: "GitHub", color: "text-gray-800 dark:text-gray-300" },
+  { Icon: FaLinux, name: "Linux", color: "text-gray-600 dark:text-gray-200" },
+  { Icon: FaTerminal, name: "ShellScript", color: "text-green-400" },
+];
+
 export const academicRecords = [
   {
     id: 1,
@@ -85,62 +143,4 @@ export const academicRecords = [
     icon: "GiNinjaMask",
     isClickable: false,
   },
-];
-
-export const projects = [
-  {
-    id: 1,
-    title: "Image2DOC",
-    description:
-      "Uma aplicação em GTK4/Libadwaita com foco em extração de dados via OCR para conversão, renomiação e organização de documentos.",
-    videoSrc: "/videos/image2doc.mp4",
-    technologies: ["python"],
-    projectUrl: "",
-    githubUrl: "https://github.com/EmanuProds/tarefas-api",
-  },
-  {
-    id: 2,
-    title: "Notary Connect X (antigo)",
-    description:
-      "Um sistema local com interface web, focado em atendimento automatizado e humanizado, utilizando a API do WhatsApp",
-    videoSrc: "",
-    technologies: ["html", "css", "javascript", "nodejs", "express.js"],
-    projectUrl: "",
-    githubUrl: "https://github.com/EmanuProds/e-commerce-ui",
-  },
-];
-
-export const langProgramming: TechIcon[] = [
-  { Icon: FaHtml5, name: "HTML", color: "text-orange-500" },
-  { Icon: FaCss3, name: "CSS", color: "text-blue-500" },
-  { Icon: FaJs, name: "JavaScript", color: "text-yellow-500" },
-  { Icon: SiTypescript, name: "TypeScript", color: "text-blue-700" },
-  { Icon: FaPython, name: "Python", color: "text-blue-500" },
-];
-
-export const toolsTech: TechIcon[] = [
-  { Icon: FaReact, name: "React", color: "text-cyan-600" },
-  { Icon: SiTailwindcss, name: "TailwindCSS", color: "text-teal-500" },
-  { Icon: FaNodeJs, name: "Node.js", color: "text-green-500" },
-  {
-    Icon: SiExpress,
-    name: "Express.js",
-    color: "text-gray-700 dark:text-gray-400",
-  },
-  {
-    Icon: SiNextdotjs,
-    name: "Next.js",
-    color: "text-gray-800 dark:text-white",
-  },
-  { Icon: SiVite, name: "Vite", color: "text-purple-500" },
-  { Icon: SiExpo, name: "Expo", color: "text-slate-400" },
-];
-
-export const systemOperation: TechIcon[] = [
-  { Icon: FaDocker, name: "Docker", color: "text-blue-400" },
-  { Icon: SiSqlite, name: "SQLite", color: "text-blue-600" },
-  { Icon: FaGit, name: "Git", color: "text-red-600" },
-  { Icon: SiGithub, name: "GitHub", color: "text-gray-800 dark:text-gray-300" },
-  { Icon: FaLinux, name: "Linux", color: "text-gray-600 dark:text-gray-200" },
-  { Icon: FaTerminal, name: "ShellScript", color: "text-green-400" },
 ];

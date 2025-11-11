@@ -13,7 +13,10 @@ export const useVideoModal = () => {
    * @param videoElement - Elemento de vídeo a ser expandido
    * @param onStateSync - Callback opcional para sincronizar estado quando modal fecha
    */
-  const handleExpandClick = async (videoElement: HTMLVideoElement, onStateSync?: (playing: boolean) => void) => {
+  const handleExpandClick = async (
+    videoElement: HTMLVideoElement,
+    onStateSync?: (playing: boolean) => void
+  ) => {
     try {
       const container = document.createElement("div");
       container.style.cssText = `

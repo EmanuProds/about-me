@@ -76,12 +76,11 @@ Multidisciplinary Experience
   },
   github: {
     publicRepos: "Public Repositories",
-    contributions: "Public Contributions",
+    contributions: (year: number) => `Contributions in ${year}`,
     yearsExperience: "Years of Experience",
   },
   footer: {
     copyright: "All rights reserved.",
     madeWith: "Made with ❤️ using TypeScript, React.js and Next.js",
-    contacts: "Contacts",
   },
 };

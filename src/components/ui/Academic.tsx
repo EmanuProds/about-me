@@ -18,8 +18,10 @@ import { useCertificateModal } from "@/hooks/useCertificateModal";
 import { academicRecords } from "@/lib/data";
 
 // Constantes para classes Tailwind comuns para manter consistência
-const CARD_BASE_CLASSES = "relative bg-gray-300/40 dark:bg-black/30 backdrop-blur-sm rounded-2xl border border-gray-400/20 dark:border-gray-200/20 p-8 hover:bg-slate-400/40 dark:hover:bg-slate-600/40 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg flex flex-col h-full";
-const BUTTON_BASE_CLASSES = "inline-flex items-center justify-center gap-2 text-sm font-medium transition-all duration-300 rounded-lg px-4 py-2 shadow-md mt-auto w-full";
+const CARD_BASE_CLASSES =
+  "relative bg-gray-300/40 dark:bg-black/30 backdrop-blur-sm rounded-2xl border border-gray-400/20 dark:border-gray-200/20 p-8 hover:bg-slate-400/40 dark:hover:bg-slate-600/40 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg flex flex-col h-full";
+const BUTTON_BASE_CLASSES =
+  "inline-flex items-center justify-center gap-2 text-sm font-medium transition-all duration-300 rounded-lg px-4 py-2 shadow-md mt-auto w-full";
 
 /**
  * Componente para renderizar ícones dinamicamente baseado no nome.
@@ -42,7 +44,13 @@ const IconComponent = ({ iconName }: { iconName: string }) => {
   }
 };
 
-const AcademicCard = ({ record, loading = false }: { record: (typeof academicRecords)[0]; loading?: boolean }) => {
+const AcademicCard = ({
+  record,
+  loading = false,
+}: {
+  record: (typeof academicRecords)[0];
+  loading?: boolean;
+}) => {
   const { t, locale } = useTranslations();
   const { handleCertificateClick } = useCertificateModal();
 
@@ -116,25 +124,22 @@ const AcademicCard = ({ record, loading = false }: { record: (typeof academicRec
 
   if (loading) {
     return (
-      <div className={`group ${CARD_BASE_CLASSES} relative`}>
-        <div className="absolute inset-0 bg-slate-600 dark:bg-slate-400 rounded-2xl animate-pulse" />
-        <div className="opacity-0">
-          <div className="flex items-center gap-4 mb-4">
-            <div className="p-3 rounded-xl bg-gray-300 w-12 h-12" />
-            <div className="h-6 bg-gray-300 rounded w-20" />
-          </div>
-          <div className="h-6 bg-gray-300 rounded w-3/4 mb-4" />
-          <div className="flex items-center justify-between mb-4">
-            <div className="h-4 bg-gray-300 rounded w-24" />
-            <div className="h-4 bg-gray-300 rounded w-16" />
-          </div>
-          <div className="space-y-2 mb-4 grow">
-            <div className="h-4 bg-gray-300 rounded" />
-            <div className="h-4 bg-gray-300 rounded w-5/6" />
-            <div className="h-4 bg-gray-300 rounded w-4/6" />
-          </div>
-          <div className="h-10 bg-gray-300 rounded w-full mt-auto" />
+      <div className="bg-gray-300/40 dark:bg-black/30 backdrop-blur-sm rounded-2xl border border-gray-400/20 dark:border-gray-200/20 p-8 animate-pulse">
+        <div className="flex items-center gap-4 mb-4">
+          <div className="p-3 rounded-xl bg-gray-400/30 w-12 h-12" />
+          <div className="h-6 bg-gray-400/30 rounded w-20" />
         </div>
+        <div className="h-6 bg-gray-400/30 rounded w-3/4 mb-4" />
+        <div className="flex items-center justify-between mb-4">
+          <div className="h-4 bg-gray-400/30 rounded w-24" />
+          <div className="h-4 bg-gray-400/30 rounded w-16" />
+        </div>
+        <div className="space-y-2 mb-4 grow">
+          <div className="h-4 bg-gray-400/30 rounded" />
+          <div className="h-4 bg-gray-400/30 rounded w-5/6" />
+          <div className="h-4 bg-gray-400/30 rounded w-4/6" />
+        </div>
+        <div className="h-10 bg-gray-400/30 rounded w-full mt-auto" />
       </div>
     );
   }
@@ -184,8 +189,8 @@ const AcademicCard = ({ record, loading = false }: { record: (typeof academicRec
         disabled={!(record.id === 3 || record.id === 4)}
         className={`${BUTTON_BASE_CLASSES} ${
           record.id === 3 || record.id === 4
-            ? "text-gray-700 dark:text-gray-100 bg-slate-400 dark:bg-slate-600 hover:dark:bg-slate-700 hover:shadow-lg cursor-pointer"
-            : "text-gray-700 dark:text-gray-100 bg-gray-300 dark:bg-gray-700 cursor-not-allowed opacity-60"
+            ? "text-white dark:text-gray-100 bg-slate-500 dark:bg-gray-600 hover:bg-slate-700 hover:shadow-lg cursor-pointer"
+            : "text-slate-500 dark:text-gray-100 bg-gray-300 dark:bg-gray-700 cursor-not-allowed opacity-60"
         }`}
       >
         {record.id === 3 || record.id === 4 ? (
@@ -218,7 +223,10 @@ const Academic = () => {
   }, []);
 
   return (
-    <section id="formacao" className="w-full max-w-6xl mx-auto px-4 py-16 scroll-mt-12">
+    <section
+      id="formacao"
+      className="w-full max-w-6xl mx-auto px-4 py-16 scroll-mt-12"
+    >
       <div className="text-center space-y-8">
         <div className="space-y-4">
           <h2 className="text-4xl font-bold text-gray-900 dark:text-gray-100">

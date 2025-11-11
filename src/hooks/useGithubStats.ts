@@ -17,69 +17,108 @@ export const useGithubStats = (username: string) => {
         setError(null);
 
         // Buscar dados do usuário
-        const userResponse = await fetch(`https://api.github.com/users/${username}`);
-        if (!userResponse.ok) throw new Error("Failed to fetch user data");
+        const userResponse = await fetch(
+          `https://api.github.com/users/${username}`
+        );
+        if (!userResponse.ok) {
+          if (userResponse.status === 403) {
+            // Rate limit - usar dados mock
+            console.warn("GitHub API rate limited for user data");
+            throw new Error("RATE_LIMIT");
+          }
+          throw new Error("Failed to fetch user data");
+        }
 
         const userData = await userResponse.json();
 
-        // Buscar mais repositórios para melhor estimativa
+        // Buscar mais repositórios para calcular anos de experiência
         const reposResponse = await fetch(
-          `https://api.github.com/users/${username}/repos?sort=updated&per_page=10`
+          `https://api.github.com/users/${username}/repos?sort=created&per_page=1`
         );
         if (!reposResponse.ok) throw new Error("Failed to fetch repos");
 
         const reposData = await reposResponse.json();
 
         // Calcular anos de experiência baseado no primeiro repo
-        const firstRepoYear = reposData.length > 0 && reposData[reposData.length - 1]?.created_at
-          ? new Date(reposData[reposData.length - 1].created_at).getFullYear()
-          : new Date().getFullYear();
+        const firstRepoYear =
+          reposData.length > 0 && reposData[0]?.created_at
+            ? new Date(reposData[0].created_at).getFullYear()
+            : new Date().getFullYear();
 
-        const yearsOfExperience = Math.max(new Date().getFullYear() - firstRepoYear + 1, 1);
+        const yearsOfExperience = Math.max(
+          new Date().getFullYear() - firstRepoYear + 1,
+          1
+        );
 
-        // Calcular contribuições baseado em commits dos repositórios
+        // Calcular contribuições baseado em dados reais disponíveis
+        // Como a API de contribuições pode ter problemas de CORS/rate limit,
+        // usar uma estimativa mais precisa baseada nos repositórios e atividade
         let totalContributions = 0;
-        const sampleRepos = reposData.slice(0, 5); // Analisar primeiros 5 repos
 
-        for (const repo of sampleRepos) {
-          try {
-            const commitsResponse = await fetch(
-              `https://api.github.com/repos/${username}/${repo.name}/commits?author=${username}&per_page=100`
+        try {
+          // Tentar buscar eventos recentes para estimativa mais precisa
+          const eventsResponse = await fetch(
+            `https://api.github.com/users/${username}/events?per_page=50`
+          );
+
+          if (eventsResponse.ok) {
+            const eventsData = await eventsResponse.json();
+            const pushEvents = eventsData.filter(
+              (event: any) => event.type === "PushEvent"
             );
-            if (commitsResponse.ok) {
-              const commitsLink = commitsResponse.headers.get('link');
-              // Se há link de paginação, estimar mais commits
-              if (commitsLink && commitsLink.includes('rel="next"')) {
-                totalContributions += 100; // Pelo menos 100 commits neste repo
-              } else {
-                // Contar commits reais se não há paginação
-                const commitsData = await commitsResponse.json();
-                totalContributions += commitsData.length;
-              }
+
+            if (pushEvents.length > 0) {
+              // Contar commits dos eventos recentes
+              const recentCommits = pushEvents.reduce(
+                (total: number, event: any) => {
+                  return total + (event.payload?.commits?.length || 1);
+                },
+                0
+              );
+
+              // Estimar contribuições anuais baseado na atividade recente
+              // Assumir que 50 eventos representam ~1-2 meses de atividade
+              const monthsOfData = 2;
+              const monthlyCommits = recentCommits / monthsOfData;
+              totalContributions = Math.round(monthlyCommits * 12); // anual
             }
-          } catch (err) {
-            // Ignorar erros individuais de repositório
-            console.warn(`Failed to fetch commits for ${repo.name}:`, err);
           }
+        } catch (error) {
+          console.warn(
+            "Failed to fetch events for contributions estimate:",
+            error
+          );
         }
 
-        // Garantir mínimo de contribuições baseado nos repositórios
-        totalContributions = Math.max(totalContributions, userData.public_repos * 8, 50);
+        // Se não conseguiu dados de eventos, usar estimativa baseada em repositórios
+        if (totalContributions === 0) {
+          totalContributions = Math.max(
+            userData.public_repos * 25,
+            yearsOfExperience * 80
+          );
+        }
 
-        setStats({
+        // Garantir mínimo realista
+        totalContributions = Math.max(totalContributions, 50);
+
+        const finalStats = {
           publicRepos: userData.public_repos,
           totalContributions,
+          contributionsYear: new Date().getFullYear(),
           yearsOfExperience,
-        });
+        };
+
+        setStats(finalStats);
       } catch (err) {
         console.warn("GitHub API failed, using fallback data:", err);
         setError("Failed to load GitHub stats");
 
-        // Fallback data para GitHub Pages
+        // Fallback data mais realista baseado no perfil conhecido
         setStats({
-          publicRepos: 15,
-          totalContributions: 450,
-          yearsOfExperience: 3,
+          publicRepos: 6,
+          totalContributions: 200, 
+          contributionsYear: 2025,
+          yearsOfExperience: 1, 
         });
       } finally {
         setLoading(false);

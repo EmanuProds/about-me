@@ -81,12 +81,11 @@ Experiência Multidisciplinar
   },
   github: {
     publicRepos: "Repositórios Públicos",
-    contributions: "Contribuições Públicas",
+    contributions: (year: number) => `Contribuições em ${year}`,
     yearsExperience: "Anos de Experiência",
   },
   footer: {
     copyright: "Todos os direitos reservados.",
     madeWith: "Feito com ❤️ usando TypeScript, React.js e Next.js",
-    contacts: "Contatos",
   },
 };

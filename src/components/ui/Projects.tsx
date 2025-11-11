@@ -95,25 +95,22 @@ const ProjectCard = ({
 
   if (loading) {
     return (
-      <div className={`group ${CARD_BASE_CLASSES} relative`}>
-        <div className="absolute inset-0 bg-slate-600 dark:bg-slate-400 rounded-2xl animate-pulse" />
-        <div className="opacity-0">
-          <div className={`${VIDEO_CONTAINER_CLASSES} bg-gray-300`} />
-          <div className="h-6 bg-gray-300 rounded w-3/4 mb-3" />
-          <div className="space-y-2 mb-4 grow">
-            <div className="h-4 bg-gray-300 rounded" />
-            <div className="h-4 bg-gray-300 rounded w-5/6" />
-            <div className="h-4 bg-gray-300 rounded w-4/6" />
-          </div>
-          <div className="flex flex-wrap gap-2 mb-4 min-h-8 items-center justify-center">
-            <div className="h-6 bg-gray-300 rounded-full w-16" />
-            <div className="h-6 bg-gray-300 rounded-full w-20" />
-            <div className="h-6 bg-gray-300 rounded-full w-14" />
-          </div>
-          <div className="flex gap-3 mt-auto">
-            <div className="h-10 bg-gray-300 rounded flex-1" />
-            <div className="h-10 bg-gray-300 rounded flex-1" />
-          </div>
+      <div className="bg-gray-300/40 dark:bg-black/30 backdrop-blur-sm rounded-2xl border border-gray-400/20 dark:border-gray-200/20 p-8 animate-pulse">
+        <div className={`${VIDEO_CONTAINER_CLASSES} bg-gray-400/30 mb-4`} />
+        <div className="h-6 bg-gray-400/30 rounded w-3/4 mb-3" />
+        <div className="space-y-2 mb-4 grow">
+          <div className="h-4 bg-gray-400/30 rounded" />
+          <div className="h-4 bg-gray-400/30 rounded w-5/6" />
+          <div className="h-4 bg-gray-400/30 rounded w-4/6" />
+        </div>
+        <div className="flex flex-wrap gap-2 mb-4 min-h-8 items-center justify-center">
+          <div className="h-6 bg-gray-400/30 rounded-full w-16" />
+          <div className="h-6 bg-gray-400/30 rounded-full w-20" />
+          <div className="h-6 bg-gray-400/30 rounded-full w-14" />
+        </div>
+        <div className="flex gap-3 mt-auto">
+          <div className="h-10 bg-gray-400/30 rounded flex-1" />
+          <div className="h-10 bg-gray-400/30 rounded flex-1" />
         </div>
       </div>
     );
@@ -217,7 +214,7 @@ const ProjectCard = ({
             href={githubUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className={`flex-1 ${BUTTON_BASE_CLASSES} text-gray-900 dark:text-gray-100 bg-gray-200 dark:bg-gray-600 hover:bg-gray-300 dark:hover:bg-gray-700`}
+            className={`flex-1 ${BUTTON_BASE_CLASSES} text-white dark:text-gray-100 bg-slate-500 dark:bg-gray-600 hover:bg-slate-700`}
           >
             <FaCode className="w-4 h-4" />
             GitHub
@@ -248,7 +245,7 @@ const Projects = () => {
     >
       <div className="text-center space-y-8">
         <div className="space-y-4">
-          <h2 className="text-4xl font-bold text-gray-900 dark:text-white">
+          <h2 className="text-4xl font-bold text-gray-900 dark:text-gray-100">
             {t.projects.title}
           </h2>
           <div className="w-24 h-1 bg-linear-to-r bg-slate-600 dark:bg-slate-400 mx-auto rounded-full" />

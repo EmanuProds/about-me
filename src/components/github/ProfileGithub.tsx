@@ -32,19 +32,38 @@ const ProfileGithub: React.FC<GithubProfileProps> = ({ username }) => {
           `https://api.github.com/users/${username}`
         );
         if (!response.ok) {
+          if (response.status === 403) {
+            // Rate limit - usar fallback
+            console.warn("GitHub API rate limited, using fallback");
+            setUser({
+              login: username,
+              avatar_url: `https://github.com/${username}.png`,
+              html_url: `https://github.com/${username}`,
+              name: username,
+            });
+            return;
+          }
           throw new Error(`Erro ao buscar perfil: ${response.status}`);
         }
 
         const data = await response.json();
         setUser(data);
       } catch (err) {
-        console.error("Erro ao buscar perfil:", err);
-        setError(err instanceof Error ? err.message : "Erro desconhecido");
+        console.warn("Erro ao buscar perfil do GitHub:", err);
+        // Fallback silencioso
+        setUser({
+          login: username,
+          avatar_url: `https://github.com/${username}.png`,
+          html_url: `https://github.com/${username}`,
+          name: username,
+        });
         setLoading(false);
       }
     };
 
-    fetchProfile();
+    if (username) {
+      fetchProfile();
+    }
   }, [username]);
 
   const handleImageLoad = () => {

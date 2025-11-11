@@ -12,7 +12,10 @@ const About = () => {
   const { t } = useTranslations();
 
   return (
-    <section id="sobre" className="w-full max-w-4xl mx-auto px-4 py-16 scroll-mt-16">
+    <section
+      id="sobre"
+      className="w-full max-w-4xl mx-auto px-4 py-16 scroll-mt-16"
+    >
       <div className="text-center space-y-8">
         <div className="space-y-4">
           <h2 className="text-4xl font-bold text-gray-900 dark:text-gray-100">

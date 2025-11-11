@@ -8,6 +8,7 @@ export interface GithubUser {
 export interface GithubStatsData {
   publicRepos: number;
   totalContributions: number;
+  contributionsYear: number;
   yearsOfExperience: number;
 }
 

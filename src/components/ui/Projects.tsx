@@ -27,6 +27,7 @@ const ProjectCard = ({
   loading = false,
 }: ProjectCardProps & { loading?: boolean }) => {
   const { t } = useTranslations();
+  const [videoError, setVideoError] = useState(false);
 
   /**
    * Retorna o título traduzido do projeto baseado no ID.
@@ -48,7 +49,7 @@ const ProjectCard = ({
   /**
    * Retorna a descrição traduzida do projeto baseada no ID.
    * Utiliza descrições específicas para projetos conhecidos ou a descrição padrão.
-   * @param projectId - ID único do projeto
+   * @param recordId - ID único do registro acadêmico
    * @returns Descrição traduzida ou padrão
    */
   const getTranslatedDescription = (projectId: number) => {
@@ -77,7 +78,15 @@ const ProjectCard = ({
     handleMouseEnter,
     handleMouseLeave,
     forcePlayingState,
-  } = useVideoPlayer(videoSrc, !loading);
+  } = useVideoPlayer(videoSrc, !loading && !videoError);
+
+  /**
+   * Manipula erros do vídeo e define estado de erro.
+   */
+  const handleVideoErrorFallback = () => {
+    setVideoError(true);
+    handleVideoError();
+  };
 
   const { handleExpandClick } = useVideoModal();
 
@@ -123,7 +132,7 @@ const ProjectCard = ({
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
-        {videoSrc ? (
+        {videoSrc && !videoError ? (
           <>
             <video
               ref={videoRef}
@@ -134,7 +143,7 @@ const ProjectCard = ({
               className="w-full h-full object-cover cursor-pointer"
               onLoadStart={handleVideoLoadStart}
               onCanPlay={handleVideoCanPlay}
-              onError={handleVideoError}
+              onError={handleVideoErrorFallback}
               onPlay={handleVideoPlay}
               onPause={handleVideoPause}
               onClick={handleVideoClick}

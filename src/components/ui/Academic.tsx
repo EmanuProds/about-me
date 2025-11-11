@@ -11,6 +11,20 @@ import { academicRecords } from "@/lib/data";
 
 const AcademicCard = ({ record }: { record: (typeof academicRecords)[0] }) => {
   const { t } = useTranslations();
+
+  const getTranslatedDescription = (recordId: number) => {
+    switch (recordId) {
+      case 1:
+        return t.academic.descriptions.ads;
+      case 2:
+        return t.academic.descriptions.bootcampReact;
+      case 3:
+        return t.academic.descriptions.awsPractitioner;
+      default:
+        return record.description;
+    }
+  };
+
   const getTypeIcon = (type: string) => {
     switch (type.toLowerCase()) {
       case "graduação tecnológica":
@@ -72,7 +86,7 @@ const AcademicCard = ({ record }: { record: (typeof academicRecords)[0] }) => {
       </div>
 
       <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed mb-4 line-clamp-3 grow">
-        {record.description}
+        {getTranslatedDescription(record.id)}
       </p>
 
       {record.certificateUrl && (

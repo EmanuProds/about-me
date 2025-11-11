@@ -31,10 +31,20 @@ export const en: Translations = {
   academic: {
     title: "Academic Background",
     viewCertificate: "View certificate",
+    certificateNotIssued: "Certificate not issued",
+    titles: {
+      reactNativeExpo: "React Native with Expo",
+      bootcampReactCSharp: "Akad - Fullstack Developer",
+      lgpdEnnor: "LGPD and its Services",
+      devlinks: "Devlinks",
+      logicaProgramacao: "Programming Logic",
+    },
     descriptions: {
-      ads: "Focused on software development, databases and project management. Emphasis on microservices architecture and Full-stack development.",
-      bootcampReact: "Intensive immersion in the React ecosystem, including Redux, Unit and Integration Testing, Web Performance and the Next.js framework.",
-      awsPractitioner: "Certification that validates fundamental knowledge about AWS Cloud, its main services, security, architecture and billing model.",
+      reactNativeExpo: "Intensive course focused on developing native mobile applications for iOS and Android using TypeScript, React Native and Expo Framework, covering everything from fundamental concepts to advanced mobile development techniques.",
+      bootcampReactCSharp: "Complete full-stack training program that combines modern frontend development with TypeScript, React and Vite, and robust backend development using C# and ASP.NET, preparing for building complete web applications.",
+      lgpdEnnor: "Specialized training in General Data Protection Law (LGPD) that addresses the fundamental principles of the legislation, organizational responsibilities and practical implementation of compliance measures for personal data protection.",
+      devlinks: "Introductory course to modern web development fundamentals, covering semantic HTML5, advanced CSS3 styling, JavaScript for interactivity, version control with Git and collaboration through GitHub.",
+      logicaProgramacao: "Comprehensive training in programming logic that establishes the fundamental bases of computational thinking, from basic algorithms and control structures to advanced concepts such as recursion, optimization and complex problem solving.",
     },
   },
   stats: {

@@ -13,7 +13,8 @@ export const ptBR: Translations = {
   },
   about: {
     title: "Sobre mim",
-    description: "Olá, meu nome é Emanuel da Costa Pereira, sou um desenvolvedor Full-Stack apaixonado por tecnologia e inovação. Minha jornada na tecnologia começou aos 9 anos com o Windows XP e evoluiu para uma paixão por desenvolvimento e automação. Um marco nesse percurso foi a criação de um shellscript que automatiza a complexa pós-instalação do Arch Linux, um projeto que não apenas demonstrou minha aptidão técnica, mas também me revelou como programador. Além de ter uma experiência como instrutor de TI na empresa Microlins, enfatizando minha habilidade em ensinar e compartilhar conhecimento. Sou movido pela curiosidade e pelo desejo de aprendizado contínuo, sempre em busca de novas oportunidades onde eu possa contribuir e crescer profissionalmente.",
+    description:
+      "Olá, meu nome é Emanuel da Costa Pereira, sou um desenvolvedor Full-Stack apaixonado por tecnologia e inovação. Minha jornada na tecnologia começou aos 9 anos com o Windows XP e evoluiu para uma paixão por desenvolvimento e automação. Um marco nesse percurso foi a criação de um shellscript que automatiza a complexa pós-instalação do Arch Linux, um projeto que não apenas demonstrou minha aptidão técnica, mas também me revelou como programador. Além de ter uma experiência como instrutor de TI na empresa Microlins, enfatizando minha habilidade em ensinar e compartilhar conhecimento. Sou movido pela curiosidade e pelo desejo de aprendizado contínuo, sempre em busca de novas oportunidades onde eu possa contribuir e crescer profissionalmente.",
   },
   projects: {
     title: "Projetos",
@@ -24,17 +25,34 @@ export const ptBR: Translations = {
       notaryConnect: "Notary Connect X (antigo)",
     },
     descriptions: {
-      image2doc: "Uma aplicação em GTK4/Libadwaita com foco em extração de dados via OCR para conversão, renomiação e organização de documentos.",
-      notaryConnect: "Um sistema local com interface web, focado em antendimento automatizado e humanizado, utilizando a API do WhatsApp",
+      image2doc:
+        "Uma aplicação em GTK4/Libadwaita com foco em extração de dados via OCR para conversão, renomiação e organização de documentos.",
+      notaryConnect:
+        "Um sistema local com interface web, focado em antendimento automatizado e humanizado, utilizando a API do WhatsApp",
     },
   },
   academic: {
     title: "Formação Acadêmica",
     viewCertificate: "Ver certificado",
+    certificateNotIssued: "Certificado não emitido",
+    titles: {
+      reactNativeExpo: "React Native com Expo",
+      bootcampReactCSharp: "Akad - Desenvolvedor Fullstack",
+      lgpdEnnor: "LGPD e seus Serviços",
+      devlinks: "Devlinks",
+      logicaProgramacao: "Lógica de programação",
+    },
     descriptions: {
-      ads: "Focado no desenvolvimento de software, banco de dados e gestão de projetos. Ênfase em arquitetura de microsserviços e desenvolvimento Full-stack.",
-      bootcampReact: "Imersão intensiva no ecossistema React, incluindo Redux, Testes Unitários e Integração, Performance Web e o framework Next.js.",
-      awsPractitioner: "Certificação que valida o conhecimento fundamental sobre a Nuvem AWS, seus serviços principais, segurança, arquitetura e modelo de faturamento.",
+      reactNativeExpo:
+        "Curso intensivo focado no desenvolvimento de aplicações móveis nativas para iOS e Android utilizando TypeScript, React Native e Expo Framework, abrangendo desde conceitos fundamentais até técnicas avançadas de desenvolvimento mobile.",
+      bootcampReactCSharp:
+        "Programa completo de formação full-stack que combina desenvolvimento frontend moderno com TypeScript, React e Vite, e desenvolvimento backend robusto utilizando C# e ASP.NET, preparando para construção de aplicações web completas.",
+      lgpdEnnor:
+        "Formação especializada em Lei Geral de Proteção de Dados (LGPD) que aborda os princípios fundamentais da legislação, responsabilidades das organizações e implementação prática de medidas de compliance para proteção de dados pessoais.",
+      devlinks:
+        "Curso introdutório aos fundamentos do desenvolvimento web moderno, cobrindo HTML5 semântico, CSS3 para estilização avançada, JavaScript para interatividade, controle de versão com Git e colaboração através do GitHub.",
+      logicaProgramacao:
+        "Formação abrangente em lógica de programação que estabelece as bases fundamentais do pensamento computacional, desde algoritmos básicos e estruturas de controle até conceitos avançados como recursão, otimização e resolução de problemas complexos.",
     },
   },
   stats: {

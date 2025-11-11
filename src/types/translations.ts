@@ -29,10 +29,20 @@ export interface Translations {
   academic: {
     title: string;
     viewCertificate: string;
+    certificateNotIssued: string;
+    titles: {
+      reactNativeExpo: string;
+      bootcampReactCSharp: string;
+      lgpdEnnor: string;
+      devlinks: string;
+      logicaProgramacao: string;
+    };
     descriptions: {
-      ads: string;
-      bootcampReact: string;
-      awsPractitioner: string;
+      reactNativeExpo: string;
+      bootcampReactCSharp: string;
+      lgpdEnnor: string;
+      devlinks: string;
+      logicaProgramacao: string;
     };
   };
   stats: {

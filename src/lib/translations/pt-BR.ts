@@ -31,6 +31,11 @@ export const ptBR: Translations = {
   academic: {
     title: "Formação Acadêmica",
     viewCertificate: "Ver certificado",
+    descriptions: {
+      ads: "Focado no desenvolvimento de software, banco de dados e gestão de projetos. Ênfase em arquitetura de microsserviços e desenvolvimento Full-stack.",
+      bootcampReact: "Imersão intensiva no ecossistema React, incluindo Redux, Testes Unitários e Integração, Performance Web e o framework Next.js.",
+      awsPractitioner: "Certificação que valida o conhecimento fundamental sobre a Nuvem AWS, seus serviços principais, segurança, arquitetura e modelo de faturamento.",
+    },
   },
   stats: {
     repositories: "Repositórios",

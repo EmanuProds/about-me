@@ -5,18 +5,7 @@ import { translations } from '@/lib/translations';
 import { Locale } from '@/types/translations';
 
 export function useTranslations() {
-  const [locale, setLocale] = useState<Locale>(() => {
-    // Tentar detectar no cliente durante inicialização
-    if (typeof window !== 'undefined') {
-      const savedLanguage = localStorage.getItem('preferred-language') as Locale;
-      if (savedLanguage && (savedLanguage === 'pt-BR' || savedLanguage === 'en')) {
-        return savedLanguage;
-      }
-      const browserLang = navigator.language || 'pt-BR';
-      return browserLang.startsWith('pt') ? 'pt-BR' : 'en';
-    }
-    return 'pt-BR'; // fallback para SSR
-  });
+  const [locale, setLocale] = useState<Locale>('pt-BR');
 
   useEffect(() => {
     const savedLanguage = localStorage.getItem('preferred-language') as Locale;

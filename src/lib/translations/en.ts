@@ -31,6 +31,11 @@ export const en: Translations = {
   academic: {
     title: "Academic Background",
     viewCertificate: "View certificate",
+    descriptions: {
+      ads: "Focused on software development, databases and project management. Emphasis on microservices architecture and Full-stack development.",
+      bootcampReact: "Intensive immersion in the React ecosystem, including Redux, Unit and Integration Testing, Web Performance and the Next.js framework.",
+      awsPractitioner: "Certification that validates fundamental knowledge about AWS Cloud, its main services, security, architecture and billing model.",
+    },
   },
   stats: {
     repositories: "Repositories",

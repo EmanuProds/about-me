@@ -127,7 +127,7 @@ const AcademicCard = ({ record }: { record: (typeof academicRecords)[0] }) => {
         </div>
         <div>
           <span
-            className={`inline-block px-3 py-1 text-xs font-semibold rounded-full bg-linear-to-r ${gradientColor} text-gray-100 shadow-sm`}
+            className={`inline-block px-3 py-1 text-sm font-semibold rounded-full bg-linear-to-r ${gradientColor} text-gray-100 shadow-sm`}
           >
             {record.type}
           </span>
@@ -160,7 +160,7 @@ const AcademicCard = ({ record }: { record: (typeof academicRecords)[0] }) => {
           }
         }}
         disabled={!(record.id === 3 || record.id === 4)}
-        className={`inline-flex items-center justify-center gap-2 text-sm font-medium text-gray-900 dark:text-gray-100 transition-all duration-300 rounded-lg px-4 py-2 shadow-md mt-auto w-full ${
+        className={`inline-flex items-center justify-center gap-2 text-sm font-medium text-gray-700 dark:text-gray-100 transition-all duration-300 rounded-lg px-4 py-2 shadow-md mt-auto w-full ${
           record.id === 3 || record.id === 4
             ? "bg-slate-400 dark:bg-slate-600 hover:dark:bg-slate-700 hover:shadow-lg cursor-pointer"
             : "bg-gray-300 dark:bg-gray-700 cursor-not-allowed opacity-60"
@@ -189,7 +189,7 @@ const Academic = () => {
     <section id="formacao" className="w-full max-w-6xl mx-auto px-4 py-16 scroll-mt-12">
       <div className="text-center space-y-8">
         <div className="space-y-4">
-          <h2 className="text-4xl font-bold text-gray-900 dark:text-white">
+          <h2 className="text-4xl font-bold text-gray-900 dark:text-gray-100">
             {t.academic.title}
           </h2>
           <div className="w-24 h-1 bg-linear-to-r bg-slate-600 dark:bg-slate-400 mx-auto rounded-full" />

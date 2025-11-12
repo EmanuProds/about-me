@@ -15,7 +15,7 @@ export const en: Translations = {
   },
   profile: {
     name: "Emanuel Pereira",
-    title: "Fullstack Developer | DevOps | TI Technician",
+    title: "Fullstack Developer | DevOps | IT Technician",
   },
   about: {
     title: "About me",

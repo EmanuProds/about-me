@@ -65,6 +65,7 @@ Experiência Multidisciplinar
     title: "Formação Acadêmica",
     viewCertificate: "Ver certificado",
     certificateNotIssued: "Certificado não emitido",
+    inProgress: "Em andamento",
     types: {
       specializationCourse: "Curso de Especialização",
     },

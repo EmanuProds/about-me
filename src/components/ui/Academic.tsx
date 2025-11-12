@@ -60,6 +60,13 @@ const AcademicCard = ({
     return type;
   };
 
+  const getTranslatedDuration = (duration: string) => {
+    if (duration === "In Progress") {
+      return t.academic.inProgress;
+    }
+    return duration;
+  };
+
   const getTranslatedTitle = (recordId: number) => {
     switch (recordId) {
       case 1:
@@ -163,7 +170,7 @@ const AcademicCard = ({
         </div>
         <div className="flex items-center mb-4 gap-2 text-gray-500 dark:text-gray-500">
           <FaCalendarAlt className="w-4 h-4 select-none" />
-          <span className="text-sm select-none">{record.duration}</span>
+          <span className="text-sm select-none">{getTranslatedDuration(record.duration)}</span>
         </div>
       </div>
 

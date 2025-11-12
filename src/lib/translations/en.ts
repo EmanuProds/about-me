@@ -65,6 +65,7 @@ Multidisciplinary Experience
     title: "Education",
     viewCertificate: "View certificate",
     certificateNotIssued: "Certificate not issued",
+    inProgress: "In Progress",
     types: {
       specializationCourse: "Specialization Course",
     },

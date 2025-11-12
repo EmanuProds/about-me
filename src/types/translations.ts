@@ -44,6 +44,7 @@ export interface Translations {
     title: string;
     viewCertificate: string;
     certificateNotIssued: string;
+    inProgress: string;
     types: {
       specializationCourse: string;
     };

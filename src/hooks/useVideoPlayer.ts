@@ -44,18 +44,7 @@ export const useVideoPlayer = (videoSrc?: string, enabled: boolean = true) => {
   const [videoPlaying, setVideoPlaying] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
 
-  // Effect for automatic playback when video loads
-  useEffect(() => {
-    if (!enabled || !videoSrc) return;
 
-    const videoElement = videoRef.current;
-    if (!videoElement) return;
-
-    const handleCanPlay = () => safePlayVideo(videoElement);
-    videoElement.addEventListener("canplay", handleCanPlay);
-
-    return () => videoElement.removeEventListener("canplay", handleCanPlay);
-  }, [videoSrc, enabled]);
 
   // Effect to sync state when video changes externally
   useEffect(() => {

@@ -287,6 +287,16 @@ export const academicRecords = [
 ];
 
 /**
+ * Brand colors used on hover for each social network.
+ * GitHub's brand is near-black, so on dark themes we invert to white.
+ */
+export const SOCIAL_HOVER_COLORS: Record<string, string> = {
+  LinkedIn: "hover:text-[#0A66C2] dark:hover:text-[#0A66C2]",
+  WhatsApp: "hover:text-[#25D366] dark:hover:text-[#25D366]",
+  GitHub: "hover:text-[#181717] dark:hover:text-white",
+} as const;
+
+/**
  * Maps icon name strings to React icon components for social links
  * @param iconName - The string name of the icon
  * @returns The corresponding React icon component

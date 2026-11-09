@@ -33,7 +33,6 @@ import {
   SiGo,
   SiAngular,
   SiPostgresql,
-  SiNestjs,
   SiOracle,
   SiOpenapiinitiative,
   SiVitest,
@@ -60,7 +59,6 @@ export const TECH_STACKS = {
     { Icon: SiAngular, name: "Angular", color: "text-red-600" },
     { Icon: FaReact, name: "React", color: "text-cyan-600" },
     { Icon: SiNextdotjs, name: "Next.js", color: "text-gray-800 dark:text-white" },
-    { Icon: SiNestjs, name: "NestJS", color: "text-red-500" },
     { Icon: FaNodeJs, name: "Node.js", color: "text-green-500" },
     {
       Icon: SiExpress,
@@ -196,7 +194,6 @@ export const technologies: Record<string, TechIcon> = {
   javascript: { Icon: FaJs, name: "JavaScript", color: "text-yellow-500" },
   nodejs: { Icon: FaNodeJs, name: "Node.js", color: "text-green-500" },
   nextjs: { Icon: SiNextdotjs, name: "Next.js", color: "text-white" },
-  nestjs: { Icon: SiNestjs, name: "NestJS", color: "text-red-500" },
   python: { Icon: FaPython, name: "Python", color: "text-blue-500" },
   html: { Icon: FaHtml5, name: "HTML", color: "text-orange-500" },
   css: { Icon: FaCss3, name: "CSS", color: "text-blue-500" },

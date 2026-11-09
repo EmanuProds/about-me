@@ -43,21 +43,14 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-/* Animations for horizontal technology scroll */
-@keyframes scroll {
-  0% {
-    transform: translateX(0);
+/* Seamless marquee: requires exactly two copies of the content in the
+   track, translated by exactly one copy (-50%). Uses 3d transforms so
+   the animation runs on the compositor. */
+@keyframes marquee {
+  from {
+    transform: translate3d(0, 0, 0);
   }
-  100% {
-    transform: translateX(-100%);
-  }
-}
-
-@keyframes scroll-reverse {
-  0% {
-    transform: translateX(-100%);
-  }
-  100% {
-    transform: translateX(0);
+  to {
+    transform: translate3d(-50%, 0, 0);
   }
 }

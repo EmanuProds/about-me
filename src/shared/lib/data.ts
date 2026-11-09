@@ -39,6 +39,7 @@ import {
   SiVitest,
   SiAmazonwebservices,
   SiGnubash,
+  SiBun,
 } from "react-icons/si";
 
 /**
@@ -69,6 +70,7 @@ export const TECH_STACKS = {
     { Icon: SiTailwindcss, name: "TailwindCSS", color: "text-teal-500" },
     { Icon: SiVite, name: "Vite", color: "text-purple-500" },
     { Icon: SiExpo, name: "Expo", color: "text-slate-400" },
+    { Icon: SiBun, name: "Bun", color: "text-amber-500" },
   ] as TechIcon[],
 
   /** Tools and infrastructure */
@@ -202,6 +204,7 @@ export const technologies: Record<string, TechIcon> = {
   "express.js": { Icon: SiExpress, name: "Express.js", color: "text-gray-400" },
   postgresql: { Icon: SiPostgresql, name: "PostgreSQL", color: "text-blue-600" },
   mssql: { Icon: FaDatabase, name: "MSSQL", color: "text-red-500" },
+  bun: { Icon: SiBun, name: "Bun", color: "text-amber-500" },
   docker: { Icon: FaDocker, name: "Docker", color: "text-blue-400" },
   openapi: {
     Icon: SiOpenapiinitiative,

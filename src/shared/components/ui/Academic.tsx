@@ -105,21 +105,21 @@ const AcademicCard = ({
   const getInstitutionColor = (institution: string) => {
     switch (institution.toLowerCase()) {
       case "rocketseat":
-        return "from-purple-500 to-purple-600";
+        return "bg-purple-600";
       case "dio.io":
-        return "from-blue-400 to-blue-500";
+        return "bg-blue-500";
       case "dev samurai":
-        return "from-gray-500 to-gray-600";
+        return "bg-gray-600";
       case "ennor":
-        return "from-green-500 to-teal-600";
+        return "bg-green-600";
       case "descomplica uniamerica":
-        return "from-blue-600 to-indigo-600";
+        return "bg-blue-700";
       default:
-        return "from-gray-500 to-slate-600";
+        return "bg-gray-600";
     }
   };
 
-  const gradientColor = getInstitutionColor(record.institution);
+  const institutionColor = getInstitutionColor(record.institution);
 
   if (loading) {
     return (
@@ -147,13 +147,13 @@ const AcademicCard = ({
     <div className={`group ${CARD_BASE_CLASSES}`}>
       <div className="flex items-center gap-4 mb-4">
         <div
-          className={`p-3 rounded-xl bg-linear-to-br ${gradientColor} text-gray-100 shadow-lg`}
+          className={`p-3 rounded-xl ${institutionColor} text-gray-100 shadow-lg`}
         >
           <AcademicIcon iconName={record.icon || "default"} />
         </div>
         <div>
           <span
-            className={`inline-block px-3 py-1 text-sm font-semibold rounded-full bg-linear-to-r ${gradientColor} text-gray-100 shadow-sm select-none`}
+            className={`inline-block px-3 py-1 text-sm font-semibold rounded-full ${institutionColor} text-gray-100 shadow-sm select-none`}
           >
             {getTranslatedType(record.type)}
           </span>

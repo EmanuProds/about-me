@@ -20,6 +20,7 @@ import {
   FaLinkedin,
   FaWhatsapp,
   FaVial,
+  FaDatabase,
 } from "react-icons/fa";
 import {
   SiTypescript,
@@ -76,6 +77,7 @@ export const TECH_STACKS = {
     { Icon: SiOracle, name: "Oracle Cloud", color: "text-red-700" },
     { Icon: SiAmazonwebservices, name: "AWS", color: "text-amber-500" },
     { Icon: SiPostgresql, name: "PostgreSQL", color: "text-blue-600" },
+    { Icon: FaDatabase, name: "MSSQL", color: "text-red-500" },
     { Icon: SiSqlite, name: "SQLite", color: "text-blue-600" },
     { Icon: SiOpenapiinitiative, name: "OpenAPI", color: "text-green-600" },
     { Icon: SiVitest, name: "Vitest", color: "text-green-500" },
@@ -199,6 +201,7 @@ export const technologies: Record<string, TechIcon> = {
   css: { Icon: FaCss3, name: "CSS", color: "text-blue-500" },
   "express.js": { Icon: SiExpress, name: "Express.js", color: "text-gray-400" },
   postgresql: { Icon: SiPostgresql, name: "PostgreSQL", color: "text-blue-600" },
+  mssql: { Icon: FaDatabase, name: "MSSQL", color: "text-red-500" },
   docker: { Icon: FaDocker, name: "Docker", color: "text-blue-400" },
   openapi: {
     Icon: SiOpenapiinitiative,

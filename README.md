@@ -89,7 +89,7 @@ src/
 ### 🛠️ Technologies
 - Languages (Go, TypeScript, JavaScript, Python)
 - Frameworks (Angular, React, Next.js, Node.js)
-- Data & Infrastructure (PostgreSQL, Docker, Oracle Cloud, AWS)
+- Data & Infrastructure (PostgreSQL, MSSQL, Docker, Oracle Cloud, AWS)
 - Tooling (OpenAPI, Vitest, Playwright, Linux, ShellScript)
 
 ## 🌐 Internationalization

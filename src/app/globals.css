@@ -24,11 +24,19 @@
 
 /* Prevent horizontal overflow without creating a scroll container.
    `overflow-x: hidden` makes body a scroll container and, combined with
-   `overscroll-behavior: none`, breaks mouse wheel / trackpad scrolling
-   in Firefox/Zen while the scrollbar itself keeps working. */
+   `overscroll-behavior`, breaks mouse wheel / trackpad scrolling in
+   Firefox/Zen while the scrollbar itself keeps working. */
 html,
 body {
   overflow-x: clip;
+}
+
+/* Block the rubber-band overscroll bounce at the top/bottom edges.
+   At the bottom this made the footer "spring" on trackpads and wheel
+   mice with overscroll. Scoped to the y axis: it does not affect
+   wheel/trackpad scrolling of the page itself. */
+html {
+  overscroll-behavior-y: none;
 }
 
 /* Smooth scroll for anchor navigation */

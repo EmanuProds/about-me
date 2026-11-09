@@ -22,11 +22,13 @@
   }
 }
 
-/* Prevention of excessive scroll on mobile devices */
+/* Prevent horizontal overflow without creating a scroll container.
+   `overflow-x: hidden` makes body a scroll container and, combined with
+   `overscroll-behavior: none`, breaks mouse wheel / trackpad scrolling
+   in Firefox/Zen while the scrollbar itself keeps working. */
 html,
 body {
-  overscroll-behavior: none;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 /* Smooth scroll for anchor navigation */

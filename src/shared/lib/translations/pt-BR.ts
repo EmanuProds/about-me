@@ -24,7 +24,7 @@ export const ptBR: Translations = {
 
 Atuação atual
 
-• ERP Perains ON — desenho e construção da plataforma de ponta a ponta: backend em Go com abordagem API-first (chi, sqlc, pgx, OpenAPI/orval) e frontend em Angular + TypeScript, com fluxo de folha de pagamento (prévia, apontamentos, aprovação do operador, confirmação/cancelamento), exportação CSV, trilhas de auditoria e CI a cada alteração.
+• Perains ON Sistemas — desenho e construção do meu próprio SaaS de ponta a ponta: backend em Go com abordagem API-first (chi, sqlc, pgx, OpenAPI/orval) e frontend em Angular + TypeScript, com fluxo de folha de pagamento (prévia, apontamentos, aprovação do operador, confirmação/cancelamento), exportação CSV, trilhas de auditoria e CI a cada alteração.
 
 • Oracle Cloud Infrastructure — provisionamento, administração e otimização de ambientes OCI com contêineres Docker e redes virtuais, sempre mirando alta disponibilidade e eficiência de custos.
 
@@ -66,7 +66,7 @@ Trajetória
     videoComingSoon: "Vídeo em breve",
     caseStudy: "Privado — Estudo de caso",
     titles: {
-      perainsErp: "ERP Perains ON",
+      perainsErp: "Perains ON Sistemas",
       clientOn: "Client On",
       image2file: "Image2File",
       omnicatalog: "OmniCatalog",
@@ -75,7 +75,7 @@ Trajetória
     },
     descriptions: {
       perainsErp:
-        "Único desenvolvedor de um ERP privado para a contabilidade brasileira — projetado e construído do zero: schema do banco, regras tributárias e de folha, backend em Go com abordagem API-first, frontend em Angular, geração de documentos e CI.",
+        "Meu próprio SaaS para a contabilidade brasileira — projetado e construído do zero: schema do banco, regras tributárias e de folha, backend em Go com abordagem API-first, frontend em Angular, geração de documentos e CI.",
       clientOn:
         "Plataforma de atendimento ao cliente que organiza mensagens recebidas via WhatsApp por setor. Construída com Next.js, Express, PostgreSQL e whatsapp-web.js, orquestrada com Docker Compose.",
       image2file:

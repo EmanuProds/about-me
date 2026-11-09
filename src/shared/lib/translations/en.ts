@@ -24,7 +24,7 @@ export const en: Translations = {
 
 Currently
 
-• Perains ON ERP — designing and building the platform end to end: an API-first Go backend (chi, sqlc, pgx, OpenAPI/orval) and an Angular + TypeScript frontend, with a payroll workflow (preview, findings, operator approval, confirm/cancel), CSV export, audit trails and CI on every change.
+• Perains ON Sistemas — designing and building my own SaaS end to end: an API-first Go backend (chi, sqlc, pgx, OpenAPI/orval) and an Angular + TypeScript frontend, with a payroll workflow (preview, findings, operator approval, confirm/cancel), CSV export, audit trails and CI on every change.
 
 • Oracle Cloud Infrastructure — provisioning, administering and optimizing OCI environments with Docker containers and virtual networks, always aiming at high availability and cost efficiency.
 
@@ -66,7 +66,7 @@ Background
     videoComingSoon: "Video coming soon",
     caseStudy: "Private — Case study",
     titles: {
-      perainsErp: "Perains ON ERP",
+      perainsErp: "Perains ON Sistemas",
       clientOn: "Client On",
       image2file: "Image2File",
       omnicatalog: "OmniCatalog",
@@ -75,7 +75,7 @@ Background
     },
     descriptions: {
       perainsErp:
-        "Sole developer of a private ERP for Brazilian accounting — designed and built from zero: database schema, tax and payroll rules, API-first Go backend, Angular frontend, document generation, and CI.",
+        "My own SaaS for Brazilian accounting — designed and built from zero: database schema, tax and payroll rules, API-first Go backend, Angular frontend, document generation, and CI.",
       clientOn:
         "Customer service platform that organizes incoming WhatsApp messages by department. Built with Next.js, Express, PostgreSQL and whatsapp-web.js, orchestrated with Docker Compose.",
       image2file:

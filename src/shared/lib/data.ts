@@ -122,11 +122,11 @@ export const experienceEntries: Experience[] = [
 export const projects = [
   {
     id: 1,
-    title: "Perains ON ERP",
+    title: "Perains ON Sistemas",
     description:
-      "Sole developer of a private ERP for Brazilian accounting — designed and built from zero: database schema, tax and payroll rules, API-first Go backend, Angular frontend, document generation, and CI.",
+      "My own SaaS for Brazilian accounting — designed and built from zero: database schema, tax and payroll rules, API-first Go backend, Angular frontend, document generation, and CI.",
     technologies: ["go", "angular", "typescript", "postgresql", "docker", "openapi"],
-    projectUrl: "",
+    projectUrl: "https://perainson.duckdns.org",
     githubUrl: "",
   },
   {

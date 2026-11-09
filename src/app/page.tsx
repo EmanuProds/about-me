@@ -3,6 +3,7 @@ import Footer from "@/components/layout/Footer";
 import Profile from "@/components/ui/Profile";
 import TechScroll from "@/components/ui/TechScroll";
 import About from "@/components/ui/About";
+import Experience from "@/components/ui/Experience";
 import Projects from "@/components/ui/Projects";
 import Academic from "@/components/ui/Academic";
 
@@ -10,6 +11,7 @@ const SECTIONS = [
   Profile,
   TechScroll,
   About,
+  Experience,
   Projects,
   Academic,
 ] as const;

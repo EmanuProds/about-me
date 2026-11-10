@@ -111,9 +111,9 @@ const AcademicCard = ({
       case "dev samurai":
         return "bg-gray-600";
       case "ennor":
-        return "bg-green-600";
+        return "bg-yellow-500";
       case "descomplica uniamerica":
-        return "bg-blue-700";
+        return "bg-green-600";
       default:
         return "bg-gray-600";
     }

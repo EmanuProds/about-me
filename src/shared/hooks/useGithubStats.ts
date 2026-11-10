@@ -18,7 +18,7 @@ const GITHUB_API_CONFIG = {
  * Fallback data for when API fails
  */
 const FALLBACK_STATS: GithubStatsData = {
-  publicRepos: 6,
+  publicRepos: 10,
   totalContributions: 200,
   contributionsYear: new Date().getFullYear(),
   yearsOfExperience: 1,

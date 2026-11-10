@@ -1,4 +1,4 @@
-# 🚀 Portfolio
+# Portfolio
 
 [![Next.js](https://img.shields.io/badge/Next.js-16.0.1-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
 [![React](https://img.shields.io/badge/React-19.2.0-61DAFB?style=for-the-badge&logo=react)](https://react.dev/)
@@ -7,19 +7,19 @@
 
 Personal portfolio of **Emanuel da Costa Pereira** — Software Engineer building ERPs and automation. Built with the latest technologies in the React ecosystem. Live at [emanuprods.github.io/about-me](https://emanuprods.github.io/about-me).
 
-## ✨ Features
+## Features
 
-- 📊 **GitHub Integration**: Statistics and profile directly from the GitHub API
-- 🌍 **Multilingual**: English (default) and Brazilian Portuguese
-- 🎨 **Modern Design**: Elegant interface with light/dark theme
-- 📱 **Responsive**: Optimized for desktop, tablet and mobile
-- 🔧 **Featured Technologies**: Horizontal scroll of main technologies
-- 🎥 **Interactive Projects**: Cards with demonstration videos and direct links (video optional — private projects render as case studies)
-- 💼 **Experience Timeline**: Compact timeline of professional experience
-- 🎓 **Education**: Dedicated section with certificates and courses
-- ⚡ **Performance**: Optimized with Next.js 16 and React Compiler
+- **GitHub Integration**: Statistics and profile directly from the GitHub API
+- **Multilingual**: English (default) and Brazilian Portuguese
+- **Modern Design**: Elegant interface with light/dark theme
+- **Responsive**: Optimized for desktop, tablet and mobile
+- **Featured Technologies**: Horizontal scroll of main technologies
+- **Interactive Projects**: Cards with demonstration videos and direct links (video optional — private projects render as case studies)
+- **Experience Timeline**: Compact timeline of professional experience
+- **Education**: Dedicated section with certificates and courses
+- **Performance**: Optimized with Next.js 16 and React Compiler
 
-## 🛠️ Technologies Used
+## Technologies Used
 
 ### Core Framework
 - **Next.js 16** - React framework with App Router (static export for GitHub Pages)
@@ -40,41 +40,41 @@ Personal portfolio of **Emanuel da Costa Pereira** — Software Engineer buildin
 ### Integrations
 - **GitHub API** - Profile statistics and data
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 src/
-├── app/                    # Next.js entry (App Router)
-│   ├── globals.css         # Global styles
-│   ├── layout.tsx          # Root application layout
-│   └── page.tsx            # Home page
-└── shared/                 # Application source
-    ├── components/
-    │   ├── github/         # GitHub integration (stats, avatar)
-    │   ├── layout/         # Header, Footer, Card primitives
-    │   ├── providers/      # Context providers (theme)
-    │   └── ui/             # Profile, About, Experience, Projects, Academic, TechScroll
-    ├── hooks/              # Custom hooks
-    ├── lib/                # Static data, constants, translations (en, pt-BR)
-    └── types/              # TypeScript definitions
+├── app/ # Next.js entry (App Router)
+│ ├── globals.css # Global styles
+│ ├── layout.tsx # Root application layout
+│ └── page.tsx # Home page
+└── shared/ # Application source
+ ├── components/
+ │ ├── github/ # GitHub integration (stats, avatar)
+ │ ├── layout/ # Header, Footer, Card primitives
+ │ ├── providers/ # Context providers (theme)
+ │ └── ui/ # Profile, About, Experience, Projects, Academic, TechScroll
+ ├── hooks/ # Custom hooks
+ ├── lib/ # Static data, constants, translations (en, pt-BR)
+ └── types/ # TypeScript definitions
 ```
 
-## 🎯 Portfolio Sections
+## Portfolio Sections
 
-### 🏠 Home
+### Home
 - Professional profile with photo and basic information
 - Live integration with GitHub statistics
 
-### 👨‍💻 About Me
+### About Me
 - **Perains ON Sistemas** — my own SaaS for Brazilian accounting at [perainson.duckdns.org](https://perainson.duckdns.org)
 - Oracle Cloud Infrastructure administration
 - AI-assisted engineering harness built on OpenCode
 
-### 💼 Experience
+### Experience
 - **Perains ON Technology** — Software Engineer (May 2026 — Present)
 - **Campos Development** — Software Development Intern (Dec 2025 — May 2026)
 
-### 🚀 Projects
+### Projects
 - **Perains ON Sistemas**: my own SaaS for Brazilian accounting — Go, Angular, PostgreSQL, OpenAPI · [perainson.duckdns.org](https://perainson.duckdns.org)
 - **Client On**: WhatsApp customer-service platform organized by department — Next.js, Express, PostgreSQL
 - **Image2File**: GTK4 desktop app for OCR-powered document organization to PDF
@@ -82,36 +82,36 @@ src/
 - **archpi & fedorapi**: Shell toolkits that turn a fresh Arch/Fedora install into a dev workstation
 - **AI Agent Harness (OpenCode)**: custom subagents, skills, SQLite memory and model routing
 
-### 🎓 Education
+### Education
 - **Bachelor's in Computer Science** — Descomplica Uniamerica (2025 — 2029)
 - Specialization courses (React Native, React e C#, LGPD, and more) with verifiable certificates
 
-### 🛠️ Technologies
+### Technologies
 - Languages (Go, TypeScript, JavaScript, Python)
 - Frameworks (Angular, React, Next.js, Node.js, Bun)
 - Data & Infrastructure (PostgreSQL, MSSQL, Docker, Oracle Cloud, AWS)
 - Tooling (OpenAPI, Vitest, Playwright, Linux, ShellScript)
 
-## 🌐 Internationalization
+## Internationalization
 
 - **English (en)** — default language
 - **Brazilian Portuguese (pt-BR)** — full translation
 
 Translations live in `src/shared/lib/translations/` as typed dictionaries; the default locale in `translations/index.ts` controls SSR rendering and can be overridden by the language toggle (persisted in `localStorage`).
 
-## 🎨 Theme
+## Theme
 
 - **Light/Dark Mode**: Automatic switching based on user system, persisted
 - **Design System**: Consistent color palette
 - **Animations**: Smooth transitions and micro-interactions
 
-## 📱 Responsiveness
+## Responsiveness
 
 - **Mobile First**: Design optimized for mobile devices
 - **Breakpoints**: Adaptation for tablet and desktop
 - **Performance**: Optimized images and videos
 
-## 🔧 Development
+## Development
 
 ### Custom Hooks
 - `useTranslations` - Language management
@@ -130,18 +130,14 @@ Translations live in `src/shared/lib/translations/` as typed dictionaries; the d
 
 ```bash
 npm install
-npm run dev      # development server
-npm run build    # static export to out/ (used for GitHub Pages)
-npm run lint     # eslint
+npm run dev # development server
+npm run build # static export to out/ (used for GitHub Pages)
+npm run lint # eslint
 ```
 
-## 📈 Performance
+## Performance
 
 - **Next.js 16**: App Router and automatic optimizations
 - **React Compiler**: Optimized component compilation
 - **Lazy Loading**: On-demand loading
 - **Code Splitting**: Automatic bundle splitting
-
----
-
-**Made with ❤️**

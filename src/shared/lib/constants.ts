@@ -6,7 +6,7 @@ import { SocialLink } from "@/types";
 export const socialLinks: SocialLink[] = [
   {
     name: "LinkedIn",
-    url: "https://linkedin.com/in/emanuprods",
+    url: "https://www.linkedin.com/in/emanuprods/",
     icon: "FaLinkedin",
     ariaLabel: "Visit my LinkedIn profile",
   },

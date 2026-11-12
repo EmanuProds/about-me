@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { FaPlay, FaPause, FaCode, FaGlobe, FaExpand, FaLock } from "react-icons/fa";
+import { FaPlay, FaPause, FaCode, FaGlobe, FaExpand, FaLock, FaVideoSlash } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "@/hooks/useTranslations";
 import { ProjectCardProps } from "@/types/projects";
@@ -179,13 +179,12 @@ const ProjectCard = ({
 
   return (
     <div className={`group ${CARD_BASE_CLASSES}`}>
-      {videoSrc ? (
       <div
         className={VIDEO_CONTAINER_CLASSES}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
-        {!videoError ? (
+        {videoSrc && !videoError ? (
           <>
             <video
               ref={videoRef}
@@ -230,7 +229,7 @@ const ProjectCard = ({
         ) : (
           <div className="w-full h-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
             <div className="text-center text-gray-600 dark:text-gray-400">
-              <FaCode className="w-12 h-12 mx-auto mb-3 opacity-50" />
+              <FaVideoSlash className="w-12 h-12 mx-auto mb-3 opacity-50" />
               <p className="text-sm font-medium">
                 {t.projects.videoComingSoon}
               </p>
@@ -238,7 +237,6 @@ const ProjectCard = ({
           </div>
         )}
       </div>
-      ) : null}
 
       <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 group-hover:text-gray-700 dark:group-hover:text-gray-200 transition-colors min-h-10 line-clamp-2 mb-2 select-none">
         {getTranslatedTitle(id)}
